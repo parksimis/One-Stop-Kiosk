@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:3.8
 
 ENV FLASK_APP run.py
 
@@ -6,6 +6,7 @@ COPY run.py gunicorn-cfg.py requirements.txt config.py .env ./
 COPY app app
 
 RUN pip install -r requirements.txt
+RUN export FLASK_APP=run.py
 
-EXPOSE 5005
+EXPOSE 5000
 CMD ["gunicorn", "--config", "gunicorn-cfg.py", "run:app"]
