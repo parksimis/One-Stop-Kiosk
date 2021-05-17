@@ -1,0 +1,26 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Page User {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+{% block content %}
+
+      <div class="card col-md-8" style="margin: 0 auto;">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title text-center">오늘의 기분에 맞는 표정을 보여주세요</h4>
+        </div>
+        <div class="card-body text-center">
+            <img class="card-img-top mb-md-4" src="/static/assets/img/faces/marc.jpg"/>
+            <button type="submit" class="btn btn-primary col-md-8 p-md-4" style="font-size: 20px;">촬영하기</button>
+            <div class="clearfix"></div>
+        </div>
+      </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
