@@ -1,0 +1,46 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <div class="card-deck">
+         <div class="card">
+             <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+             <div class="card-body text-center">
+                 불고기
+            </div>
+             <button type="button" class="btn btn-primary">장바구니 추가</button>
+        </div>
+        <div class="card">
+             <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+             <div class="card-body text-center">
+                 불고기
+            </div>
+             <button type="button" class="btn btn-primary">장바구니 추가</button>
+        </div>
+        <div class="card">
+             <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+             <div class="card-body text-center">
+                 불고기
+            </div>
+             <button type="button" class="btn btn-primary">장바구니 추가</button>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      md.initDashboardPageCharts();
+
+    });
+  </script>
+
+{% endblock javascripts %}

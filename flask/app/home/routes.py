@@ -32,6 +32,13 @@ def index():
 def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@blueprint.route('/user')
+def user():
+    return render_template('page-user.html', segment='index')
+
+@blueprint.route('/recommend')
+def recommend():
+    return render_template('recommend.html', segment='index')
 
 @blueprint.route('/<template>')
 def route_template(template):
