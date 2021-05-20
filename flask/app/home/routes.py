@@ -8,10 +8,11 @@ from flask import Flask, render_template, Response
 
 app = Flask(__name__)
 
-camera = cv2.VideoCapture(0)
+
 
 
 def gen_frames():
+    camera = cv2.VideoCapture(0)
     while True:
         success, frame = camera.read()
         if not success:
@@ -39,6 +40,15 @@ def user():
 @blueprint.route('/recommend')
 def recommend():
     return render_template('recommend.html', segment='index')
+
+@blueprint.route('/order')
+def order():
+    return render_template('order.html', segment='index')
+
+@blueprint.route('/pay')
+def pay():
+    return render_template('pay.html', segment='index')
+
 
 @blueprint.route('/<template>')
 def route_template(template):
