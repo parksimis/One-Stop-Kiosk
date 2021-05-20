@@ -1,0 +1,270 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <div class="row">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <div class="nav-tabs-navigation">
+              <div class="nav-tabs-wrapper">
+                <span class="nav-tabs-title">메뉴</span>
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#korean" data-toggle="tab">
+                      <i class="material-icons">rice_bowl</i> 한식
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#chinese" data-toggle="tab">
+                      <i class="material-icons">ramen_dining</i> 중식
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#japanese" data-toggle="tab">
+                      <i class="material-icons">bento</i> 일식
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#western" data-toggle="tab">
+                      <i class="material-icons">restaurant</i> 양식
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#casual" data-toggle="tab">
+                      <i class="material-icons">dinner_dining</i> 분식
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="tab-content">
+              <div class="tab-pane active" id="korean">
+                 <div class="card-deck">
+                     <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">한식</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                   <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                    <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">한식</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                    <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">불고기</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="chinese">
+                <div class="card-deck">
+                     <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">중식</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                    <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">불고기</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                    <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">불고기</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="japanese">
+                <div class="card-deck">
+                     <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">불고기</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                    <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">불고기</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                    <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">불고기</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="western">
+                <div class="card-deck">
+                     <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">불고기</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                    <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">불고기</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                    <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">불고기</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="casual">
+                <div class="card-deck">
+                     <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">불고기</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                    <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">불고기</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                    <div class="card">
+                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
+                         <div class="card-body text-center">
+                             <h4 class="card-title">불고기</h4>
+                               <div class="input-group">
+                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                  <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                              </div>
+                        </div>
+                         <button type="button" class="btn btn-primary">장바구니 추가</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      md.initDashboardPageCharts();
+
+    });
+  </script>
+
+{% endblock javascripts %}

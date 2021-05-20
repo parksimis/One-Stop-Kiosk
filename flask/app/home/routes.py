@@ -8,9 +8,6 @@ from flask import Flask, render_template, Response
 
 app = Flask(__name__)
 
-
-
-
 def gen_frames():
     camera = cv2.VideoCapture(0)
     while True:
@@ -27,7 +24,6 @@ def gen_frames():
 @blueprint.route('/index')
 def index():
     return render_template('index.html', segment='index')
-
 
 @blueprint.route('/video_feed')
 def video_feed():
@@ -49,6 +45,9 @@ def order():
 def pay():
     return render_template('pay.html', segment='index')
 
+@blueprint.route('/menu')
+def menu():
+    return render_template('menu.html', segment='index')
 
 @blueprint.route('/<template>')
 def route_template(template):
