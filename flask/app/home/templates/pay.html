@@ -13,21 +13,13 @@
       <div class="card-body">
         <div class="row text-center align-middle" style="height: 400px;">
           <div class="col-sm-6 align-self-center">
-            <a href="#" class="btn btn-primary w-100 h-100"><h3>카드</h3></a>
+            <a href="{{url_for('home_blueprint.submit')}}" class="btn btn-primary w-100 h-100"><h3>카드</h3></a>
           </div>
           <div class="col-sm-6 align-self-center">
-            <a href="#" class="btn btn-primary w-100 h-100"><h3>현금</h3></a>
+            <a href="{{url_for('home_blueprint.submit')}}" class="btn btn-primary w-100 h-100"><h3>현금</h3></a>
           </div>
         </div>
       </div>
-
-
-<!--      <div class="card-footer text-center">-->
-<!--        <div class="btn-group">-->
-<!--          <button type="button" class="btn btn-outline-danger">결제하기</button>-->
-<!--          <button type="button" class="btn btn-primary">추가<br>주문</button>-->
-<!--        </div>-->
-<!--      </div>-->
     </div>
 
 {% endblock content %}

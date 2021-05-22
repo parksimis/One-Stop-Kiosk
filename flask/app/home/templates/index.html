@@ -6,27 +6,15 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-<!--     <div class="col-lg-6 col-md-12">-->
-<!--      <div class="card">-->
-<!--        <div class="card-header card-header-primary text-center">-->
-<!--          <h3>고민고민하지말조<br>푸드코트</h3>-->
-<!--        </div>-->
-<!--        <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">-->
-<!--        <div class="card-body">-->
-<!--          저희 푸드코트에 오신걸 환영합니다.-->
-<!--        </div>-->
-<!--        <button type="button" class="btn btn-primary" onclick="window.location.href='{{url_for('home_blueprint.user')}}';" style="font-size: 20px;">주문하시려면 화면을 터치해주세요.</button>-->
-<!--    </div>-->
      <div class="card">
       <div class="card-header card-header-primary text-center">
         <h3>고민고민하지말조<br>푸드코트</h3>
       </div>
+     <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
       <div class="card-body">
-        <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-          저희 푸드코트에 오신걸 환영합니다.
         <div class="row text-center">
-          <div class="col">
-            <a href="{{url_for('home_blueprint.user')}}" class="btn btn-primary w-100">주문하시려면 화면을 터치해주세요.</a>
+          <div class="col align-self-center">
+            <a href="{{url_for('home_blueprint.user')}}" class="btn btn-primary w-100 h-100">주문하시려면 화면을 터치해주세요.</a>
           </div>
         </div>
       </div>

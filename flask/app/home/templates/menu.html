@@ -252,6 +252,41 @@
             </div>
           </div>
         </div>
+            <div class="card text-center">
+                <div class="card-header bg-primary text-white">
+                    장바구니
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td scope="col">번호</td>
+                                <td scope="col">메뉴명</td>
+                                <td scope="col">수량</td>
+                                <td scope="col">금액</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">합 계</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="row text-center align-middle">
+                  <div class="col-sm-6 align-self-center">
+                    <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100 h-100"><h3>결제하기</h3></a>
+                  </div>
+                  <div class="col-sm-6 align-self-center">
+                    <a href="{{url_for('home_blueprint.menu')}}" class="btn btn-primary w-100 h-100"><h3>추가메뉴</h3></a>
+                  </div>
+                </div>
+            </div>
     </div>
 
 {% endblock content %}

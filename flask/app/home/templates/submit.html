@@ -1,0 +1,59 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Submit {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <div class="card">
+      <div class="card-header bg-primary text-white text-center">
+        <h3>
+          주문이 완료되었습니다.<br>
+          주문 번호를 확인해주세요.
+        </h3>
+        <h2>
+          <p>
+            주문번호 :
+          </p>
+        </h2>
+
+      </div>
+      <div class="card-body">
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <td scope="col">번호</td>
+                      <td scope="col">메뉴명</td>
+                      <td scope="col">수량</td>
+                      <td scope="col">금액</td>
+                  </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+              <tfoot>
+                  <tr>
+                      <td colspan="2">합 계</td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+              </tfoot>
+          </table>
+      </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      md.initDashboardPageCharts();
+
+    });
+  </script>
+
+{% endblock javascripts %}

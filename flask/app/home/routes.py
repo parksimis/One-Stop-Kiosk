@@ -29,6 +29,18 @@ def index():
 def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@blueprint.route('/capture')
+def capture():
+    camera = cv2.VideoCapture(0)
+    while True:
+        success, frame = camera.read()
+        if not success:
+            break
+        else:
+            cv2.imwrite('temp/test.jpg', frame)
+            camera.release()
+            return render_template('recommend.html', segment='index')
+
 @blueprint.route('/user')
 def user():
     return render_template('page-user.html', segment='index')
@@ -48,6 +60,10 @@ def pay():
 @blueprint.route('/menu')
 def menu():
     return render_template('menu.html', segment='index')
+
+@blueprint.route('/submit')
+def submit():
+    return render_template('submit.html', segment='index')
 
 @blueprint.route('/<template>')
 def route_template(template):

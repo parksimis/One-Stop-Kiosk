@@ -16,6 +16,12 @@
              <form>
                  <div class="card-body text-center">
                      <h4 class="card-title">불고기</h4>
+                     <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">금액</span>
+                      </div>
+                      <input type="text" class="form-control" aria-label="가격" aria-describedby="basic-addon1" value="" readonly>
+                    </div>
                        <div class="input-group">
                            <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
                            <input type="number" class="form-control text-center" value="1" readonly>
@@ -79,7 +85,7 @@
         </div>
         <div class="row text-center align-middle">
           <div class="col-sm-6 align-self-center">
-            <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100 h-100"><h3>주문하기</h3></a>
+            <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100 h-100"><h3>결제하기</h3></a>
           </div>
           <div class="col-sm-6 align-self-center">
             <a href="{{url_for('home_blueprint.menu')}}" class="btn btn-primary w-100 h-100"><h3>추가메뉴</h3></a>
