@@ -5,6 +5,16 @@ from app import login_manager
 from jinja2 import TemplateNotFound
 import cv2
 from flask import Flask, render_template, Response
+import pymysql
+
+config = {
+    'host': 'localhost',
+    'port': 3306,
+    'user': 'root',
+    'passwd': '0000',
+    'database': 'mydb',
+    'charset': 'utf8'
+}
 
 app = Flask(__name__)
 
@@ -39,7 +49,7 @@ def capture():
         else:
             cv2.imwrite('temp/test.jpg', frame)
             camera.release()
-            return render_template('recommend.html', segment='index')
+            return redirect('recommend.html')
 
 @blueprint.route('/user')
 def user():
@@ -57,9 +67,28 @@ def order():
 def pay():
     return render_template('pay.html', segment='index')
 
+
 @blueprint.route('/menu')
 def menu():
-    return render_template('menu.html', segment='index')
+    db = pymysql.connect(**config)
+
+    cur = db.cursor()
+    query = '''SELECT store_id, menu_name, menu_price, menu_img FROM menu'''
+    cur.execute(query)
+    rows = cur.fetchall()
+    data_list = []
+    for row in rows:
+        data_dic = {
+            'store_id': row[0],
+            'menu_name': row[1],
+            'menu_price': row[2],
+            'menu_img': row[3]
+        }
+        data_list.append(data_dic)
+    cur.close()
+    db.close()
+
+    return render_template('menu.html', segment='index', data_list=data_list)
 
 @blueprint.route('/submit')
 def submit():

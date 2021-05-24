@@ -1,11 +1,13 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Dashboard {% endblock %} 
+{% block title %} 고민고민하지말조 {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
+
+
     <div class="row">
         <div class="card">
           <div class="card-header card-header-tabs card-header-primary">
@@ -21,25 +23,25 @@
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#chinese" data-toggle="tab">
-                      <i class="material-icons">ramen_dining</i> 중식
+                      <i class="material-icons">dinner_dining</i> 분식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#japanese" data-toggle="tab">
-                      <i class="material-icons">bento</i> 일식
+                       <i class="material-icons">restaurant</i> 양식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#western" data-toggle="tab">
-                      <i class="material-icons">restaurant</i> 양식
+                      <i class="material-icons">bento</i> 일식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#casual" data-toggle="tab">
-                      <i class="material-icons">dinner_dining</i> 분식
+                       <i class="material-icons">ramen_dining</i>중식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
@@ -50,203 +52,153 @@
           <div class="card-body">
             <div class="tab-content">
               <div class="tab-pane active" id="korean">
-                 <div class="card-deck">
-                     <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">한식</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                   <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
-                    <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">한식</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
-                    <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">불고기</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
+                 <div class="row">
+                     {%for obj in data_list%}
+                        {% if obj.store_id == 1 %}
+                            <div class="col-sm-4">
+                                <div class="card">
+                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
+                                     <form>
+                                         <div class="card-body text-center">
+                                             <h4 class="card-title">{{obj.menu_name}}</h4>
+                                             <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">금액</span>
+                                              </div>
+                                              <input type="number" class="form-control text-center" aria-label="가격" aria-describedby="basic-addon1" value="{{obj.menu_price}}" readonly>
+                                            </div>
+                                               <div class="input-group">
+                                                   <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                                   <input type="number" class="form-control text-center" value="1" readonly>
+                                                   <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                                              </div>
+                                        </div>
+                                        <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
+                                     </form>
+                                </div>
+                            </div>
+                        {%endif%}
+                     {%endfor %}
                 </div>
               </div>
               <div class="tab-pane" id="chinese">
-                <div class="card-deck">
-                     <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">중식</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
-                    <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">불고기</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
-                    <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">불고기</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
+                <div class="row">
+                     {%for obj in data_list%}
+                        {% if obj.store_id == 2 %}
+                            <div class="col-sm-4">
+                                <div class="card">
+                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
+                                     <form>
+                                         <div class="card-body text-center">
+                                             <h4 class="card-title">{{obj.menu_name}}</h4>
+                                             <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon2">금액</span>
+                                              </div>
+                                              <input type="number" class="form-control text-center" aria-label="가격" aria-describedby="basic-addon1" value="{{obj.menu_price}}" readonly>
+                                            </div>
+                                               <div class="input-group">
+                                                   <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                                   <input type="number" class="form-control text-center" value="1" readonly>
+                                                   <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                                              </div>
+                                        </div>
+                                        <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
+                                     </form>
+                                </div>
+                            </div>
+                        {%endif%}
+                     {%endfor %}
                 </div>
               </div>
               <div class="tab-pane" id="japanese">
-                <div class="card-deck">
-                     <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">불고기</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
-                    <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">불고기</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
-                    <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">불고기</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
+                <div class="row">
+                     {%for obj in data_list%}
+                        {% if obj.store_id == 3 %}
+                            <div class="col-sm-4">
+                                <div class="card">
+                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
+                                     <form>
+                                         <div class="card-body text-center">
+                                             <h4 class="card-title">{{obj.menu_name}}</h4>
+                                             <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon3">금액</span>
+                                              </div>
+                                              <input type="number" class="form-control text-center" aria-label="가격" aria-describedby="basic-addon1" value="{{obj.menu_price}}" readonly>
+                                            </div>
+                                               <div class="input-group">
+                                                   <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                                   <input type="number" class="form-control text-center" value="1" readonly>
+                                                   <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                                              </div>
+                                        </div>
+                                        <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
+                                     </form>
+                                </div>
+                            </div>
+                        {%endif%}
+                     {%endfor %}
                 </div>
               </div>
               <div class="tab-pane" id="western">
-                <div class="card-deck">
-                     <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">불고기</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
-                    <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">불고기</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
-                    <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">불고기</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
+                <div class="row">
+                     {%for obj in data_list%}
+                        {% if obj.store_id == 4 %}
+                            <div class="col-sm-4">
+                                <div class="card">
+                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
+                                     <form>
+                                         <div class="card-body text-center">
+                                             <h4 class="card-title">{{obj.menu_name}}</h4>
+                                             <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon4">금액</span>
+                                              </div>
+                                              <input type="number" class="form-control text-center" aria-label="가격" aria-describedby="basic-addon1" value="{{obj.menu_price}}" readonly>
+                                            </div>
+                                               <div class="input-group">
+                                                   <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                                   <input type="number" class="form-control text-center" value="1" readonly>
+                                                   <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                                              </div>
+                                        </div>
+                                        <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
+                                     </form>
+                                </div>
+                            </div>
+                        {%endif%}
+                     {%endfor %}
                 </div>
               </div>
               <div class="tab-pane" id="casual">
-                <div class="card-deck">
-                     <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">불고기</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
-                    <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">불고기</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
-                    <div class="card">
-                         <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-                         <div class="card-body text-center">
-                             <h4 class="card-title">불고기</h4>
-                               <div class="input-group">
-                                <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                  <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                              </div>
-                        </div>
-                         <button type="button" class="btn btn-primary">장바구니 추가</button>
-                    </div>
+                <div class="row">
+                     {%for obj in data_list%}
+                        {% if obj.store_id == 5 %}
+                            <div class="col-sm-4">
+                                <div class="card">
+                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
+                                     <form>
+                                         <div class="card-body text-center">
+                                             <h4 class="card-title">{{obj.menu_name}}</h4>
+                                             <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon5">금액</span>
+                                              </div>
+                                              <input type="number" class="form-control text-center" aria-label="가격" aria-describedby="basic-addon1" value="{{obj.menu_price}}" readonly>
+                                            </div>
+                                               <div class="input-group">
+                                                   <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                                                   <input type="number" class="form-control text-center" value="1" readonly>
+                                                   <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                                              </div>
+                                        </div>
+                                        <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
+                                     </form>
+                                </div>
+                            </div>
+                        {%endif%}
+                     {%endfor %}
                 </div>
               </div>
             </div>
@@ -267,7 +219,6 @@
                             </tr>
                         </thead>
                         <tbody>
-
                         </tbody>
                         <tfoot>
                             <tr>
