@@ -1,63 +1,42 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Recommend {% endblock %}
+{% block title %} 고민고민하지말조 {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
 <div class="container">
-    <div class="card-header bg-primary text-white text-center">
+    <div class="card-header bg-primary text-white text-center rounded">
         <h4>추천 상품</h4>
     </div>
-    <div class="card-deck">
-         <div class="card">
-             <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-             <form>
-                 <div class="card-body text-center">
-                     <h4 class="card-title">불고기</h4>
-                     <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">금액</span>
-                      </div>
-                      <input type="text" class="form-control" aria-label="가격" aria-describedby="basic-addon1" value="" readonly>
+   <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                 <img class="card-img-top" src="" alt="Card image top" style="height: 240px; width: 100%">
+                 <form>
+                     <div class="card-body text-center">
+                         <h4 class="card-title">ss</h4>
+                         <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">금액</span>
+                          </div>
+                          <input type="number" class="form-control text-center" aria-label="가격" aria-describedby="basic-addon1" value="22" readonly>
+                        </div>
+                           <div class="input-group">
+                               <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
+                               <input type="number" class="form-control text-center" value="1" readonly>
+                               <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                          </div>
                     </div>
-                       <div class="input-group">
-                           <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                           <input type="number" class="form-control text-center" value="1" readonly>
-                           <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                      </div>
-                </div>
-                <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
-             </form>
-        </div>
-        <div class="card">
-             <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-             <div class="card-body text-center">
-                 <h4 class="card-title">불고기</h4>
-                   <div class="input-group">
-                        <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                          <input type="number" class="form-control text-center" value="1" readonly>
-                        <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                  </div>
+                    <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
+                 </form>
             </div>
-             <button type="button" class="btn btn-primary">장바구니 추가</button>
         </div>
-        <div class="card">
-             <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-             <div class="card-body text-center">
-                 <h4 class="card-title">불고기</h4>
-                   <div class="input-group">
-                        <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                          <input type="number" class="form-control text-center" value="1" readonly>
-                        <button class="btn btn-outline-secondary btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                  </div>
-            </div>
-             <button type="button" class="btn btn-primary">장바구니 추가</button>
-        </div>
+
     </div>
     <div class="card text-center">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-primary text-white rounded">
             장바구니
         </div>
         <div class="card-body">

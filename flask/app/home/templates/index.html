@@ -1,23 +1,21 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Index {% endblock %}
+{% block title %} 고민고민하지말조 {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
      <div class="card">
-      <div class="card-header card-header-primary text-center">
-        <h3>고민고민하지말조<br>푸드코트</h3>
+      <div class="card-header text-center" >
+        <h3 style="font-family: 'Do Hyeon'; font-size: 60px;" >고민고민하지말조</h3>
       </div>
-     <img class="card-img-top" src="https://source.unsplash.com/daily" alt="Card image top">
-      <div class="card-body">
-        <div class="row text-center">
+     <img class="card-img-top" src="https://lh3.googleusercontent.com/proxy/q9yXbokeAm2BgUoEMDviFjmWkamVkK8ZfwZK2SRXxjBknbWhG0vcG6ox9thHen1RoF5beHM_0CLoWs_9YoqC2kA6FKFdupgwjwuw7bIHcaSSUNjxWDPik9Ma73wMV4gvXSRkW_kGs8rX2EOn" alt="Card image top" style="height: 20%">
+      <div class="row text-center">
           <div class="col align-self-center">
-            <a href="{{url_for('home_blueprint.user')}}" class="btn btn-primary w-100 h-100">주문하시려면 화면을 터치해주세요.</a>
+            <a href="{{url_for('home_blueprint.user')}}" class="btn btn-warning w-100 h-100 bg-warning text-dark">주문하시려면 화면을 터치해주세요.</a>
           </div>
-        </div>
-      </div>
+    </div>
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
