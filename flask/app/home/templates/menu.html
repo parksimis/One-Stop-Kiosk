@@ -58,18 +58,18 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                      <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
-                                     <form>
+                                     <form action="/tmp" method="post">
                                          <div class="card-body text-center">
-                                             <h4 class="card-title">{{obj.menu_name}}</h4>
+                                             <input type="text" class="form-control text-center bg-white h4" aria-label="메뉴명" name="메뉴명" value="{{obj.menu_name}}" readonly>
                                              <div class="input-group mb-3">
                                               <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1">금액</span>
                                               </div>
-                                              <input type="number" class="form-control text-center" aria-label="가격" aria-describedby="basic-addon1" value="{{obj.menu_price}}" readonly>
+                                              <input type="number" class="form-control text-center" aria-label="가격" name="가격" value="{{obj.menu_price}}" readonly>
                                             </div>
                                                <div class="input-group">
                                                    <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center" value="1" readonly>
+                                                   <input type="number" class="form-control text-center" value="1" name="수량" readonly>
                                                    <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>

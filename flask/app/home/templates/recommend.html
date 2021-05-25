@@ -64,11 +64,16 @@
         </div>
         <div class="row text-center align-middle">
           <div class="col-sm-6 align-self-center">
-            <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100 h-100"><h3>결제하기</h3></a>
+            <a href="#" class="btn btn-primary w-100 h-100"><h3>결제취소</h3></a>
           </div>
+
           <div class="col-sm-6 align-self-center">
-            <a href="{{url_for('home_blueprint.menu')}}" class="btn btn-primary w-100 h-100"><h3>추가메뉴</h3></a>
+              <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100 h-100"><h3>결제하기</h3></a>
           </div>
+
+            <div class="col align-self-center w-100">
+            <a href="{{url_for('home_blueprint.menu')}}" class="btn btn-primary w-100 h-100"><h3>추가 메뉴 주문</h3></a>
+            </div>
         </div>
     </div>
 </div>

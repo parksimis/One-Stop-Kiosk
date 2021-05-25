@@ -39,13 +39,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
   <!-- Specific Page CSS goes HERE  -->
-  {% block stylesheets %}{% endblock stylesheets %}
+  {% block stylesheets %}
+
+  {% endblock stylesheets %}
 
 </head>
 
 <body class="">
-  <div class="wrapper ">
-        <div class="main-panel">
+  <div class="wrapper">
+        <div class="main-panel text-center">
+          <a href="{{url_for('home_blueprint.index')}}" class="btn"> HOME</a>
       <div class="content">
         <div class="container-fluid">
 

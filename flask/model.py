@@ -7,34 +7,34 @@ import cv2
 ################
 
 #haarcascade 알고리즘 로드
-face_cascade = cv2.CascadeClassifier('xml/haarcascade_frontalface_default.xml')
-eye_casecade = cv2.CascadeClassifier('xml/haarcascade_eye.xml')
-
-#이미지 로드 후 전처리
-img = cv2.imread('example_raw.jpg')
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-faces = face_cascade.detectMultiScale(gray, 1.3,5)
-
-#얼굴 감지해 잘라내어 저장
-imgNum = 0
-for (x,y,w,h) in faces:
-    cv2.rectangle(img, (x,y), (x+w, y+h), (255,0,0),2)
-    cropped = img[y - int(h/4):y + h + int(h/4), x - int(w/4):x + w + int(w/4)]
-    cv2.imwrite("example" + str(imgNum) + ".jpg", cropped)
-    imgNum += 1
-    roi_gray = gray[y:y+h, x:x+w]
-    roi_color = img[y:y+h, x:x+w]
-    eyes = eye_casecade.detectMultiScale(roi_gray)
-    for (ex, ey, ew, eh) in eyes:
-        cv2.rectangle(roi_color, (ex,ey), (ex+ew, ey+eh),(0,255,0),2)
+# face_cascade = cv2.CascadeClassifier('xml/haarcascade_frontalface_default.xml')
+# eye_casecade = cv2.CascadeClassifier('xml/haarcascade_eye.xml')
+#
+# #이미지 로드 후 전처리
+# img = cv2.imread('example_raw.jpg')
+# gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+# faces = face_cascade.detectMultiScale(gray, 1.3,5)
+#
+# #얼굴 감지해 잘라내어 저장
+# imgNum = 0
+# for (x,y,w,h) in faces:
+#     cv2.rectangle(img, (x,y), (x+w, y+h), (255,0,0),2)
+#     cropped = img[y - int(h/4):y + h + int(h/4), x - int(w/4):x + w + int(w/4)]
+#     cv2.imwrite("example" + str(imgNum) + ".jpg", cropped)
+#     imgNum += 1
+#     roi_gray = gray[y:y+h, x:x+w]
+#     roi_color = img[y:y+h, x:x+w]
+#     eyes = eye_casecade.detectMultiScale(roi_gray)
+#     for (ex, ey, ew, eh) in eyes:
+#         cv2.rectangle(roi_color, (ex,ey), (ex+ew, ey+eh),(0,255,0),2)
 
 ###################
 ###input AImodel###
 ###################
 
-#이미지 불러오기
-img_path = 'example_raw.jpg'
-img = cv2.imread(img_path)
+# #이미지 불러오기
+# img_path = 'example_raw.jpg'
+# img = cv2.imread(img_path)
 
 #성별 모델 : VGG계열 모델이 성능은 좋지만 실제 테스트에서는 정확도가 좋지않다고 판단, ResNetV50모델을 사용하기로 결정
 def gender_model(img):  
@@ -53,7 +53,6 @@ def gender_model(img):
   
   #예측값 산출
   prediction = model.predict(img)[0].tolist()[0]
-  print(prediction)
   if prediction <= 0.5:
     result = '남자'
   else : 
@@ -105,7 +104,7 @@ def emotion_model(img):
   
   return result
 
-print(age_model(img), gender_model(img), emotion_model(img))
+# print(age_model(img), gender_model(img), emotion_model(img))
 
 
 # How to check if the code is running on GPU or CPU?

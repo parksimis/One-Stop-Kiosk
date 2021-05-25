@@ -17,10 +17,56 @@
             <img src="{{url_for('home_blueprint.video_feed')}}" width="100%">
             <button type="submit" class="btn btn-primary col-md-8 p-md-4" onclick="window.location.href='{{url_for('home_blueprint.capture')}}';" style="font-size: 20px;">촬영하기</button>
             <div class="clearfix"></div>
-        </div>
       </div>
 
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+
+<script type="text/javascript">
+    // function hasGetUserMedia() {
+    //   return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+    // }
+    // if (hasGetUserMedia()) {
+    //   // Good to go!
+    // } else {
+    //   alert("getUserMedia() is not supported by your browser");
+    // }
+    // const constraints = {
+    //   video: true,
+    // };
+    //
+    // const video = document.querySelector("video");
+    //
+    // navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+    //   video.srcObject = stream;
+    // });
+    // function onTakePhotoButtonClick() {
+	//   imageCapture.takePhoto()
+	//   .then(blob => createImageBitmap(blob))
+	//   .then(imageBitmap => {
+	// 	const canvas = document.querySelector('#takePhotoCanvas');
+	// 	drawCanvas(canvas, imageBitmap);
+	//   })
+	//   .catch(error => ChromeSamples.log(error));
+	// }
+
+	// function drawCanvas(canvas, img) {
+	//   canvas.width = getComputedStyle(canvas).width.split('px')[0];
+	//   canvas.height = getComputedStyle(canvas).height.split('px')[0];
+	//   let ratio  = Math.min(canvas.width / img.width, canvas.height / img.height);
+	//   let x = (canvas.width - img.width * ratio) / 2;
+	//   let y = (canvas.height - img.height * ratio) / 2;
+	//   canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+	//   canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height,
+	// 	  x, y, img.width * ratio, img.height * ratio);
+	// }
+    //
+	// document.querySelector('video').addEventListener('play', function() {
+	//   document.querySelector('#grabFrameButton').disabled = false;
+	//   document.querySelector('#takePhotoButton').disabled = false;
+	// });
+</script>
+
+{% endblock javascripts %}

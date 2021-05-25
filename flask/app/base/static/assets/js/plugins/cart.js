@@ -15,7 +15,7 @@ $('.plus').click(function (){
     var tmp_plus = parseInt($(this).prev('input').val());
 
     if (tmp_plus == 10){
-        alert('최대 주문 수량입니다.')
+        alert('최대 주문 수량입니다.');
         $(this).prev('input').val(1);
     } else {
         $(this).prev('input').val(tmp_plus+1);
