@@ -579,5 +579,6 @@ package-lock.json
 temp/
 data/
 .dbdata/
+models/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,pycharm+all,pycharm,python,jupyternotebooks,flask,django,git
