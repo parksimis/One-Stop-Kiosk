@@ -14,6 +14,8 @@
           <h4 class="card-title text-center">오늘의 기분에 맞는 표정을 보여주세요</h4>
         </div>
         <div class="card-body text-center">
+<!--            <img src="{{url_for('home_blueprint.video_feed')}}" width="100%">-->
+<!--            <button type="submit" class="btn btn-primary col-md-8 p-md-4" onclick="window.location.href='{{url_for('home_blueprint.capture')}}';" style="font-size: 20px;">촬영하기</button>-->
             <video autoplay="true"></video>
             <canvas id='takePhotoCanvas'></canvas>
             <button type="submit" id="takePhotoButton" class="btn btn-primary col-md-8 p-md-4" onclick="onTakePhotoButtonClick()" style="font-size: 20px;">촬영하기</button>
@@ -47,6 +49,19 @@
 	  .then(imageBitmap => {
 		const canvas = document.querySelector('#takePhotoCanvas');
 		drawCanvas(canvas, imageBitmap);
+		$.ajax({
+            type: 'POST',
+            dataType: 'json',
+            data: {'jsonData': imageBitmap},
+            url: "{{url_for('home_blueprint.upload_image')}}",
+            success: function(json){
+                window.location = '/upload_image'
+                // alert(json.resultMsg);
+            },
+            error: function (error){
+                // alert(error.errorMsg);
+            }
+        })
 	  })
 	  .catch(error => ChromeSamples.log(error));
 	}
@@ -64,12 +79,9 @@
 		  x, y, img.width * ratio, img.height * ratio);
 	}
 
-	document.querySelector('video').addEventListener('play', function() {
-	  document.querySelector('#grabFrameButton').disabled = false;
-	  // document.querySelector('#takePhotoButton').disabled = false;
-	});
 
     onGetUserMediaButtonClick()
+
 
 </script>
 

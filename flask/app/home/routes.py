@@ -1,5 +1,5 @@
 from app.home import blueprint
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, jsonify
 from flask_login import login_required, current_user
 from app import login_manager
 from jinja2 import TemplateNotFound
@@ -7,6 +7,7 @@ import cv2
 from flask import Flask, render_template, Response
 import pymysql
 import engine, db_engine
+import boto3
 
 
 config = {
@@ -97,6 +98,12 @@ def capture():
 def user():
     return render_template('page-user.html', segment='index')
 
+@blueprint.route('/upload_image', methods=['POST'])
+def upload_image():
+    data = request.get_json()
+    print('------------------------\n', data)
+    return data
+
 @blueprint.route('/recommend')
 def recommend():
     return render_template('recommend.html', segment='index')
@@ -116,6 +123,7 @@ def direct_menu():
     db_engine.execute_dml(query, values)
 
     return redirect('/menu')
+
 
 @blueprint.route('/menu')
 def menu():

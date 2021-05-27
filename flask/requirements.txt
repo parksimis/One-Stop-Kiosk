@@ -6,3 +6,5 @@ flask_sqlalchemy==2.*
 email_validator
 python-decouple
 gunicorn
+tensorflow
+opencv-python
