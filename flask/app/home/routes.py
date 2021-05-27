@@ -100,9 +100,11 @@ def user():
 
 @blueprint.route('/upload_image', methods=['POST'])
 def upload_image():
-    data = request.get_json()
-    print('------------------------\n', data)
-    return data
+    print('-----------first -------------------------')
+    json_data = request.get_data()
+    # print('----------------------------\n\n\n\n\n')
+    print(json_data)
+    return json_data
 
 @blueprint.route('/recommend')
 def recommend():

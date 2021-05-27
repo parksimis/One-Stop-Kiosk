@@ -17,8 +17,13 @@
 <!--            <img src="{{url_for('home_blueprint.video_feed')}}" width="100%">-->
 <!--            <button type="submit" class="btn btn-primary col-md-8 p-md-4" onclick="window.location.href='{{url_for('home_blueprint.capture')}}';" style="font-size: 20px;">촬영하기</button>-->
             <video autoplay="true"></video>
-            <canvas id='takePhotoCanvas'></canvas>
-            <button type="submit" id="takePhotoButton" class="btn btn-primary col-md-8 p-md-4" onclick="onTakePhotoButtonClick()" style="font-size: 20px;">촬영하기</button>
+            <form method="POST" enctype="multipart/form-data" id="uploadForm">
+                <input type="file" name="profile">
+                <canvas id='takePhotoCanvas'></canvas>
+                <button type="button" id="btnUpload" class="btn btn-primary col-md-8 p-md-4" onclick="onTakePhotoButtonClick()" style="font-size: 20px;">촬영하기</button>
+            </form>
+<!--            <button type="button" id="takePhotoButton" class="btn btn-primary col-md-8 p-md-4" onclick="onTakePhotoButtonClick()" style="font-size: 20px;">촬영하기</button>    -->
+
             <div class="clearfix"></div>
         </div>
       </div>
@@ -29,7 +34,65 @@
 {% block javascripts %}
 
 <script type="text/javascript">
+    // uploadCanvasToServer = function() {
+    //   const canvas = document.getElementById('takePhotoCanvas');
+    //   const imgBase64 = canvas.toDataURL('image/jpeg', 'image/octet-stream');
+    //   const decodImg = atob(imgBase64.split(',')[1]);
+    //
+    //   let array = [];
+    //   for (let i = 0; i < decodImg .length; i++) {
+    //     array.push(decodImg .charCodeAt(i));
+    //   }
+    //
+    //   const file = new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+    //   const fileName = 'canvas_img_' + new Date().getMilliseconds() + '.jpg';
+    //   let formData = new FormData();
+    //   formData.append('file', file, fileName);
+    //
+    //   $.ajax({
+    //     type: 'post',
+    //     url: '/upload_image',
+    //     cache: false,
+    //     data: formData,
+    //     processData: false,
+    //     contentType: false,
+    //     success: function (data) {
+    //       alert('Uploaded !!')
+    //     }
+    //   })
+    // };
 
+//     $('#btnUpload').on('click', function(event) {
+//     event.preventDefault();
+//
+//     var form = $('#uploadForm')[0]
+//     var data = new FormData(form);
+//
+//     $('#btnUpload').prop('disabled', true);
+//
+//     $.ajax({
+//         type: "POST",
+//         enctype: 'multipart/form-data',
+//         url: "/upload_image",
+//         data: data,
+//         async: false,
+//         processData: false,
+//         contentType: false,
+//         cache: false,
+//         dataType: 'json',
+//         timeout: 600000,
+//         success: function (data) {
+//         	$('#btnUpload').prop('disabled', false);
+//         	// window.location.href = 'recommend.html'
+//             alert(data);
+//         	alert('success');
+//         },
+//         error: function (e) {
+//             $('#btnUpload').prop('disabled', false);
+//             alert('fail');
+//         }
+//     });
+// })
     var imageCapture;
 
 	function onGetUserMediaButtonClick() {
@@ -49,19 +112,7 @@
 	  .then(imageBitmap => {
 		const canvas = document.querySelector('#takePhotoCanvas');
 		drawCanvas(canvas, imageBitmap);
-		$.ajax({
-            type: 'POST',
-            dataType: 'json',
-            data: {'jsonData': imageBitmap},
-            url: "{{url_for('home_blueprint.upload_image')}}",
-            success: function(json){
-                window.location = '/upload_image'
-                // alert(json.resultMsg);
-            },
-            error: function (error){
-                // alert(error.errorMsg);
-            }
-        })
+
 	  })
 	  .catch(error => ChromeSamples.log(error));
 	}
@@ -77,6 +128,30 @@
 	  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
 	  canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height,
 		  x, y, img.width * ratio, img.height * ratio);
+	  var data = canvas.toDataURL();
+
+        $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: '/upload_image',
+        data: data,
+        async: false,
+        processData: false,
+        contentType: false,
+        cache: false,
+        dataType: 'json',
+        timeout: 600000,
+        success: function (data) {
+            // $('#btnUpload').prop('disabled', false);
+            // window.location.href = 'recommend.html'
+            alert(data);
+            alert('success');
+        },
+        error: function (e) {
+            $('#btnUpload').prop('disabled', false);
+            alert('fail');
+        }
+        });
 	}
 
 
