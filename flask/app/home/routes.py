@@ -1,81 +1,13 @@
 from app.home import blueprint
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, jsonify
 from flask_login import login_required, current_user
 from app import login_manager
 from jinja2 import TemplateNotFound
 import cv2
 from flask import Flask, render_template, Response
 import pymysql
-import numpy as np
-from tensorflow.keras.models import model_from_json
-import cv2
-
-def gender_model(img):
-    # 전처리
-    img = cv2.resize(img, dsize=(200, 200))
-    img = img / 255.
-    img = np.expand_dims(img, axis=0)
-
-    # 모델 불러오기
-    json_file = open('models/gender_R50V2.json', 'r')
-    loaded_model_json = json_file.read()
-    json_file.close()
-    model = model_from_json(loaded_model_json)
-    model.load_weights('models/gender_R50V2.h5')
-
-    # 예측값 산출
-    prediction = model.predict(img)[0].tolist()[0]
-    if prediction <= 0.5:
-        result = 0
-    else:
-        result = 1
-
-    return result
-
-
-def age_model(img):
-    # 전처리
-    img = cv2.resize(img, dsize=(150, 150))
-    img = img / 255.
-    img = np.expand_dims(img, axis=0)
-
-    # 모델 불러오기
-    json_file = open('models/age_R101V2.json', 'r')
-    loaded_model_json = json_file.read()
-    json_file.close()
-    model = model_from_json(loaded_model_json)
-    model.load_weights('models/age_R101V2.h5')
-
-    # 예측값 산출
-    label_text = [2, 3, 0, 1]
-    # label_text = ['adult', 'senior', 'teen', 'young']
-    predictions = model.predict(img)
-    result = label_text[np.argmax(predictions[0])]
-
-    return result
-
-
-# 감정 모델
-def emotion_model(img):
-    # 전처리
-    img = cv2.resize(img, dsize=(48, 48))
-    img = img / 255.
-    img = np.expand_dims(img, axis=0)
-
-    # 모델 불러오기
-    json_file = open('models/emotion_V16.json', 'r')
-    loaded_model_json = json_file.read()
-    json_file.close()
-    model = model_from_json(loaded_model_json)
-    model.load_weights('models/emotion_V16.h5')
-
-    # 예측값 산출
-    label_text = [2, 0, 1, 3]
-    # label_text = ['angry', 'happy', 'neutral', 'sad']
-    predictions = model.predict(img)
-    result = label_text[np.argmax(predictions[0])]
-
-    return result
+import engine, db_engine
+import boto3
 
 
 config = {
@@ -86,6 +18,7 @@ config = {
     'database': 'mydb',
     'charset': 'utf8'
 }
+
 
 app = Flask(__name__)
 
@@ -125,6 +58,7 @@ def capture():
 
             face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
             eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+            img = cv2.imread('temp/exmaple_raw.jpg')
 
             # 이미지 로드 후 전처리
             img = cv2.imread('temp/exmaple_raw.jpg')
@@ -134,6 +68,7 @@ def capture():
 
             # 얼굴 감지해 잘라내어 저장
             imgNum = 0
+
             for (x, y, w, h) in faces:
                 cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
                 cropped = img[y - int(h / 4):y + h + int(h / 4), x - int(w / 4):x + w + int(w / 4)]
@@ -143,28 +78,31 @@ def capture():
                 roi_gray = gray[y:y + h, x:x + w]
                 roi_color = img[y:y + h, x:x + w]
                 eyes = eye_cascade.detectMultiScale(roi_gray)
+
                 for (ex, ey, ew, eh) in eyes:
                     cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 
-                gender = gender_model(cropped)
-                age = age_model(cropped)
-                emo = emotion_model(cropped)
 
-                db = pymysql.connect(**config)
+                gender = engine.gender_model(cropped)
+                age = engine.age_model(cropped)
+                emo = engine.emotion_model(cropped)
 
-                cur = db.cursor()
-                cur.execute("INSERT INTO user(age_segment, emotion, sex) values (%s, %s, %s)", [age, emo, gender])
+                query = "INSERT INTO user(age_segment, emotion, sex) values (%s, %s, %s)"
+                values = [age, emo, gender]
 
-                db.commit()
-
-                cur.close()
-                db.close()
+                db_engine.execute_dml(query, values)
 
             return redirect('recommend.html')
 
 @blueprint.route('/user')
 def user():
     return render_template('page-user.html', segment='index')
+
+@blueprint.route('/upload_image', methods=['POST'])
+def upload_image():
+    data = request.get_json()
+    print('------------------------\n', data)
+    return data
 
 @blueprint.route('/recommend')
 def recommend():
@@ -178,36 +116,101 @@ def order():
 def pay():
     return render_template('pay.html', segment='index')
 
+@blueprint.route('/direct_menu')
+def direct_menu():
+    query = "INSERT INTO user(capture_chk) values (%s)"
+    values = ['N']
+    db_engine.execute_dml(query, values)
+
+    return redirect('/menu')
+
 
 @blueprint.route('/menu')
 def menu():
-    db = pymysql.connect(**config)
+    path = request.path
+    query = "SELECT cart_id, menu_name, menu_qty, menu_price FROM cart"
+    rows = db_engine.select(query)
 
-    cur = db.cursor()
-    query = '''SELECT store_id, menu_name, menu_price, menu_img FROM menu'''
-    cur.execute(query)
-    rows = cur.fetchall()
+    cart_list = []
+    for row in rows:
+        data_dic = {
+            'cart_id': row[0],
+            'menu_name': row[1],
+            'menu_qty': row[2],
+            'menu_price': row[3]
+        }
+        cart_list.append(data_dic)
+
+    query = '''SELECT menu_id, store_id, menu_name, menu_price, menu_img FROM menu'''
+    rows = db_engine.select(query)
+
     data_list = []
     for row in rows:
         data_dic = {
-            'store_id': row[0],
-            'menu_name': row[1],
-            'menu_price': row[2],
-            'menu_img': row[3]
+            'menu_id': row[0],
+            'store_id': row[1],
+            'menu_name': row[2],
+            'menu_price': row[3],
+            'menu_img': row[4]
         }
         data_list.append(data_dic)
-    cur.close()
-    db.close()
 
-    return render_template('menu.html', segment='index', data_list=data_list)
+    return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, path=path)
 
-# @blueprint.route('/add_cart', methods=['POST'])
-# def add_cart():
-#     print('-------------------------------------')
-#     value = request.form['메뉴명']
-#     print('-------------------------------------')
-#     return value
+@blueprint.route('/add_cart', methods=['POST'])
+def add_cart():
 
+    if request.method == 'GET':
+        return render_template('menu.html')
+
+    elif request.method == 'POST':
+        query = '''SELECT user_id FROM user ORDER BY CREATED_AT DESC LIMIT 1'''
+        rows = db_engine.select(query)
+
+        user_id = ''
+        for row in rows:
+            user_id = row[0]
+
+        path = request.form['path']
+        store_id = request.form['store_id']
+        menu_id = request.form['menu_id']
+        menu_name = request.form['menu_name']
+        menu_qty = request.form['menu_qty']
+        menu_price = int(request.form['menu_price']) * int(menu_qty)
+
+        # CART TABLE INSERT
+        query = "INSERT INTO cart(user_id, store_id, menu_id, menu_name, menu_qty, menu_price) values (%s, %s, %s, %s, %s, %s)"
+        values = [user_id, store_id, menu_id, menu_name, menu_qty, menu_price]
+
+        db_engine.execute_dml(query, values)
+
+        query = "SELECT cart_id, menu_name, menu_qty, menu_price FROM cart"
+        rows = db_engine.select(query)
+
+        cart_list = []
+        for row in rows:
+            data_dic = {
+                'cart_id': row[0],
+                'menu_name': row[1],
+                'menu_qty': row[2],
+                'menu_price': row[3]
+            }
+            cart_list.append(data_dic)
+
+        return redirect(path)
+
+@blueprint.route('/cancel')
+def cancel():
+    query = "DELETE FROM cart"
+    db_engine.execute_dml(query=query, values=None)
+    query = 'ALTER TABLE cart AUTO_INCREMENT = 1'
+    db_engine.execute_ddl(query)
+
+    query = "DELETE FROM user WHERE user_id IN (SELECT max(user_id) FROM user ORDER BY CREATED_AT DESC);"
+
+    db_engine.execute_ddl(query)
+
+    return redirect('index.html')
 
 @blueprint.route('/submit')
 def submit():
@@ -235,7 +238,6 @@ def route_template(template):
 # Helper - Extract current page name from request
 def get_segment(request):
     try:
-
         segment = request.path.split('/')[-1]
 
         if segment == '':

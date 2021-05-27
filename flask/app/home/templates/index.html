@@ -23,12 +23,12 @@
       <div class="card-header text-center" >
         <h3 class="user_font" >고민고민하지말조</h3>
       </div>
-     <img class="card-img-top" src="https://lh3.googleusercontent.com/proxy/qeT8t1EXA0yBXfi4UKrPX275AMXu88mZjVljN7m4W6isfzS7aHQ51spHtjL99LuTNW36H4gP-SQXNf8AS5fz6XmqbZDEJzBs-WQizNrGxKc8o6GIJG3jqj-GHQ8UGrAAn-1-MHIfKgQ4Uue-" alt="Card image top" style="height: 20%">
+     <img class="card-img-top" src="/static/assets/img/city-profile.jpg" alt="Card image top" style="height: 20%">
       <div class="row text-center">
           <div class="col align-self-center ">
 <!--              <button type="button" href="{{url_for('home_blueprint.user')}}" class="btn w-100 h-100 user_bg">주문하시려면 화면을 터치해주세요. </button>-->
               <a onclick="check_info()" class="btn w-100 h-100 text-dark user_bg user_font">촬영 동의하고 시작하기</a>
-              <a href="{{url_for('home_blueprint.menu')}}" class="btn btn-dark w-100 h-100 text-dark user_font">메뉴 선택 바로가기</a>
+              <a href="{{url_for('home_blueprint.direct_menu')}}" class="btn btn-dark w-100 h-100 text-dark user_font">메뉴 선택 바로가기</a>
           </div>
     </div>
 {% endblock content %}
@@ -44,13 +44,9 @@
     });
 
     function check_info() {
-        var info = confirm('개인정보 수집 및 이용동의 \n ------------------------------\n안녕하세요' )
-        if (info == true){
-            location.href = 'page-user.html';
-        } else {
-            location.href = 'index.html'
-        }
-}
+        window.open('check_info.html', '개인정보 이용 동의', width=200, height=200);
+    };
+
   </script>
 
 {% endblock javascripts %}

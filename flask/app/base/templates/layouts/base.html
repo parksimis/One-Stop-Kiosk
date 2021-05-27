@@ -40,23 +40,33 @@
 
   <!-- Specific Page CSS goes HERE  -->
   {% block stylesheets %}
+    <style type="text/css">
 
+        .user_bg {
+        background: #F2B138;
+        }
+
+        .user_font {
+            font-family: 'Do Hyeon';
+            font-size: 20px;
+        }
+    </style>
   {% endblock stylesheets %}
 
 </head>
 
 <body class="">
   <div class="wrapper">
-        <div class="main-panel text-center">
-          <a href="{{url_for('home_blueprint.index')}}" class="btn"> HOME</a>
+
       <div class="content">
+
         <div class="container-fluid">
 
           {% block content %}{% endblock content %}
 
         </div>
       </div>
-      {% include 'includes/footer.html' %}
+<!--      {% include 'includes/footer.html' %}-->
 
     </div>
   </div>

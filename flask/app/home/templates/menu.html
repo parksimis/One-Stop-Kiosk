@@ -6,7 +6,9 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-
+    <div class="main-panel text-center">
+        <a href="{{url_for('home_blueprint.cancel')}}" class="btn fixed-top w-100 user_font user_bg" style="font-size: 30px">처음 화면으로 돌아가기</a>
+    </div>
 
     <div class="row">
         <div class="card">
@@ -58,18 +60,21 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                      <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
-                                     <form action="/tmp" method="post">
+                                     <form action="/add_cart" method="post">
                                          <div class="card-body text-center">
-                                             <input type="text" class="form-control text-center bg-white h4" aria-label="메뉴명" name="메뉴명" value="{{obj.menu_name}}" readonly>
+                                             <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
+                                             <input type="hidden" name="store_id" value="{{obj.store_id}}">
+                                             <input type="hidden" name=path value="{{path}}">
+                                             <input type="text" class="form-control text-center bg-white h4" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
                                              <div class="input-group mb-3">
                                               <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">금액</span>
+                                                <span class="input-group-text">금액</span>
                                               </div>
-                                              <input type="number" class="form-control text-center" aria-label="가격" name="가격" value="{{obj.menu_price}}" readonly>
+                                              <input type="number" class="form-control text-center" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
                                             </div>
                                                <div class="input-group">
                                                    <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center" value="1" name="수량" readonly>
+                                                   <input type="number" class="form-control text-center" value="1" name="menu_qty" readonly>
                                                    <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
@@ -88,18 +93,21 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                      <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
-                                     <form>
+                                     <form action="/add_cart" method="post">
                                          <div class="card-body text-center">
-                                             <h4 class="card-title">{{obj.menu_name}}</h4>
+                                             <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
+                                             <input type="hidden" name="store_id" value="{{obj.store_id}}">
+                                             <input type="hidden" name=path value="{{path}}">
+                                             <input type="text" class="form-control text-center bg-white h4" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
                                              <div class="input-group mb-3">
                                               <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon2">금액</span>
+                                                <span class="input-group-text">금액</span>
                                               </div>
-                                              <input type="number" class="form-control text-center" aria-label="가격" aria-describedby="basic-addon1" value="{{obj.menu_price}}" readonly>
+                                              <input type="number" class="form-control text-center" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
                                             </div>
                                                <div class="input-group">
                                                    <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center" value="1" readonly>
+                                                   <input type="number" class="form-control text-center" value="1" name="menu_qty" readonly>
                                                    <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
@@ -118,18 +126,21 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                      <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
-                                     <form>
+                                     <form action="/add_cart" method="post">
                                          <div class="card-body text-center">
-                                             <h4 class="card-title">{{obj.menu_name}}</h4>
+                                             <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
+                                             <input type="hidden" name="store_id" value="{{obj.store_id}}">
+                                             <input type="hidden" name=path value="{{path}}">
+                                             <input type="text" class="form-control text-center bg-white h4" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
                                              <div class="input-group mb-3">
                                               <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon3">금액</span>
+                                                <span class="input-group-text" >금액</span>
                                               </div>
-                                              <input type="number" class="form-control text-center" aria-label="가격" aria-describedby="basic-addon1" value="{{obj.menu_price}}" readonly>
+                                              <input type="number" class="form-control text-center" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
                                             </div>
                                                <div class="input-group">
                                                    <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center" value="1" readonly>
+                                                   <input type="number" class="form-control text-center" value="1" name="menu_qty" readonly>
                                                    <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
@@ -148,18 +159,21 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                      <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
-                                     <form>
+                                     <form action="/add_cart" method="post">
                                          <div class="card-body text-center">
-                                             <h4 class="card-title">{{obj.menu_name}}</h4>
+                                             <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
+                                             <input type="hidden" name="store_id" value="{{obj.store_id}}">
+                                             <input type="hidden" name=path value="{{path}}">
+                                             <input type="text" class="form-control text-center bg-white h4" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
                                              <div class="input-group mb-3">
                                               <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon4">금액</span>
+                                                <span class="input-group-text">금액</span>
                                               </div>
-                                              <input type="number" class="form-control text-center" aria-label="가격" aria-describedby="basic-addon1" value="{{obj.menu_price}}" readonly>
+                                              <input type="number" class="form-control text-center" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
                                             </div>
                                                <div class="input-group">
                                                    <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center" value="1" readonly>
+                                                   <input type="number" class="form-control text-center" value="1" name="menu_qty" readonly>
                                                    <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
@@ -178,18 +192,21 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                      <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
-                                     <form>
+                                     <form action="/add_cart" method="post">
                                          <div class="card-body text-center">
-                                             <h4 class="card-title">{{obj.menu_name}}</h4>
+                                             <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
+                                             <input type="hidden" name="store_id" value="{{obj.store_id}}">
+                                             <input type="hidden" name=path value="{{path}}">
+                                             <input type="text" class="form-control text-center bg-white h4" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
                                              <div class="input-group mb-3">
                                               <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon5">금액</span>
+                                                <span class="input-group-text" >금액</span>
                                               </div>
-                                              <input type="number" class="form-control text-center" aria-label="가격" aria-describedby="basic-addon1" value="{{obj.menu_price}}" readonly>
+                                              <input type="number" class="form-control text-center" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
                                             </div>
                                                <div class="input-group">
                                                    <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center" value="1" readonly>
+                                                   <input type="number" class="form-control text-center" value="1" name="menu_qty" readonly>
                                                    <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
@@ -209,9 +226,9 @@
                     장바구니
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-sm">
                         <thead>
-                            <tr>
+                            <tr class="table-warning">
                                 <td scope="col">번호</td>
                                 <td scope="col">메뉴명</td>
                                 <td scope="col">수량</td>
@@ -219,22 +236,31 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {%for obj in cart_list%}
+                                <tr>
+                                    <td>{{obj.cart_id}}</td>
+                                    <td>{{obj.menu_name}}</td>
+                                    <td>{{obj.menu_qty}} 개</td>
+                                    <td class="text-right pr-sm-4">{{'{:,}'.format(obj.menu_price)}} 원</td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td colspan="2">합 계</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{cart_list|sum(attribute='menu_qty')}} 개</td>
+                                <td class="text-right pr-sm-4">{{'{:,}'.format(cart_list|sum(attribute='menu_price'))}} 원</td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
                 <div class="row text-center align-middle">
                   <div class="col-sm-6 align-self-center">
-                    <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100 h-100"><h3>결제하기</h3></a>
+                    <a href="{{url_for('home_blueprint.cancel')}}" class="btn btn-primary w-100 h-100"><h3>주문취소</h3></a>
                   </div>
+
                   <div class="col-sm-6 align-self-center">
-                    <a href="{{url_for('home_blueprint.menu')}}" class="btn btn-primary w-100 h-100"><h3>추가메뉴</h3></a>
+                      <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100 h-100"><h3>주문완료</h3></a>
                   </div>
                 </div>
             </div>

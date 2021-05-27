@@ -1,0 +1,43 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} 개인정보 이용동의 {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+  <div class="card">
+      <div class="card-body">
+        <img class="card-img-top w-100" src="/static/assets/img/personal_info.png">
+        <div class="row text-center align-middle">
+          <div class="col-sm-6 align-self-center">
+            <input type="button" onclick="agree_privacy()" class='btn btn-primary w-100 h-100' value="동의">
+          </div>
+          <div class="col-sm-6 align-self-center">
+            <input type="button" onclick="reject_privacy()" class='btn btn-primary w-100 h-100' value="비동의">
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      md.initDashboardPageCharts();
+
+    });
+    function agree_privacy(){
+      window.opener.location.href = '/page-user'
+      self.close()
+    }
+    function reject_privacy(){
+      window.opener.location.href = '/menu'
+      self.close()
+    }
+  </script>
+
+{% endblock javascripts %}

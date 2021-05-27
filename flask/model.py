@@ -7,26 +7,27 @@ import cv2
 ################
 
 #haarcascade 알고리즘 로드
-# face_cascade = cv2.CascadeClassifier('xml/haarcascade_frontalface_default.xml')
-# eye_casecade = cv2.CascadeClassifier('xml/haarcascade_eye.xml')
-#
-# #이미지 로드 후 전처리
-# img = cv2.imread('example_raw.jpg')
-# gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-# faces = face_cascade.detectMultiScale(gray, 1.3,5)
-#
-# #얼굴 감지해 잘라내어 저장
-# imgNum = 0
-# for (x,y,w,h) in faces:
-#     cv2.rectangle(img, (x,y), (x+w, y+h), (255,0,0),2)
-#     cropped = img[y - int(h/4):y + h + int(h/4), x - int(w/4):x + w + int(w/4)]
-#     cv2.imwrite("example" + str(imgNum) + ".jpg", cropped)
-#     imgNum += 1
-#     roi_gray = gray[y:y+h, x:x+w]
-#     roi_color = img[y:y+h, x:x+w]
-#     eyes = eye_casecade.detectMultiScale(roi_gray)
-#     for (ex, ey, ew, eh) in eyes:
-#         cv2.rectangle(roi_color, (ex,ey), (ex+ew, ey+eh),(0,255,0),2)
+face_cascade = cv2.CascadeClassifier('xml/haarcascade_frontalface_default.xml')
+eye_casecade = cv2.CascadeClassifier('xml/haarcascade_eye.xml')
+
+#이미지 로드 후 전처리
+img = cv2.imread('example_raw.jpg')
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+faces = face_cascade.detectMultiScale(gray, 1.3,5)
+
+#얼굴 감지해 잘라내어 저장
+imgNum = 0
+for (x,y,w,h) in faces:
+    cv2.rectangle(img, (x,y), (x+w, y+h), (255,0,0),2)
+    cropped = img[y - int(h/4):y + h + int(h/4), x - int(w/4):x + w + int(w/4)]
+    cv2.imwrite("example" + str(imgNum) + ".jpg", cropped)
+    imgNum += 1
+    roi_gray = gray[y:y+h, x:x+w]
+    roi_color = img[y:y+h, x:x+w]
+    eyes = eye_casecade.detectMultiScale(roi_gray)
+    for (ex, ey, ew, eh) in eyes:
+        cv2.rectangle(roi_color, (ex,ey), (ex+ew, ey+eh),(0,255,0),2)
+
 
 ###################
 ###input AImodel###
