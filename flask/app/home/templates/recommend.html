@@ -6,6 +6,9 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
+<div class="main-panel text-center">
+    <a href="{{url_for('home_blueprint.cancel')}}" class="btn fixed-top w-25 user_font user_bg" style="background: #eee;"><i class="fas fa-home text-dark" style="font-size: 30px"></i></a>
+</div>
 <div class="container">
     <div class="card-header bg-primary text-white text-center rounded">
         <h4>추천 상품</h4>
@@ -63,10 +66,10 @@
         </div>
         <div class="row text-center align-middle">
             <div class="col-sm-6 align-self-center">
-                <a href="#" class="btn btn-primary w-100 h-100"><h3>결제취소</h3></a>
+                <a href="{{url_for('home_blueprint.cancel')}}" class="btn btn-primary w-100 h-100"><h3>주문취소</h3></a>
             </div>
             <div class="col-sm-6 align-self-center">
-                <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100 h-100"><h3>결제하기</h3></a>
+                <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100 h-100"><h3>주문완료</h3></a>
             </div>
             <div class="col align-self-center w-100">
                 <a href="{{url_for('home_blueprint.menu')}}" class="btn btn-primary w-100 h-100"><h3>추가 메뉴 주문</h3></a>

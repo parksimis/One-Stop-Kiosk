@@ -57,6 +57,7 @@ def capture():
 
             face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
             eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+            img = cv2.imread('temp/exmaple_raw.jpg')
 
             # 이미지 로드 후 전처리
             img = cv2.imread('temp/exmaple_raw.jpg')
@@ -108,6 +109,13 @@ def order():
 def pay():
     return render_template('pay.html', segment='index')
 
+@blueprint.route('/direct_menu')
+def direct_menu():
+    query = "INSERT INTO user(capture_chk) values (%s)"
+    values = ['N']
+    db_engine.execute_dml(query, values)
+
+    return redirect('/menu')
 
 @blueprint.route('/menu')
 def menu():
@@ -151,6 +159,7 @@ def add_cart():
         query = '''SELECT user_id FROM user ORDER BY CREATED_AT DESC LIMIT 1'''
         rows = db_engine.select(query)
 
+        user_id = ''
         for row in rows:
             user_id = row[0]
 
@@ -187,6 +196,10 @@ def cancel():
     query = "DELETE FROM cart"
     db_engine.execute_dml(query=query, values=None)
     query = 'ALTER TABLE cart AUTO_INCREMENT = 1'
+    db_engine.execute_ddl(query)
+
+    query = "DELETE FROM user WHERE user_id IN (SELECT max(user_id) FROM user ORDER BY CREATED_AT DESC);"
+
     db_engine.execute_ddl(query)
 
     return redirect('index.html')
