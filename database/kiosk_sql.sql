@@ -25,7 +25,7 @@ CREATE TABLE menu (
 	menu_id INT(20) NOT NULL AUTO_INCREMENT,
 	store_id INT(20) NOT NULL,
 	menu_name VARCHAR(20) NOT NULL,
-	menu_price VARCHAR(10) NOT NULL,
+	menu_price INT(30) NOT NULL,
 	menu_img VARCHAR(50) NOT NULL,
 	last_modify DATETIME NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
 	created_at DATETIME NULL DEFAULT current_timestamp(),
