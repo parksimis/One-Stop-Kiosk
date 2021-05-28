@@ -11,22 +11,40 @@
         <h3>주문 확인</h3>
       </div>
       <div class="card-body">
-        <table class="table">
-            <thead>
-            <tr>
-              <th scope="col">번호</th>
-              <th scope="col">메뉴명</th>
-              <th scope="col">수량</th>
-              <th scope="col">금액</th>
-            </tr>
+        <table class="table table-bordered table-sm text-center">
+            <thead class="table-warning">
+                <tr>
+                  <th scope="col">번호</th>
+                  <th scope="col">메뉴명</th>
+                  <th scope="col">수량</th>
+                  <th scope="col">금액</th>
+                </tr>
             </thead>
+            <tbody>
+                {%for obj in cart_list%}
+                    <tr>
+                        <td>{{obj.cart_id}}</td>
+                        <td>{{obj.menu_name}}</td>
+                        <td>{{obj.menu_qty}} 개</td>
+                        <td class="text-right pr-sm-4">{{'{:,}'.format(obj.menu_price)}} 원</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">합 계</td>
+                    <td>{{cart_list|sum(attribute='menu_qty')}} 개</td>
+                    <td class="text-right pr-sm-4">{{'{:,}'.format(cart_list|sum(attribute='menu_price'))}} 원</td>
+                </tr>
+            </tfoot>
         </table>
         <div class="row text-center">
           <div class="col-sm-6">
-            <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100"><h3>결제</h3></a>
-          </div>          <div class="col-sm-6">
-            <a href="#" class="btn btn-primary w-100"><h3>메뉴 추가하기</h3></a>
+            <a href="{{url_for('home_blueprint.cancel')}}" class="btn btn-primary w-100"><h3>결제취소</h3></a>
           </div>
+            <div class="col-sm-6">
+                <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100"><h3>결제하기</h3></a>
+            </div>
         </div>
       </div>
 

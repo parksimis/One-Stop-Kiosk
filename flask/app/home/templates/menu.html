@@ -238,7 +238,7 @@
                         <tbody>
                             {%for obj in cart_list%}
                                 <tr>
-                                    <td>{{obj.cart_id}}</td>
+                                    <td>{{loop.index}}</td>
                                     <td>{{obj.menu_name}}</td>
                                     <td>{{obj.menu_qty}} 개</td>
                                     <td class="text-right pr-sm-4">{{'{:,}'.format(obj.menu_price)}} 원</td>
@@ -258,9 +258,8 @@
                   <div class="col-sm-6 align-self-center">
                     <a href="{{url_for('home_blueprint.cancel')}}" class="btn btn-primary w-100 h-100"><h3>주문취소</h3></a>
                   </div>
-
                   <div class="col-sm-6 align-self-center">
-                      <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100 h-100"><h3>주문완료</h3></a>
+                      <a href="{{url_for('home_blueprint.order')}}" class="btn btn-primary w-100 h-100"><h3>주문완료</h3></a>
                   </div>
                 </div>
             </div>

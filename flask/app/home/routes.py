@@ -113,10 +113,10 @@ def upload_image():
 
     with open(filename, 'wb') as f:
         f.write(imgdata)
-    s3 = connection.s3_connection()
+    # s3 = connection.s3_connection()
 
-    bucket_name = 'yangjae-team01-s3'
-    s3.upload_file(filename, bucket_name, 'test_image.jpg')
+    # bucket_name = 'yangjae-team01-s3'
+    # s3.upload_file(filename, bucket_name, 'test_image.jpg')
 
     return jsonify(result="success")
 
@@ -128,11 +128,60 @@ def recommend():
 
 @blueprint.route('/order')
 def order():
-    return render_template('order.html', segment='index')
+
+    query = "SELECT cart_id, menu_name, menu_qty, menu_price FROM cart"
+    rows = db_engine.select(query)
+
+    cart_list = []
+    for row in rows:
+        data_dic = {
+            'cart_id': row[0],
+            'menu_name': row[1],
+            'menu_qty': row[2],
+            'menu_price': row[3]
+        }
+        cart_list.append(data_dic)
+    return render_template('order.html', segment='index', cart_list=cart_list)
 
 @blueprint.route('/pay')
 def pay():
     return render_template('pay.html', segment='index')
+
+@blueprint.route('/payment')
+def payment():
+    query = 'INSERT INTO orders(user_id, total_qty, total_price) SELECT user_id, SUM(menu_qty), SUM(menu_price) FROM cart;'
+    db_engine.execute_dml(query, values=None)
+
+    query = '''
+            INSERT INTO order_details(order_id, user_id, menu_id, store_id, food_qty, food_price)\
+            SELECT O.order_id, C.user_id, C.menu_id, C.store_id, C.menu_qty, C.menu_price\
+            FROM orders AS O, cart AS C\
+            WHERE O.user_id = C.user_id;
+        '''
+    db_engine.execute_dml(query, values=None)
+
+    query = "TRUNCATE cart"
+    db_engine.execute_dml(query=query, values=None)
+
+    query = '''
+        SELECT O.order_id, O.food_qty, O.food_price, M.menu_name
+        FROM order_details AS O, menu AS M
+        WHERE O.menu_id = M.menu_id 
+        AND O.user_id = (SELECT MAX(user_id) FROM order_details)
+    '''
+    rows = db_engine.select(query)
+
+    order_list = []
+    for row in rows:
+        data_dic = {
+            'order_id': row[0],
+            'food_qty': row[1],
+            'food_price': row[2],
+            'menu_name': row[3]
+        }
+        order_list.append(data_dic)
+
+    return render_template('submit.html', segment='index', order_list=order_list)
 
 @blueprint.route('/direct_menu')
 def direct_menu():
@@ -146,16 +195,15 @@ def direct_menu():
 @blueprint.route('/menu')
 def menu():
     path = request.path
-    query = "SELECT cart_id, menu_name, menu_qty, menu_price FROM cart"
+    query = "SELECT menu_name, menu_qty, menu_price FROM cart ORDER BY cart_id;"
     rows = db_engine.select(query)
 
     cart_list = []
     for row in rows:
         data_dic = {
-            'cart_id': row[0],
-            'menu_name': row[1],
-            'menu_qty': row[2],
-            'menu_price': row[3]
+            'menu_name': row[0],
+            'menu_qty': row[1],
+            'menu_price': row[2]
         }
         cart_list.append(data_dic)
 
@@ -191,40 +239,53 @@ def add_cart():
 
         path = request.form['path']
         store_id = request.form['store_id']
-        menu_id = request.form['menu_id']
+        menu_id = int(request.form['menu_id'])
         menu_name = request.form['menu_name']
-        menu_qty = request.form['menu_qty']
-        menu_price = int(request.form['menu_price']) * int(menu_qty)
+        menu_qty = int(request.form['menu_qty'])
+        menu_price = int(request.form['menu_price']) * menu_qty
 
-        # CART TABLE INSERT
-        query = "INSERT INTO cart(user_id, store_id, menu_id, menu_name, menu_qty, menu_price) values (%s, %s, %s, %s, %s, %s)"
-        values = [user_id, store_id, menu_id, menu_name, menu_qty, menu_price]
+        query = "SELECT menu_id, menu_name, menu_qty, menu_price FROM cart"
+        rows = db_engine.select(query).fetchall()
 
-        db_engine.execute_dml(query, values)
+        if len(rows) == 0:
+            up_query = '''
+                    INSERT INTO cart (user_id, store_id, menu_id, menu_name, menu_qty, menu_price)\
+                    SELECT %s, %s, %s, %s, %s, %s\
+                    FROM DUAL\
+                    WHERE NOT EXISTS (SELECT menu_id FROM cart WHERE menu_id = %s);
+                    '''
+            up_values = [user_id, store_id, menu_id, menu_name, menu_qty, menu_price, menu_id]
+        else:
+            for row in rows:
+                if menu_id == row[0]:
+                    menu_qty += int(row[2])
+                    menu_price += int(row[3])
 
-        query = "SELECT cart_id, menu_name, menu_qty, menu_price FROM cart"
-        rows = db_engine.select(query)
+                    up_query = "UPDATE cart SET menu_qty = %s, menu_price = %s WHERE menu_id = %s"
+                    up_values = [menu_qty, menu_price, row[0]]
+                    db_engine.execute_dml(up_query, up_values)
+                    break
+                else:
+                    # CART TABLE INSERT
+                    up_query = '''
+                            INSERT INTO cart (user_id, store_id, menu_id, menu_name, menu_qty, menu_price)\
+                            SELECT %s, %s, %s, %s, %s, %s\
+                            FROM DUAL\
+                            WHERE NOT EXISTS (SELECT menu_id FROM cart WHERE menu_id = %s);
+                    '''
+                    up_values = [user_id, store_id, menu_id, menu_name, menu_qty, menu_price, menu_id]
 
-        cart_list = []
-        for row in rows:
-            data_dic = {
-                'cart_id': row[0],
-                'menu_name': row[1],
-                'menu_qty': row[2],
-                'menu_price': row[3]
-            }
-            cart_list.append(data_dic)
+        db_engine.execute_dml(up_query, up_values)
 
         return redirect(path)
 
 @blueprint.route('/cancel')
 def cancel():
-    query = "DELETE FROM cart"
+    query = "TRUNCATE cart"
     db_engine.execute_dml(query=query, values=None)
-    query = 'ALTER TABLE cart AUTO_INCREMENT = 1'
-    db_engine.execute_ddl(query)
 
-    query = "DELETE FROM user WHERE user_id IN (SELECT max(user_id) FROM user ORDER BY CREATED_AT DESC);"
+
+    query = "DELETE FROM user WHERE user_id IN (SELECT max(user_id) FROM user);"
 
     db_engine.execute_ddl(query)
 

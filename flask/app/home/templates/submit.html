@@ -14,12 +14,12 @@
         </h3>
         <h2>
           <p>
-            주문번호 :
+            주문번호 : {{order_list[0]['order_id']}}
           </p>
         </h2>
 
       </div>
-      <div class="card-body">
+      <div class="card-body text-center">
           <table class="table table-bordered">
               <thead>
                   <tr>
@@ -30,16 +30,26 @@
                   </tr>
               </thead>
               <tbody>
-
+                {%for obj in order_list%}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{obj.menu_name}}</td>
+                        <td>{{obj.food_qty}} 개</td>
+                        <td class="text-right pr-sm-4">{{'{:,}'.format(obj.food_price)}} 원</td>
+                    </tr>
+                {% endfor %}
               </tbody>
               <tfoot>
                   <tr>
                       <td colspan="2">합 계</td>
-                      <td></td>
-                      <td></td>
+                      <td>{{order_list|sum(attribute='food_qty')}} 개</td>
+                      <td class="text-right pr-sm-4">{{'{:,}'.format(order_list|sum(attribute='food_price'))}} 원</td>
                   </tr>
               </tfoot>
           </table>
+          <div class="text-center align-self-center">
+            <a href="{{url_for('home_blueprint.index')}}" class="btn btn-primary w-100 h-100"><h3>홈으로 돌아가기</h3></a>
+          </div>
       </div>
     </div>
 
@@ -54,6 +64,11 @@
       md.initDashboardPageCharts();
 
     });
+    $(document).onload(setTimeout('go_home()', 10000));
+
+    function go_home(){
+        location.href = 'index.html'
+    }
   </script>
 
 {% endblock javascripts %}
