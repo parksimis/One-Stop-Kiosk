@@ -9,22 +9,17 @@
 
 {% block content %}
 
-      <div class="card col-md-8" style="margin: 0 auto;">
+      <div class="card">
         <div class="card-header card-header-primary">
           <h4 class="card-title text-center">오늘의 기분에 맞는 표정을 보여주세요</h4>
         </div>
         <div class="card-body text-center">
-<!--            <img src="{{url_for('home_blueprint.video_feed')}}" width="100%">-->
-<!--            <button type="submit" class="btn btn-primary col-md-8 p-md-4" onclick="window.location.href='{{url_for('home_blueprint.capture')}}';" style="font-size: 20px;">촬영하기</button>-->
-            <video autoplay="true"></video>
+            <video class="w-100" autoplay="true"></video>
+            <canvas id='takePhotoCanvas'></canvas>
             <form method="POST" enctype="multipart/form-data" id="uploadForm">
-                <input type="file" name="profile">
-                <canvas id='takePhotoCanvas'></canvas>
-                <button type="button" id="btnUpload" class="btn btn-primary col-md-8 p-md-4" onclick="onTakePhotoButtonClick()" style="font-size: 20px;">촬영하기</button>
+                <button type="button" id="btnUpload" class="btn btn-primary w-100" onclick="counter = setInterval('timer()', 1000)" style="font-size: 20px;">촬영하기</button>
+                <div class="clearfix"></div>
             </form>
-<!--            <button type="button" id="takePhotoButton" class="btn btn-primary col-md-8 p-md-4" onclick="onTakePhotoButtonClick()" style="font-size: 20px;">촬영하기</button>    -->
-
-            <div class="clearfix"></div>
         </div>
       </div>
 
@@ -34,67 +29,25 @@
 {% block javascripts %}
 
 <script type="text/javascript">
-    // uploadCanvasToServer = function() {
-    //   const canvas = document.getElementById('takePhotoCanvas');
-    //   const imgBase64 = canvas.toDataURL('image/jpeg', 'image/octet-stream');
-    //   const decodImg = atob(imgBase64.split(',')[1]);
-    //
-    //   let array = [];
-    //   for (let i = 0; i < decodImg .length; i++) {
-    //     array.push(decodImg .charCodeAt(i));
-    //   }
-    //
-    //   const file = new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
-    //   const fileName = 'canvas_img_' + new Date().getMilliseconds() + '.jpg';
-    //   let formData = new FormData();
-    //   formData.append('file', file, fileName);
-    //
-    //   $.ajax({
-    //     type: 'post',
-    //     url: '/upload_image',
-    //     cache: false,
-    //     data: formData,
-    //     processData: false,
-    //     contentType: false,
-    //     success: function (data) {
-    //       alert('Uploaded !!')
-    //     }
-    //   })
-    // };
 
-//     $('#btnUpload').on('click', function(event) {
-//     event.preventDefault();
-//
-//     var form = $('#uploadForm')[0]
-//     var data = new FormData(form);
-//
-//     $('#btnUpload').prop('disabled', true);
-//
-//     $.ajax({
-//         type: "POST",
-//         enctype: 'multipart/form-data',
-//         url: "/upload_image",
-//         data: data,
-//         async: false,
-//         processData: false,
-//         contentType: false,
-//         cache: false,
-//         dataType: 'json',
-//         timeout: 600000,
-//         success: function (data) {
-//         	$('#btnUpload').prop('disabled', false);
-//         	// window.location.href = 'recommend.html'
-//             alert(data);
-//         	alert('success');
-//         },
-//         error: function (e) {
-//             $('#btnUpload').prop('disabled', false);
-//             alert('fail');
-//         }
-//     });
-// })
     var imageCapture;
+    var count = 4;
+    var canv = document.getElementById('takePhotoCanvas');
+    var ctx = canv.getContext('2d');
+    ctx.font = '60px Do Hyeon';
+    ctx.textAlign = 'center';
 
+    // var counter = setInterval(timer, 1000)
+
+    function timer(){
+        ctx.clearRect(0, 0, 300, 100);
+        count -- ;
+        if (count <= 0){
+            clearInterval(counter);
+            onTakePhotoButtonClick();
+        }
+        ctx.fillText(count, 150, 91);
+    }
 	function onGetUserMediaButtonClick() {
 	  navigator.mediaDevices.getUserMedia({video: true})
 	  .then(mediaStream => {
@@ -132,25 +85,24 @@
         var data = canvas.toDataURL();
 
 
-        $.ajax({
-        type: "POST",
-        enctype: 'multipart/form-data',
-        url: '/upload_image',
-        data: data,
-        async: false,
-        processData: false,
-        contentType: false,
-        cache: false,
-        dataType: 'json',
-        success: function (data) {
-            window.location.href = '/recommend'
-        },
-        error: function (e) {
-            alert('fail');
-        }
-        });
+        // $.ajax({
+        // type: "POST",
+        // enctype: 'multipart/form-data',
+        // url: '/upload_image',
+        // data: data,
+        // async: false,
+        // processData: false,
+        // contentType: false,
+        // cache: false,
+        // dataType: 'json',
+        // success: function (data) {
+        //     window.location.href = '/recommend'
+        // },
+        // error: function (e) {
+        //     alert('fail');
+        // }
+        // });
 	}
-
 
     onGetUserMediaButtonClick()
 
