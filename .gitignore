@@ -580,5 +580,6 @@ temp/
 data/
 .dbdata/
 models/
+connection.py
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,pycharm+all,pycharm,python,jupyternotebooks,flask,django,git
