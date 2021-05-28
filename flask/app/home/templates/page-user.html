@@ -128,7 +128,9 @@
 	  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
 	  canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height,
 		  x, y, img.width * ratio, img.height * ratio);
-	  var data = canvas.toDataURL();
+
+        var data = canvas.toDataURL();
+
 
         $.ajax({
         type: "POST",
@@ -140,15 +142,10 @@
         contentType: false,
         cache: false,
         dataType: 'json',
-        timeout: 600000,
         success: function (data) {
-            // $('#btnUpload').prop('disabled', false);
-            // window.location.href = 'recommend.html'
-            alert(data);
-            alert('success');
+            window.location.href = '/recommend'
         },
         error: function (e) {
-            $('#btnUpload').prop('disabled', false);
             alert('fail');
         }
         });

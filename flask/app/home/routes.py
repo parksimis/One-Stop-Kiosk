@@ -6,8 +6,11 @@ from jinja2 import TemplateNotFound
 import cv2
 from flask import Flask, render_template, Response
 import pymysql
-import engine, db_engine
+import engine, db_engine, connection
+import re
+import base64
 import boto3
+
 
 
 config = {
@@ -98,13 +101,26 @@ def capture():
 def user():
     return render_template('page-user.html', segment='index')
 
+
 @blueprint.route('/upload_image', methods=['POST'])
 def upload_image():
-    print('-----------first -------------------------')
+
     json_data = request.get_data()
-    # print('----------------------------\n\n\n\n\n')
-    print(json_data)
-    return json_data
+    decode_data = json_data.decode()
+    image_data = re.sub('^data:image/.+;base64,', '', decode_data)
+    imgdata = base64.b64decode(image_data)
+    filename = './temp/some_image.jpg'
+
+    with open(filename, 'wb') as f:
+        f.write(imgdata)
+    s3 = connection.s3_connection()
+
+    bucket_name = 'yangjae-team01-s3'
+    s3.upload_file(filename, bucket_name, 'test_image.jpg')
+
+    return jsonify(result="success")
+
+
 
 @blueprint.route('/recommend')
 def recommend():
