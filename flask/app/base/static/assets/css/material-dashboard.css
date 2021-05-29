@@ -14472,7 +14472,6 @@ h2.title {
 
 .nav-tabs .nav-item .nav-link {
   position: relative;
-  color: #fff;
   border: 0;
   margin: 0;
   border-radius: 3px;
@@ -14492,7 +14491,6 @@ h2.title {
 .nav-tabs .nav-item .nav-link:hover,
 .nav-tabs .nav-item .nav-link:focus {
   border: 0 !important;
-  color: #fff !important;
   font-weight: 500;
 }
 

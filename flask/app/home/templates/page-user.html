@@ -4,23 +4,38 @@
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
+<style type="text/css">
 
+        .user_bg {
+        background: rgb(225, 47, 35);
+        }
+        .nega_bg {
+            background: rgb(54, 54, 54);
+        }
+        .user_font {
+            font-family: 'Jua';
+            font-size: 40px;
+        }
+</style>
 {% endblock stylesheets %}
 
 {% block content %}
 
       <div class="card">
-        <div class="card-header card-header-primary">
-          <h4 class="card-title text-center">오늘의 기분에 맞는 표정을 보여주세요</h4>
+        <div class="card-header">
+          <h4 class="card-title text-center user_font pt-4">오늘의 기분에 맞는 표정을 보여주세요</h4>
         </div>
-        <div class="card-body text-center">
-            <video class="w-100" autoplay="true"></video>
+          <div class="row">
+            <div class="card-body text-center">
+            <video id="video_tp" class="col-md-12 bg-white border" autoplay="true"></video>
             <canvas id='takePhotoCanvas'></canvas>
             <form method="POST" enctype="multipart/form-data" id="uploadForm">
-                <button type="button" id="btnUpload" class="btn btn-primary w-100" onclick="counter = setInterval('timer()', 1000)" style="font-size: 20px;">촬영하기</button>
+                <button type="button" id="btnUpload" class="btn user_bg w-75 user_font rounded" onclick="counter = setInterval('timer()', 1000)">촬영하기</button>
                 <div class="clearfix"></div>
             </form>
         </div>
+          </div>
+
       </div>
 
 {% endblock content %}
@@ -45,6 +60,7 @@
         if (count <= 0){
             clearInterval(counter);
             onTakePhotoButtonClick();
+            $('#video_tp').hide();
         }
         ctx.fillText(count, 150, 91);
     }
@@ -82,7 +98,7 @@
 	  canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height,
 		  x, y, img.width * ratio, img.height * ratio);
 
-        var data = canvas.toDataURL();
+        // var data = canvas.toDataURL();
 
 
         // $.ajax({

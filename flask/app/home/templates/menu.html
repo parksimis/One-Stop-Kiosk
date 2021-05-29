@@ -3,51 +3,62 @@
 {% block title %} 고민고민하지말조 {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<style type="text/css">
+
+        .user_bg {
+        background: rgb(225, 47, 35);
+        }
+        .nega_bg {
+            background: rgb(54, 54, 54);
+        }
+        .user_font {
+            font-family: 'Jua';
+            font-size: 20px;
+        }
+
+</style>
+{% endblock stylesheets %}
 
 {% block content %}
-    <div class="main-panel text-center">
-        <a href="{{url_for('home_blueprint.cancel')}}" class="btn fixed-top w-100 user_font user_bg" style="font-size: 30px">처음 화면으로 돌아가기</a>
-    </div>
-
-    <div class="row">
-        <div class="card">
-          <div class="card-header card-header-tabs card-header-primary">
+    <div class="row mt-4">
+        <div class="card col-md-10" style="margin: 0 auto;">
+          <div class="card-header card-header-tabs text-dark">
             <div class="nav-tabs-navigation">
               <div class="nav-tabs-wrapper">
-                <span class="nav-tabs-title">메뉴</span>
                 <ul class="nav nav-tabs" data-tabs="tabs">
                   <li class="nav-item">
                     <a class="nav-link active" href="#korean" data-toggle="tab">
-                      <i class="material-icons">rice_bowl</i> 한식
+                      한식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#chinese" data-toggle="tab">
-                      <i class="material-icons">dinner_dining</i> 분식
+                      분식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#japanese" data-toggle="tab">
-                       <i class="material-icons">restaurant</i> 양식
+                        양식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#western" data-toggle="tab">
-                      <i class="material-icons">bento</i> 일식
+                      일식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#casual" data-toggle="tab">
-                       <i class="material-icons">ramen_dining</i>중식
+                       중식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
                 </ul>
+
               </div>
             </div>
           </div>
@@ -60,25 +71,25 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                      <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
-                                     <form action="/add_cart" method="post">
+                                     <form action="/add_cart" method="post" class="text-center">
                                          <div class="card-body text-center">
                                              <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
                                              <input type="hidden" name="store_id" value="{{obj.store_id}}">
                                              <input type="hidden" name=path value="{{path}}">
-                                             <input type="text" class="form-control text-center bg-white h4" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
+                                             <input type="text" class="form-control text-center bg-white h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
                                              <div class="input-group mb-3">
-                                              <div class="input-group-prepend">
-                                                <span class="input-group-text">금액</span>
-                                              </div>
-                                              <input type="number" class="form-control text-center" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                              <input type="number" class="form-control bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                                 <div class="input-group-append">
+                                                    <span class="input-group-text user_font text-danger">원</span>
+                                                </div>
                                             </div>
                                                <div class="input-group">
                                                    <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center" value="1" name="menu_qty" readonly>
+                                                   <input type="number" class="form-control text-center bg-white" value="1" name="menu_qty" readonly>
                                                    <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
-                                        <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
+                                        <input type="submit" value="담기" class="btn user_bg user_font w-100 rounded cart">
                                      </form>
                                 </div>
                             </div>
@@ -98,20 +109,20 @@
                                              <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
                                              <input type="hidden" name="store_id" value="{{obj.store_id}}">
                                              <input type="hidden" name=path value="{{path}}">
-                                             <input type="text" class="form-control text-center bg-white h4" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
+                                             <input type="text" class="form-control text-center bg-white h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
                                              <div class="input-group mb-3">
-                                              <div class="input-group-prepend">
-                                                <span class="input-group-text">금액</span>
-                                              </div>
-                                              <input type="number" class="form-control text-center" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                              <input type="number" class="form-control bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                                 <div class="input-group-append">
+                                                    <span class="input-group-text user_font text-danger">원</span>
+                                                </div>
                                             </div>
                                                <div class="input-group">
                                                    <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center" value="1" name="menu_qty" readonly>
+                                                   <input type="number" class="form-control text-center bg-white" value="1" name="menu_qty" readonly>
                                                    <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
-                                        <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
+                                        <input type="submit" value="담기" class="btn user_bg user_font w-100 rounded cart">
                                      </form>
                                 </div>
                             </div>
@@ -131,20 +142,20 @@
                                              <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
                                              <input type="hidden" name="store_id" value="{{obj.store_id}}">
                                              <input type="hidden" name=path value="{{path}}">
-                                             <input type="text" class="form-control text-center bg-white h4" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
+                                             <input type="text" class="form-control text-center bg-white h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
                                              <div class="input-group mb-3">
-                                              <div class="input-group-prepend">
-                                                <span class="input-group-text" >금액</span>
-                                              </div>
-                                              <input type="number" class="form-control text-center" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                              <input type="number" class="form-control bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                                 <div class="input-group-append">
+                                                    <span class="input-group-text user_font text-danger">원</span>
+                                                </div>
                                             </div>
                                                <div class="input-group">
                                                    <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center" value="1" name="menu_qty" readonly>
+                                                   <input type="number" class="form-control text-center bg-white" value="1" name="menu_qty" readonly>
                                                    <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
-                                        <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
+                                        <input type="submit" value="담기" class="btn user_bg user_font w-100 rounded cart">
                                      </form>
                                 </div>
                             </div>
@@ -164,16 +175,16 @@
                                              <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
                                              <input type="hidden" name="store_id" value="{{obj.store_id}}">
                                              <input type="hidden" name=path value="{{path}}">
-                                             <input type="text" class="form-control text-center bg-white h4" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
+                                             <input type="text" class="form-control text-center bg-white h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
                                              <div class="input-group mb-3">
-                                              <div class="input-group-prepend">
-                                                <span class="input-group-text">금액</span>
-                                              </div>
-                                              <input type="number" class="form-control text-center" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                              <input type="number" class="form-control bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                                 <div class="input-group-append">
+                                                    <span class="input-group-text user_font text-danger">원</span>
+                                                </div>
                                             </div>
                                                <div class="input-group">
                                                    <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center" value="1" name="menu_qty" readonly>
+                                                   <input type="number" class="form-control text-center bg-white" value="1" name="menu_qty" readonly>
                                                    <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
@@ -197,16 +208,16 @@
                                              <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
                                              <input type="hidden" name="store_id" value="{{obj.store_id}}">
                                              <input type="hidden" name=path value="{{path}}">
-                                             <input type="text" class="form-control text-center bg-white h4" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
+                                             <input type="text" class="form-control text-center bg-white h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
                                              <div class="input-group mb-3">
-                                              <div class="input-group-prepend">
-                                                <span class="input-group-text" >금액</span>
-                                              </div>
-                                              <input type="number" class="form-control text-center" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                              <input type="number" class="form-control bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                                 <div class="input-group-append">
+                                                    <span class="input-group-text user_font text-danger">원</span>
+                                                </div>
                                             </div>
                                                <div class="input-group">
                                                    <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center" value="1" name="menu_qty" readonly>
+                                                   <input type="number" class="form-control text-center bg-white" value="1" name="menu_qty" readonly>
                                                    <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
@@ -221,48 +232,30 @@
             </div>
           </div>
         </div>
-            <div class="card text-center">
-                <div class="card-header bg-primary text-white">
-                    장바구니
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered table-sm">
-                        <thead>
-                            <tr class="table-warning">
-                                <td scope="col">번호</td>
-                                <td scope="col">메뉴명</td>
-                                <td scope="col">수량</td>
-                                <td scope="col">금액</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {%for obj in cart_list%}
-                                <tr>
-                                    <td>{{loop.index}}</td>
-                                    <td>{{obj.menu_name}}</td>
-                                    <td>{{obj.menu_qty}} 개</td>
-                                    <td class="text-right pr-sm-4">{{'{:,}'.format(obj.menu_price)}} 원</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">합 계</td>
-                                <td>{{cart_list|sum(attribute='menu_qty')}} 개</td>
-                                <td class="text-right pr-sm-4">{{'{:,}'.format(cart_list|sum(attribute='menu_price'))}} 원</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                <div class="row text-center align-middle">
-                  <div class="col-sm-6 align-self-center">
-                    <a href="{{url_for('home_blueprint.cancel')}}" class="btn btn-primary w-100 h-100"><h3>주문취소</h3></a>
-                  </div>
-                  <div class="col-sm-6 align-self-center">
-                      <a href="{{url_for('home_blueprint.order')}}" class="btn btn-primary w-100 h-100"><h3>주문완료</h3></a>
-                  </div>
-                </div>
+        <div class="card col-md-10 text-center" style="margin: 0 auto;">
+            <div class="card-header text-black user_font text-left mt-3">
+                장바구니 <span class="badge badge-danger">{{cart_list|sum(attribute='menu_qty')}}</span>
             </div>
+            <div class="row">
+                {% for obj in cart_list %}
+                    <div class="card col-md-3">
+                        <div class="card-body text-left">
+                            <h5 class="card-title user_font">{{obj.menu_name}} <span class="ml-1">{{obj.menu_qty}}</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></h5>
+                            <h6 class="card-text user_font text-danger">{{'{:,}'.format(obj.menu_price)}} 원</h6>
+                        </div>
+                    </div>
+                {%endfor %}
+            </div>
+
+            <div class="row text-center align-middle">
+              <div class="col-sm-6 align-self-center">
+                <a href="{{url_for('home_blueprint.cancel')}}" class="btn user_font nega_bg w-100 h-100" style="font-size: 30px">주문취소</a>
+              </div>
+              <div class="col-sm-6 align-self-center">
+                  <a href="{{url_for('home_blueprint.order')}}" class="btn user_font user_bg w-100 h-100 h2" style="font-size: 30px;">주문완료</a>
+              </div>
+            </div>
+        </div>
     </div>
 
 {% endblock content %}

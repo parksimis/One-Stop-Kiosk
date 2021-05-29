@@ -3,18 +3,32 @@
 {% block title %} 개인정보 이용동의 {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<style type="text/css">
+
+        .user_bg {
+        background: rgb(225, 47, 35);
+        }
+        .nega_bg {
+            background: rgb(54, 54, 54);
+        }
+        .user_font {
+            font-family: 'Jua';
+            font-size: 40px;
+        }
+</style>
+{% endblock stylesheets %}
 
 {% block content %}
   <div class="card">
       <div class="card-body">
         <img class="card-img-top w-100" src="/static/assets/img/personal_info.png">
-        <div class="row text-center align-middle">
+        <div class="row text-center align-middle mt-4">
           <div class="col-sm-6 align-self-center">
-            <input type="button" onclick="agree_privacy()" class='btn btn-primary w-100 h-100' value="동의">
+            <input type="button" onclick="reject_privacy()" class='btn w-100 h-100 nega_bg user_font rounded' value="비동의">
           </div>
           <div class="col-sm-6 align-self-center">
-            <input type="button" onclick="reject_privacy()" class='btn btn-primary w-100 h-100' value="비동의">
+            <input type="button" onclick="agree_privacy()" class='btn w-100 h-100 user_bg user_font rounded' value="동의">
           </div>
         </div>
       </div>

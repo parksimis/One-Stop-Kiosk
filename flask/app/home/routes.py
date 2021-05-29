@@ -1,7 +1,5 @@
 from app.home import blueprint
 from flask import render_template, redirect, url_for, request, jsonify
-from flask_login import login_required, current_user
-from app import login_manager
 from jinja2 import TemplateNotFound
 import cv2
 from flask import Flask, render_template, Response

@@ -6,7 +6,11 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-    <div class="card">
+  <div class="main-panel text-center mb-3">
+        <a href="{{url_for('home_blueprint.cancel')}}" class="btn fixed-top col-md-8 user_font user_bg" style="font-size: 30px">처음 화면으로 돌아가기</a>
+  </div>
+  <div class="row">
+  <div class="card col-md-10" style="margin: 0 auto;">
       <div class="card-header bg-primary text-white text-center">
         <h3>결제 방법을 선택하세요.</h3>
       </div>
@@ -21,6 +25,8 @@
         </div>
       </div>
     </div>
+</div>
+
 
 {% endblock content %}
 
