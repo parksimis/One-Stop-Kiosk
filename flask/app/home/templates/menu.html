@@ -14,7 +14,12 @@
         }
         .user_font {
             font-family: 'Jua';
-            font-size: 20px;
+            font-size: 20px !important;
+        }
+
+        .card img{
+            height: 180px;
+            width: 100%;
         }
 
 </style>
@@ -23,36 +28,36 @@
 {% block content %}
     <div class="row mt-4">
         <div class="card col-md-10" style="margin: 0 auto;">
-          <div class="card-header card-header-tabs text-dark">
+          <div class="card-header text-dark">
             <div class="nav-tabs-navigation">
               <div class="nav-tabs-wrapper">
-                <ul class="nav nav-tabs" data-tabs="tabs">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#korean" data-toggle="tab">
+                <ul class="nav nav-tabs text-center" data-tabs="tabs">
+                  <li class="nav-item col-sm-2">
+                    <a class="nav-link active user_font" href="#korean" data-toggle="tab">
                       한식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#chinese" data-toggle="tab">
+                  <li class="nav-item col-sm-2">
+                    <a class="nav-link user_font" href="#chinese" data-toggle="tab">
                       분식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#japanese" data-toggle="tab">
+                  <li class="nav-item col-sm-2">
+                    <a class="nav-link user_font" href="#japanese" data-toggle="tab">
                         양식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#western" data-toggle="tab">
+                  <li class="nav-item col-sm-2">
+                    <a class="nav-link user_font" href="#western" data-toggle="tab">
                       일식
                       <div class="ripple-container"></div>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#casual" data-toggle="tab">
+                  <li class="nav-item col-sm-2">
+                    <a class="nav-link user_font" href="#casual" data-toggle="tab">
                        중식
                       <div class="ripple-container"></div>
                     </a>
@@ -62,7 +67,7 @@
               </div>
             </div>
           </div>
-          <div class="card-body">
+          <div class="card-body pt-0">
             <div class="tab-content">
               <div class="tab-pane active" id="korean">
                  <div class="row">
@@ -70,23 +75,21 @@
                         {% if obj.store_id == 1 %}
                             <div class="col-sm-4">
                                 <div class="card">
-                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
+                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top">
                                      <form action="/add_cart" method="post" class="text-center">
                                          <div class="card-body text-center">
                                              <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
                                              <input type="hidden" name="store_id" value="{{obj.store_id}}">
                                              <input type="hidden" name=path value="{{path}}">
-                                             <input type="text" class="form-control text-center bg-white h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
-                                             <div class="input-group mb-3">
-                                              <input type="number" class="form-control bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
-                                                 <div class="input-group-append">
-                                                    <span class="input-group-text user_font text-danger">원</span>
-                                                </div>
-                                            </div>
-                                               <div class="input-group">
-                                                   <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center bg-white" value="1" name="menu_qty" readonly>
-                                                   <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                                             <input type="text" class="form-control-plaintext text-center bg-white m-0 p-0 h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
+                                             <div class="row m-0 p-0">
+                                                 <input type="number" class="form-control-plaintext p-0 col-md-8 bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                                 <span class="input-group-text col-md-4 user_font text-danger">원</span>
+                                             </div>
+                                             <div class="row">
+                                                   <button class="btn btn-outline-secondary btn-sm minus col-md-3" type="button"><i class="fas fa-minus"></i></button>
+                                                   <input type="number" class="form-control-plaintext text-center bg-white col-md-5" value="1" name="menu_qty" readonly>
+                                                   <button class="btn btn-outline-secondary plus btn-sm plus col-md-3" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
                                         <input type="submit" value="담기" class="btn user_bg user_font w-100 rounded cart">
@@ -103,23 +106,21 @@
                         {% if obj.store_id == 2 %}
                             <div class="col-sm-4">
                                 <div class="card">
-                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
-                                     <form action="/add_cart" method="post">
+                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top">
+                                     <form action="/add_cart" method="post" class="text-center">
                                          <div class="card-body text-center">
                                              <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
                                              <input type="hidden" name="store_id" value="{{obj.store_id}}">
                                              <input type="hidden" name=path value="{{path}}">
-                                             <input type="text" class="form-control text-center bg-white h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
-                                             <div class="input-group mb-3">
-                                              <input type="number" class="form-control bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
-                                                 <div class="input-group-append">
-                                                    <span class="input-group-text user_font text-danger">원</span>
-                                                </div>
-                                            </div>
-                                               <div class="input-group">
-                                                   <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center bg-white" value="1" name="menu_qty" readonly>
-                                                   <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                                             <input type="text" class="form-control-plaintext text-center bg-white m-0 p-0 h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
+                                             <div class="row m-0 p-0">
+                                                 <input type="number" class="form-control-plaintext p-0 col-md-8 bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                                 <span class="input-group-text col-md-4 user_font text-danger">원</span>
+                                             </div>
+                                             <div class="row">
+                                                   <button class="btn btn-outline-secondary btn-sm minus col-md-3" type="button"><i class="fas fa-minus"></i></button>
+                                                   <input type="number" class="form-control-plaintext text-center bg-white col-md-5" value="1" name="menu_qty" readonly>
+                                                   <button class="btn btn-outline-secondary plus btn-sm plus col-md-3" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
                                         <input type="submit" value="담기" class="btn user_bg user_font w-100 rounded cart">
@@ -136,23 +137,21 @@
                         {% if obj.store_id == 3 %}
                             <div class="col-sm-4">
                                 <div class="card">
-                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
-                                     <form action="/add_cart" method="post">
+                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top">
+                                     <form action="/add_cart" method="post" class="text-center">
                                          <div class="card-body text-center">
                                              <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
                                              <input type="hidden" name="store_id" value="{{obj.store_id}}">
                                              <input type="hidden" name=path value="{{path}}">
-                                             <input type="text" class="form-control text-center bg-white h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
-                                             <div class="input-group mb-3">
-                                              <input type="number" class="form-control bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
-                                                 <div class="input-group-append">
-                                                    <span class="input-group-text user_font text-danger">원</span>
-                                                </div>
-                                            </div>
-                                               <div class="input-group">
-                                                   <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center bg-white" value="1" name="menu_qty" readonly>
-                                                   <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                                             <input type="text" class="form-control-plaintext text-center bg-white m-0 p-0 h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
+                                             <div class="row m-0 p-0">
+                                                 <input type="number" class="form-control-plaintext p-0 col-md-8 bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                                 <span class="input-group-text col-md-4 user_font text-danger">원</span>
+                                             </div>
+                                             <div class="row">
+                                                   <button class="btn btn-outline-secondary btn-sm minus col-md-3" type="button"><i class="fas fa-minus"></i></button>
+                                                   <input type="number" class="form-control-plaintext text-center bg-white col-md-5" value="1" name="menu_qty" readonly>
+                                                   <button class="btn btn-outline-secondary plus btn-sm plus col-md-3" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
                                         <input type="submit" value="담기" class="btn user_bg user_font w-100 rounded cart">
@@ -169,26 +168,24 @@
                         {% if obj.store_id == 4 %}
                             <div class="col-sm-4">
                                 <div class="card">
-                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
-                                     <form action="/add_cart" method="post">
+                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top">
+                                     <form action="/add_cart" method="post" class="text-center">
                                          <div class="card-body text-center">
                                              <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
                                              <input type="hidden" name="store_id" value="{{obj.store_id}}">
                                              <input type="hidden" name=path value="{{path}}">
-                                             <input type="text" class="form-control text-center bg-white h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
-                                             <div class="input-group mb-3">
-                                              <input type="number" class="form-control bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
-                                                 <div class="input-group-append">
-                                                    <span class="input-group-text user_font text-danger">원</span>
-                                                </div>
-                                            </div>
-                                               <div class="input-group">
-                                                   <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center bg-white" value="1" name="menu_qty" readonly>
-                                                   <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                                             <input type="text" class="form-control-plaintext text-center bg-white m-0 p-0 h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
+                                             <div class="row m-0 p-0">
+                                                 <input type="number" class="form-control-plaintext p-0 col-md-8 bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                                 <span class="input-group-text col-md-4 user_font text-danger">원</span>
+                                             </div>
+                                             <div class="row">
+                                                   <button class="btn btn-outline-secondary btn-sm minus col-md-3" type="button"><i class="fas fa-minus"></i></button>
+                                                   <input type="number" class="form-control-plaintext text-center bg-white col-md-5" value="1" name="menu_qty" readonly>
+                                                   <button class="btn btn-outline-secondary plus btn-sm plus col-md-3" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
-                                        <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
+                                        <input type="submit" value="담기" class="btn user_bg user_font w-100 rounded cart">
                                      </form>
                                 </div>
                             </div>
@@ -202,26 +199,24 @@
                         {% if obj.store_id == 5 %}
                             <div class="col-sm-4">
                                 <div class="card">
-                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top" style="height: 240px; width: 100%">
-                                     <form action="/add_cart" method="post">
+                                     <img class="card-img-top" src="/static/menu/{{obj.menu_img}}" alt="Card image top">
+                                     <form action="/add_cart" method="post" class="text-center">
                                          <div class="card-body text-center">
                                              <input type="hidden" name="menu_id" value="{{obj.menu_id}}">
                                              <input type="hidden" name="store_id" value="{{obj.store_id}}">
                                              <input type="hidden" name=path value="{{path}}">
-                                             <input type="text" class="form-control text-center bg-white h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
-                                             <div class="input-group mb-3">
-                                              <input type="number" class="form-control bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
-                                                 <div class="input-group-append">
-                                                    <span class="input-group-text user_font text-danger">원</span>
-                                                </div>
-                                            </div>
-                                               <div class="input-group">
-                                                   <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                                                   <input type="number" class="form-control text-center bg-white" value="1" name="menu_qty" readonly>
-                                                   <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
+                                             <input type="text" class="form-control-plaintext text-center bg-white m-0 p-0 h4 user_font" aria-label="메뉴명" name="menu_name" value="{{obj.menu_name}}" readonly>
+                                             <div class="row m-0 p-0">
+                                                 <input type="number" class="form-control-plaintext p-0 col-md-8 bg-white text-danger text-right user_font" aria-label="가격" name="menu_price" value="{{obj.menu_price}}" readonly>
+                                                 <span class="input-group-text col-md-4 user_font text-danger">원</span>
+                                             </div>
+                                             <div class="row">
+                                                   <button class="btn btn-outline-secondary btn-sm minus col-md-3" type="button"><i class="fas fa-minus"></i></button>
+                                                   <input type="number" class="form-control-plaintext text-center bg-white col-md-5" value="1" name="menu_qty" readonly>
+                                                   <button class="btn btn-outline-secondary plus btn-sm plus col-md-3" type="button"><i class="fas fa-plus"></i></button>
                                               </div>
                                         </div>
-                                        <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
+                                        <input type="submit" value="담기" class="btn user_bg user_font w-100 rounded cart">
                                      </form>
                                 </div>
                             </div>
@@ -232,14 +227,14 @@
             </div>
           </div>
         </div>
-        <div class="card col-md-10 text-center" style="margin: 0 auto;">
-            <div class="card-header text-black user_font text-left mt-3">
-                장바구니 <span class="badge badge-danger">{{cart_list|sum(attribute='menu_qty')}}</span>
+        <div class="card col-md-10 pb-0 text-center" style="margin: 0 auto; background-color: lightgray;">
+            <div class="card-header text-black user_font text-left mt-3 pb-0">
+                장바구니 <span class="badge badge-danger h5" style="height: 30px; width: 40px">{{cart_list|sum(attribute='menu_qty')}}</span>
             </div>
             <div class="row">
                 {% for obj in cart_list %}
-                    <div class="card col-md-3">
-                        <div class="card-body text-left">
+                    <div class="card col-md-2 ml-0 p-0">
+                        <div class="card-body text-left pr-2">
                             <h5 class="card-title user_font">{{obj.menu_name}} <span class="ml-1">{{obj.menu_qty}}</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></h5>
                             <h6 class="card-text user_font text-danger">{{'{:,}'.format(obj.menu_price)}} 원</h6>
                         </div>
@@ -247,13 +242,11 @@
                 {%endfor %}
             </div>
 
-            <div class="row text-center align-middle">
-              <div class="col-sm-6 align-self-center">
-                <a href="{{url_for('home_blueprint.cancel')}}" class="btn user_font nega_bg w-100 h-100" style="font-size: 30px">주문취소</a>
-              </div>
-              <div class="col-sm-6 align-self-center">
-                  <a href="{{url_for('home_blueprint.order')}}" class="btn user_font user_bg w-100 h-100 h2" style="font-size: 30px;">주문완료</a>
-              </div>
+            <div class="row text-center">
+                <div class="btn-group w-100">
+                    <a href="{{url_for('home_blueprint.cancel')}}" class="btn user_font nega_bg w-100 h-100" style="font-size: 30px">주문취소</a>
+                    <a href="{{url_for('home_blueprint.order')}}" class="btn user_font user_bg w-100 h-100 h2" style="font-size: 30px;">주문완료</a>
+                  </div>
             </div>
         </div>
     </div>

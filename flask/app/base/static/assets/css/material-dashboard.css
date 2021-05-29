@@ -4292,10 +4292,10 @@ tbody.collapse.show {
   border-top-right-radius: 0.25rem;
 }
 
-.nav-tabs .nav-link:hover,
-.nav-tabs .nav-link:focus {
-  border-color: #e9ecef #e9ecef #dee2e6;
-}
+/*.nav-tabs .nav-link:hover,*/
+/*.nav-tabs .nav-link:focus {*/
+/*  fon*/
+/*}*/
 
 .nav-tabs .nav-link.disabled {
   color: #6c757d;
@@ -4307,7 +4307,8 @@ tbody.collapse.show {
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
   background-color: #fafafa;
-  border-color: #dee2e6 #dee2e6 #fafafa;
+  border-bottom-width: thick;
+  border-bottom-color: red;
 }
 
 .nav-tabs .dropdown-menu {
@@ -13711,7 +13712,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .navbar {
-  border: 0;
+  /*border: 0;*/
   border-radius: 3px;
   padding: 0.625rem 0;
   margin-bottom: 20px;
@@ -14472,7 +14473,7 @@ h2.title {
 
 .nav-tabs .nav-item .nav-link {
   position: relative;
-  border: 0;
+  /*border: 0;*/
   margin: 0;
   border-radius: 3px;
   line-height: 24px;
@@ -14483,14 +14484,14 @@ h2.title {
   transition: 0.3s background-color 0s;
 }
 
-.nav-tabs .nav-item .nav-link:hover {
-  border: 0;
-}
+/*.nav-tabs .nav-item .nav-link:hover {*/
+/*  border: 0;*/
+/*}*/
 
 .nav-tabs .nav-item .nav-link,
 .nav-tabs .nav-item .nav-link:hover,
 .nav-tabs .nav-item .nav-link:focus {
-  border: 0 !important;
+  /*border: 0 ;*/
   font-weight: 500;
 }
 
@@ -14508,71 +14509,71 @@ h2.title {
   transition: 0.3s background-color 0.2s;
 }
 
-.nav-tabs .nav-link {
-  border-bottom: 0.214rem solid transparent;
-}
+/*.nav-tabs .nav-link {*/
+/*  border-bottom: 0.214rem solid transparent;*/
+/*}*/
 
 .nav-tabs .nav-link {
-  color: #555555;
+  color: #B5B1A7;
 }
 
-.nav-tabs .nav-link.active {
-  color: #333333;
-  border-color: #9c27b0;
-}
+/*.nav-tabs .nav-link.active {*/
+/*  color: #333333;*/
+/*  border-color: #9c27b0;*/
+/*}*/
 
-.nav-tabs .nav-link.active:hover,
-.nav-tabs .nav-link.active:focus {
-  border-color: #9c27b0;
-}
+/*.nav-tabs .nav-link.active:hover,*/
+/*.nav-tabs .nav-link.active:focus {*/
+/*  border-color: #9c27b0;*/
+/*}*/
 
-.nav-tabs .nav-link.disabled {
-  color: #999999;
-}
+/*.nav-tabs .nav-link.disabled {*/
+/*  color: #999999;*/
+/*}*/
 
-.nav-tabs .nav-link.disabled,
-.nav-tabs .nav-link.disabled:hover,
-.nav-tabs .nav-link.disabled:focus {
-  color: #999999;
-}
+/*.nav-tabs .nav-link.disabled,*/
+/*.nav-tabs .nav-link.disabled:hover,*/
+/*.nav-tabs .nav-link.disabled:focus {*/
+/*  color: #999999;*/
+/*}*/
 
-.nav-tabs.header-primary .nav-link {
-  color: white;
-}
+/*.nav-tabs.header-primary .nav-link {*/
+/*  color: white;*/
+/*}*/
 
-.nav-tabs.header-primary .nav-link.active {
-  color: #fff;
-  border-color: #fff;
-}
+/*.nav-tabs.header-primary .nav-link.active {*/
+/*  color: #fff;*/
+/*  border-color: #fff;*/
+/*}*/
 
-.nav-tabs.header-primary .nav-link.active:hover,
-.nav-tabs.header-primary .nav-link.active:focus {
-  border-color: #fff;
-}
+/*.nav-tabs.header-primary .nav-link.active:hover,*/
+/*.nav-tabs.header-primary .nav-link.active:focus {*/
+/*  border-color: #fff;*/
+/*}*/
 
-.nav-tabs.header-primary .nav-link.disabled {
-  color: rgba(255, 255, 255, 0.84);
-}
+/*.nav-tabs.header-primary .nav-link.disabled {*/
+/*  color: rgba(255, 255, 255, 0.84);*/
+/*}*/
 
-.nav-tabs.header-primary .nav-link.disabled,
-.nav-tabs.header-primary .nav-link.disabled:hover,
-.nav-tabs.header-primary .nav-link.disabled:focus {
-  color: rgba(255, 255, 255, 0.84);
-}
+/*.nav-tabs.header-primary .nav-link.disabled,*/
+/*.nav-tabs.header-primary .nav-link.disabled:hover,*/
+/*.nav-tabs.header-primary .nav-link.disabled:focus {*/
+/*  color: rgba(255, 255, 255, 0.84);*/
+/*}*/
 
-.nav-tabs.bg-inverse .nav-link {
-  color: white;
-}
+/*.nav-tabs.bg-inverse .nav-link {*/
+/*  color: white;*/
+/*}*/
 
-.nav-tabs.bg-inverse .nav-link.active {
-  color: #fff;
-  border-color: #fff;
-}
+/*.nav-tabs.bg-inverse .nav-link.active {*/
+/*  color: #fff;*/
+/*  border-color: #fff;*/
+/*}*/
 
-.nav-tabs.bg-inverse .nav-link.active:hover,
-.nav-tabs.bg-inverse .nav-link.active:focus {
-  border-color: #fff;
-}
+/*.nav-tabs.bg-inverse .nav-link.active:hover,*/
+/*.nav-tabs.bg-inverse .nav-link.active:focus {*/
+/*  border-color: #fff;*/
+/*}*/
 
 .nav-tabs.bg-inverse .nav-link.disabled {
   color: rgba(255, 255, 255, 0.84);
@@ -18751,7 +18752,7 @@ Copyright (c) 2015 Daniel Eden
   .navbar .dropdown.show .dropdown-menu,
   .navbar .dropdown .dropdown-menu {
     background-color: transparent;
-    border: 0;
+    /*border: 0;*/
     padding-bottom: 15px;
     transition: none;
     -webkit-box-shadow: none;
