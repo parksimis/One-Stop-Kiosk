@@ -16,6 +16,9 @@
             font-family: 'Jua';
             font-size: 40px;
         }
+        .user_btn:hover{
+            background-color: #CA2826 !important;
+        }
 </style>
 {% endblock stylesheets %}
 
@@ -28,7 +31,7 @@
             <input type="button" onclick="reject_privacy()" class='btn w-100 h-100 nega_bg user_font rounded' value="비동의">
           </div>
           <div class="col-sm-6 align-self-center">
-            <input type="button" onclick="agree_privacy()" class='btn w-100 h-100 user_bg user_font rounded' value="동의">
+            <input type="button" onclick="agree_privacy()" class='btn w-100 h-100 user_bg user_btn user_font rounded' value="동의">
           </div>
         </div>
       </div>

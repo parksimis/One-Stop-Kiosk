@@ -4,7 +4,7 @@ from jinja2 import TemplateNotFound
 import cv2
 from flask import Flask, render_template, Response
 import pymysql
-import engine, db_engine, connection
+import engine, db_engine
 import re
 import base64
 import boto3
