@@ -70,7 +70,6 @@
     ctx.font = '100px Do Hyeon';
     ctx.textAlign = 'center';
 
-    // var counter = setInterval(timer, 1000)
 
     function timer(){
         ctx.clearRect(0, 0, 300, 100);
@@ -80,6 +79,9 @@
             onTakePhotoButtonClick();
             $('#takePhotoCanvas').css('z-index', 100);
             $('#video_tp').css('z-index', -1)
+        }
+        if (count == 0){
+            count = ''
         }
         ctx.fillText(count, 140, 100);
     }

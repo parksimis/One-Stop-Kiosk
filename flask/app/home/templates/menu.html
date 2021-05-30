@@ -235,8 +235,12 @@
                 {% for obj in cart_list %}
                     <div class="card col-md-2 ml-0 p-0">
                         <div class="card-body text-left pr-2">
-                            <h5 class="card-title user_font">{{obj.menu_name}} <span class="ml-1">{{obj.menu_qty}}</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></h5>
-                            <h6 class="card-text user_font text-danger">{{'{:,}'.format(obj.menu_price)}} 원</h6>
+                            <form action="/delete" method="post">
+                                <h5 class="card-title user_font">{{obj.menu_name}} <span class="ml-1">{{obj.menu_qty}}</span><button type="submit" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></h5>
+                                <h6 class="card-text user_font text-danger">{{'{:,}'.format(obj.menu_price)}} 원</h6>
+                                <input type="hidden" name='cart_menu' value="{{obj.menu_name}}">
+                            </form>
+
                         </div>
                     </div>
                 {%endfor %}

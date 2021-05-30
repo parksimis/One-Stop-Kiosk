@@ -127,7 +127,11 @@ def recommend():
 @blueprint.route('/order')
 def order():
 
-    query = "SELECT cart_id, menu_name, menu_qty, menu_price FROM cart"
+    query = '''
+        SELECT C.cart_id, C.menu_name, M.menu_img, C.menu_qty, C.menu_price\
+        FROM cart AS C JOIN menu AS M\
+        ON C.menu_id = M.menu_id\
+    '''
     rows = db_engine.select(query)
 
     cart_list = []
@@ -135,8 +139,9 @@ def order():
         data_dic = {
             'cart_id': row[0],
             'menu_name': row[1],
-            'menu_qty': row[2],
-            'menu_price': row[3]
+            'menu_img': row[2],
+            'menu_qty': row[3],
+            'menu_price': row[4]
         }
         cart_list.append(data_dic)
     return render_template('order.html', segment='index', cart_list=cart_list)
@@ -288,6 +293,21 @@ def cancel():
     db_engine.execute_ddl(query)
 
     return redirect('index.html')
+
+@blueprint.route('/delete', methods=['POST'])
+def delete():
+
+    if request.method == 'GET':
+        return render_template('/menu')
+
+    elif request.method == 'POST':
+        cart_menu = request.form['cart_menu']
+        query = 'DELETE FROM cart WHERE menu_name = %s'
+        db_engine.execute_dml(query=query, values=[cart_menu])
+
+
+        return redirect('/menu')
+
 
 @blueprint.route('/submit')
 def submit():

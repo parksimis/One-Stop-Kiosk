@@ -3,61 +3,68 @@
 {% block title %} Dashboard {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<style>
+    .user_bg {
+        background: rgb(225, 47, 35);
+    }
+    .nega_bg {
+            background: rgb(54, 54, 54);
+    }
+    .user_font {
+            font-family: 'Jua';
+            font-size: 24px;
+    }
+
+    .card img{
+            height: 180px;
+            width: 100%;
+    }
+
+</style>
+
+{% endblock stylesheets %}
 
 {% block content %}
 
     <div class="row mt-4">
-        <div class="card col-md-10" style="margin: 0 auto;">
-      <div class="card-header bg-primary text-white text-center">
-        <h3>주문 확인</h3>
-      </div>
-      <div class="card-body">
-        <table class="table table-bordered table-sm text-center">
-            <thead class="table-warning">
-                <tr>
-                  <th scope="col">번호</th>
-                  <th scope="col">메뉴명</th>
-                  <th scope="col">수량</th>
-                  <th scope="col">금액</th>
-                </tr>
-            </thead>
-            <tbody>
-                {%for obj in cart_list%}
-                    <tr>
-                        <td>{{obj.cart_id}}</td>
-                        <td>{{obj.menu_name}}</td>
-                        <td>{{obj.menu_qty}} 개</td>
-                        <td class="text-right pr-sm-4">{{'{:,}'.format(obj.menu_price)}} 원</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2">합 계</td>
-                    <td>{{cart_list|sum(attribute='menu_qty')}} 개</td>
-                    <td class="text-right pr-sm-4">{{'{:,}'.format(cart_list|sum(attribute='menu_price'))}} 원</td>
-                </tr>
-            </tfoot>
-        </table>
-        <div class="row text-center">
-          <div class="col-sm-6">
-            <a href="{{url_for('home_blueprint.cancel')}}" class="btn btn-primary w-100"><h3>결제취소</h3></a>
-          </div>
-            <div class="col-sm-6">
-                <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100"><h3>결제하기</h3></a>
+        <div class="card col-md-10 pt-4" style="margin: 0 auto;">
+            <div class="card-header user_bg text-center">
+                <h3 class="user_font border-bottom" style="font-size: 60px;">주문확인</h3>
             </div>
+            <div class="card-body">
+          {% for obj in cart_list %}
+            <div class="row m-3" style="margin: 0 auto;">
+              <div class="col-2">
+              </div>
+              <div class="col-4">
+                  <img src="/static/menu/{{obj.menu_img}}" class="img-thumbnail">
+              </div>
+              <div class="col-3">
+                  <div class="row w-100 h-50">
+                      <div class="col align-self-end user_font pb-3 text-center">
+                          {{obj.menu_name}}
+                      </div>
+                  </div>
+                  <div class="row w-100 h-50 user_font text-danger">
+                      <div class="col p-0 text-center" style="font-size: 20px">
+                          {{'{:,}'.format(obj.menu_price)}} 원
+                      </div>
+                  </div>
+              </div>
+              <div class="col-2">
+                  <button type="submit" class="close float-left pt-3" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+          </div>
+          {% endfor %}
+        <div class="row text-center">
+            <div class="btn-group w-100">
+                <a href="{{url_for('home_blueprint.cancel')}}" class="btn user_font nega_bg w-100 h-100" style="font-size: 30px">결제취소</a>
+                <a href="{{url_for('home_blueprint.pay')}}" class="btn user_font user_bg w-100 h-100 h2" style="font-size: 30px;">결제하기</a>
+          </div>
         </div>
       </div>
-
-
-<!--      <div class="card-footer text-center">-->
-<!--        <div class="btn-group">-->
-<!--          <button type="button" class="btn btn-outline-danger">결제하기</button>-->
-<!--          <button type="button" class="btn btn-primary">추가<br>주문</button>-->
-<!--        </div>-->
-<!--      </div>-->
-    </div>
+        </div>
     </div>
 
 

@@ -3,53 +3,47 @@
 {% block title %} Submit {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<style type="text/css">
+
+        .user_bg {
+        background: rgb(225, 47, 35);
+        }
+        .nega_bg {
+            background: rgb(54, 54, 54);
+        }
+        .user_font {
+            font-family: 'Jua';
+            font-size: 60px;
+        }
+        .user_btn:hover{
+            background-color: #CA2826 !important;
+        }
+    </style>
+
+{% endblock stylesheets %}
 
 {% block content %}
-<div class="row">
+<div class="row mt-4">
     <div class="card col-md-10" style="margin: 0 auto;">
-      <div class="card-header bg-primary text-white text-center">
-        <h3>
-          주문이 완료되었습니다.<br>
-          주문 번호를 확인해주세요.
+      <div class="card-header text-center">
+        <h3 class="user_font border-bottom">
+          주문이 완료되었습니다.
         </h3>
-        <h2>
-          <p>
-            주문번호 : {{order_list[0]['order_id']}}
-          </p>
-        </h2>
-
       </div>
-      <div class="card-body text-center">
-          <table class="table table-bordered">
-              <thead>
-                  <tr>
-                      <td scope="col">번호</td>
-                      <td scope="col">메뉴명</td>
-                      <td scope="col">수량</td>
-                      <td scope="col">금액</td>
-                  </tr>
-              </thead>
-              <tbody>
-                {%for obj in order_list%}
-                    <tr>
-                        <td>{{loop.index}}</td>
-                        <td>{{obj.menu_name}}</td>
-                        <td>{{obj.food_qty}} 개</td>
-                        <td class="text-right pr-sm-4">{{'{:,}'.format(obj.food_price)}} 원</td>
-                    </tr>
-                {% endfor %}
-              </tbody>
-              <tfoot>
-                  <tr>
-                      <td colspan="2">합 계</td>
-                      <td>{{order_list|sum(attribute='food_qty')}} 개</td>
-                      <td class="text-right pr-sm-4">{{'{:,}'.format(order_list|sum(attribute='food_price'))}} 원</td>
-                  </tr>
-              </tfoot>
-          </table>
+      <div class="card-body">
+          <div class="row">
+              <div class="col text-center user_font h5" style="font-size: 40px">
+                주문번호
+              </div>
+          </div>
+          <div class="row">
+              <div class="col text-center">
+                <h2 class="user_font">{{order_list[0]['order_id']}}</h2>
+              </div>
+          </div>
           <div class="text-center align-self-center">
-            <a href="{{url_for('home_blueprint.index')}}" class="btn btn-primary w-100 h-100"><h3>홈으로 돌아가기</h3></a>
+            <a href="{{url_for('home_blueprint.index')}}" class="btn user_bg w-100 h-100 user_font h3">홈으로 돌아가기</a>
           </div>
       </div>
     </div>
@@ -67,7 +61,7 @@
       md.initDashboardPageCharts();
 
     });
-    $(document).onload(setTimeout('go_home()', 10000));
+    // $(document).onload(setTimeout('go_home()', 10000));
 
     function go_home(){
         location.href = 'index.html'
