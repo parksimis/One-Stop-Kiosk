@@ -13,13 +13,17 @@
     }
     .user_font {
             font-family: 'Jua';
-            font-size: 24px;
+            font-size: 30px;
     }
 
     .card img{
             height: 180px;
             width: 100%;
     }
+    .card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
 
 </style>
 
@@ -32,38 +36,50 @@
             <div class="card-header user_bg text-center">
                 <h3 class="user_font border-bottom" style="font-size: 60px;">주문확인</h3>
             </div>
-            <div class="card-body">
           {% for obj in cart_list %}
-            <div class="row m-3" style="margin: 0 auto;">
-              <div class="col-2">
-              </div>
-              <div class="col-4">
-                  <img src="/static/menu/{{obj.menu_img}}" class="img-thumbnail">
-              </div>
-              <div class="col-3">
-                  <div class="row w-100 h-50">
-                      <div class="col align-self-end user_font pb-3 text-center">
-                          {{obj.menu_name}}
-                      </div>
-                  </div>
-                  <div class="row w-100 h-50 user_font text-danger">
-                      <div class="col p-0 text-center" style="font-size: 20px">
-                          {{'{:,}'.format(obj.menu_price)}} 원
-                      </div>
-                  </div>
-              </div>
-              <div class="col-2">
-                  <button type="submit" class="close float-left pt-3" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-          </div>
+            <div class="row">
+                <div class="col-9" style="margin: 0 auto; ">
+                    <div class="card" style="box-shadow: 10px 10px 20px darkgray;">
+                        <div class="card-horizontal no-gutters">
+                            <div class="img-square-wrapper col-md-4">
+                                <img class="rounded" src="/static/menu/{{obj.menu_img}}" alt="Card image cap">
+                            </div>
+                            <div class="card-body">
+                                <div class="card-header">
+                                    <form action="/delete" method="post">
+                                        <h4 class="card-title user_font"><button type="submit" class="close text-right" aria-label="Close"><span aria-hidden="true">&times;</span></button></h4>
+                                        <input type="hidden" name='cart_menu' value="{{obj.menu_name}}">
+                                        <input type="hidden" name="path" value="{{path}}">
+                                    </form>
+
+                                </div>
+                                <div class="card-text h-100 text-center">
+                                    <p class="card-text user_font">{{obj.menu_name}}</p>
+                                    <p class="card-text user_font">{{'{:,}'.format(obj.menu_price)}} 원</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
           {% endfor %}
-        <div class="row text-center">
-            <div class="btn-group w-100">
-                <a href="{{url_for('home_blueprint.cancel')}}" class="btn user_font nega_bg w-100 h-100" style="font-size: 30px">결제취소</a>
-                <a href="{{url_for('home_blueprint.pay')}}" class="btn user_font user_bg w-100 h-100 h2" style="font-size: 30px;">결제하기</a>
-          </div>
-        </div>
-      </div>
+            <div class="row">
+                <div class="card" style="background-color: #eeeeee; margin: 0 auto;">
+                    <div class="card-header w-100 p-4 user_font">총 주문 금액 <span class="float-right">{{'{:,}원'.format(cart_list|sum(attribute='menu_price'))}}</span></div>
+                    <div class="card-body pb-0">
+                        <div class="row text-center">
+                            <div class="btn-group w-100">
+                                <a href="{{url_for('home_blueprint.menu')}}" class="btn user_font nega_bg w-100 h-100" style="font-size: 30px">돌아가기</a>
+                                <a href="{{url_for('home_blueprint.pay')}}" class="btn user_font user_bg w-100 h-100" style="font-size: 30px;">결제하기</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
         </div>
     </div>
 

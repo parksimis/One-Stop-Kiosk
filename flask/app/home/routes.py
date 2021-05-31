@@ -3,7 +3,6 @@ from flask import render_template, redirect, url_for, request, jsonify
 from jinja2 import TemplateNotFound
 import cv2
 from flask import Flask, render_template, Response
-import pymysql
 import engine, db_engine
 import re
 import base64
@@ -126,7 +125,7 @@ def recommend():
 
 @blueprint.route('/order')
 def order():
-
+    path = request.path
     query = '''
         SELECT C.cart_id, C.menu_name, M.menu_img, C.menu_qty, C.menu_price\
         FROM cart AS C JOIN menu AS M\
@@ -144,7 +143,7 @@ def order():
             'menu_price': row[4]
         }
         cart_list.append(data_dic)
-    return render_template('order.html', segment='index', cart_list=cart_list)
+    return render_template('order.html', segment='index', cart_list=cart_list, path=path)
 
 @blueprint.route('/pay')
 def pay():
@@ -245,7 +244,9 @@ def add_cart():
         menu_id = int(request.form['menu_id'])
         menu_name = request.form['menu_name']
         menu_qty = int(request.form['menu_qty'])
-        menu_price = int(request.form['menu_price']) * menu_qty
+        menu_price = request.form['menu_price']
+        menu_price = int(re.sub(r'[^0-9]+', '', menu_price)) * menu_qty
+        # menu_price = int(request.form['menu_price'].replace(',', '')) * menu_qty
 
         query = "SELECT menu_id, menu_name, menu_qty, menu_price FROM cart"
         rows = db_engine.select(query).fetchall()
@@ -301,12 +302,13 @@ def delete():
         return render_template('/menu')
 
     elif request.method == 'POST':
+        path = request.form['path']
         cart_menu = request.form['cart_menu']
         query = 'DELETE FROM cart WHERE menu_name = %s'
         db_engine.execute_dml(query=query, values=[cart_menu])
 
 
-        return redirect('/menu')
+        return redirect(path)
 
 
 @blueprint.route('/submit')

@@ -6,76 +6,24 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-<div class="main-panel text-center">
-    <a href="{{url_for('home_blueprint.cancel')}}" class="btn fixed-top w-25 user_font user_bg" style="background: #eee;"><i class="fas fa-home text-dark" style="font-size: 30px"></i></a>
-</div>
-<div class="container">
-    <div class="card-header bg-primary text-white text-center rounded">
-        <h4>추천 상품</h4>
-    </div>
-   <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                 <img class="card-img-top" src="" alt="Card image top" style="height: 240px; width: 100%">
-                 <form action="/add_cart" method="post">
-                     <div class="card-body text-center">
-                         <h4 class="card-title">ss</h4>
-                         <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">금액</span>
-                          </div>
-                          <input type="number" class="form-control text-center" aria-label="가격" aria-describedby="basic-addon1" value="22" readonly>
-                        </div>
-                           <div class="input-group">
-                               <button class="btn btn-outline-secondary btn-sm minus" type="button"><i class="fas fa-minus"></i></button>
-                               <input type="number" class="form-control text-center" value="1" readonly>
-                               <button class="btn btn-outline-secondary plus btn-sm plus" type="button"><i class="fas fa-plus"></i></button>
-                          </div>
-                    </div>
-                    <input type="submit" value="장바구니 추가" class="btn btn-primary w-100 cart">
-                 </form>
+<!--<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+<div>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3 class="user_font border-bottom">이 메뉴를 추천해드립니다.</h3>
             </div>
-        </div>
+            <div class="card-body">
 
-    </div>
-    <div class="card text-center">
-        <div class="card-header bg-primary text-white rounded">
-            장바구니
-        </div>
-        <div class="card-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <td scope="col">번호</td>
-                        <td scope="col">메뉴명</td>
-                        <td scope="col">수량</td>
-                        <td scope="col">금액</td>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="2">합 계</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tfoot>
-            </table>
 
-        </div>
-        <div class="row text-center align-middle">
-            <div class="col-sm-6 align-self-center">
-                <a href="{{url_for('home_blueprint.cancel')}}" class="btn btn-primary w-100 h-100"><h3>주문취소</h3></a>
+            <div class="row text-center">
+                <a href="{{url_for('home_blueprint.direct_menu')}}" class="btn col-sm-6 text-white nega_bg user_font rounded" style="margin: 0 auto; font-size: 20px">완료하기</a>
             </div>
-            <div class="col-sm-6 align-self-center">
-                <a href="{{url_for('home_blueprint.pay')}}" class="btn btn-primary w-100 h-100"><h3>주문완료</h3></a>
-            </div>
-            <div class="col align-self-center w-100">
-                <a href="{{url_for('home_blueprint.menu')}}" class="btn btn-primary w-100 h-100"><h3>추가 메뉴 주문</h3></a>
-            </div>
-        </div>
+      </div>
     </div>
+    </div>
+  </div>
 </div>
 
 

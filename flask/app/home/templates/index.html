@@ -13,7 +13,7 @@
             background: rgb(54, 54, 54);
         }
         .user_font {
-            font-family: 'Jua';
+            font-family: 'Black Han Sans';
             font-size: 60px;
         }
         .user_btn:hover{
@@ -24,18 +24,40 @@
 {% endblock stylesheets %}
 
 {% block content %}
-<div class="row mt-4">
-    <div class="card col-md-10" style="margin: 0 auto;">
-      <div class="card-header text-center" >
-        <h3 class="user_font border-bottom">고민고민하지말조</h3>
-      </div>
-<!--     <img class="card-img-top" src="/static/assets/img/city-profile.jpg" alt="Card image top" style="height: 20%">-->
-      <div class="row text-center">
-          <div class="btn-group w-100">
-            <a href="{{url_for('home_blueprint.direct_menu')}}" class="btn col-sm-6 text-white nega_bg user_font rounded" style="font-size: 20px">추천 없이 메뉴 선택</a>
-            <a onclick="check_info()" class="btn col-sm-6 text-white user_bg user_font user_btn rounded" style="font-size: 20px">AI 추천 시작하기</a>
+<div>
+    <div class="row mt-4">
+        <div class="card col-md-10" style="margin: 0 auto;">
+          <div class="card-header text-center" >
+            <h3 class="user_font border-bottom">고민고민하지말조</h3>
           </div>
+    <!--     <img class="card-img-top" src="/static/assets/img/city-profile.jpg" alt="Card image top" style="height: 20%">-->
+          <div class="row text-center">
+              <div class="btn-group w-100">
+                <a href="{{url_for('home_blueprint.direct_menu')}}" class="btn col-sm-6 text-white nega_bg user_font rounded" style="font-size: 20px">추천 없이 메뉴 선택</a>
+                <a class="btn col-sm-6 text-white user_bg user_font user_btn rounded" data-toggle="modal" data-target="#exampleModalCenter" style="font-size: 20px">AI 추천 시작하기</a>
+              </div>
+        </div>
     </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-body">
+                <img class="card-img-top w-100" src="/static/assets/img/personal_info.png">
+            <div class="row text-center align-middle mt-4">
+                <div class="col-sm-6 align-self-center">
+                    <input type="button" onclick="reject_privacy()" class='btn w-100 h-100 nega_bg user_font rounded' style="font-size: 30px;" value="비동의">
+          </div>
+          <div class="col-sm-6 align-self-center">
+            <input type="button" onclick="agree_privacy()" class='btn w-100 h-100 user_bg user_btn user_font rounded' style="font-size: 30px;" value="동의">
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
 </div>
 
 {% endblock content %}
@@ -50,10 +72,15 @@
 
     });
 
-    function check_info() {
-        window.open('check_info.html', '개인정보 이용 동의', width=200, height=200);
-    };
-
+    // function check_info() {
+    //     window.open('check_info.html', '개인정보 이용 동의', width=200, height=200);
+    // };
+    function agree_privacy(){
+      window.location.href = '/page-user'
+    }
+    function reject_privacy(){
+      window.location.href = '/menu'
+    }
   </script>
 
 {% endblock javascripts %}

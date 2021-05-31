@@ -70,20 +70,23 @@
     ctx.font = '100px Do Hyeon';
     ctx.textAlign = 'center';
 
-
     function timer(){
-        ctx.clearRect(0, 0, 300, 100);
+
+        ctx.clearRect(0, 0, canv.width, canv.height);
         count -- ;
+
         if (count <= 0){
             clearInterval(counter);
             onTakePhotoButtonClick();
             $('#takePhotoCanvas').css('z-index', 100);
             $('#video_tp').css('z-index', -1)
+
         }
         if (count == 0){
             count = ''
         }
         ctx.fillText(count, 140, 100);
+
     }
 	function onGetUserMediaButtonClick() {
 	  navigator.mediaDevices.getUserMedia({video: true})
@@ -119,26 +122,26 @@
 	  canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height,
 		  x, y, img.width * ratio, img.height * ratio);
 
-        // var data = canvas.toDataURL();
+        var data = canvas.toDataURL();
 
 
-        // $.ajax({
-        // type: "POST",
-        // enctype: 'multipart/form-data',
-        // url: '/upload_image',
-        // data: data,
-        // async: false,
-        // processData: false,
-        // contentType: false,
-        // cache: false,
-        // dataType: 'json',
-        // success: function (data) {
-        //     window.location.href = '/recommend'
-        // },
-        // error: function (e) {
-        //     alert('fail');
-        // }
-        // });
+        $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: '/upload_image',
+        data: data,
+        async: false,
+        processData: false,
+        contentType: false,
+        cache: false,
+        dataType: 'json',
+        success: function (data) {
+            window.location.href = '/recommend'
+        },
+        error: function (e) {
+            alert('fail');
+        }
+        });
 	}
 
     onGetUserMediaButtonClick()
