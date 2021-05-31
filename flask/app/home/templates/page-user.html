@@ -137,11 +137,14 @@
         cache: false,
         dataType: 'json',
         success: function (data) {
-            window.location.href = '/recommend'
-        },
+
+             location.href = '/menu?top1='+data.result2['one']+'&top2='+data.result2['two']+'&top3='+ data.result2['three'];
+
+            },
         error: function (e) {
             alert('fail');
-        }
+            location.href = '/page-user'
+         }
         });
 	}
 

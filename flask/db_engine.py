@@ -12,13 +12,13 @@ config = {
 dbconn = pymysql.connect(**config)
 
 
-def select(query):
+def select(query, values=None):
     # 전역에 선언되어 있는 connection 객체 참조
     global dbconn
     # 커서 취득
     cursor = dbconn.cursor()
     # 쿼리 실행
-    cursor.execute(query)
+    cursor.execute(query, values)
     # 실행된 결과 RETURN - cursor가 결과의 위치를 갖고 있음.
     # fetch 함수 이용해서 일부분을 리턴하거나 리스트 형태로 리턴도 가능하다.
     # 이 경우에는 용량이 많으면 느려지게 된다.(단점)

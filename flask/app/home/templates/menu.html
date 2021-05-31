@@ -21,6 +21,10 @@
             height: 180px;
             width: 100%;
         }
+        .card-horizontal {
+            display: flex;
+            flex: 1 1 auto;
+        }
 
 </style>
 {% endblock stylesheets %}
@@ -263,6 +267,45 @@
         </div>
     </div>
 </div>
+
+<div class="" role="document">
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3 class="user_font border-bottom">이 메뉴를 추천해드립니다.</h3>
+            </div>
+
+            <div class="card-body">
+                {% for obj in recom_list %}
+                <div class="row">
+                    <div class="col-9" style="margin: 0 auto; ">
+                        <div class="card" style="box-shadow: 10px 10px 20px darkgray;">
+                            <div class="card-horizontal no-gutters">
+                                <div class="col-md-3 form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                </div>
+                                <div class="img-square-wrapper col-md-4">
+                                    <img class="rounded" src="/static/menu/{{obj.menu_img}}" alt="Card image cap">
+                                </div>
+                                <div class="card-body align-self-center">
+                                    <div class="card-text text-left h-100 pl-5">
+                                        <p class="card-text user_font">{{obj.menu_name}}</p>
+                                        <p class="card-text user_font">{{obj.menu_price}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor %}
+            </div>
+
+        <div class="row text-center">
+            <a href="{{url_for('home_blueprint.direct_menu')}}" class="btn col-sm-6 text-white nega_bg user_font rounded" style="margin: 0 auto; font-size: 20px">완료하기</a>
+        </div>
+    </div>
+    </div>
+  </div>
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
@@ -271,7 +314,7 @@
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
+        md.initDashboardPageCharts();
 
     });
   </script>

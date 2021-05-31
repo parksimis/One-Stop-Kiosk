@@ -8,7 +8,11 @@ import re
 import base64
 import boto3
 
+gender_dic = {0: '남자', 1: '여자'}
 
+age_dic = {0: '청소년', 1:'청년', 2:'중장년', 3:'노년'}
+
+emo_dic = {0: '행복', 1: '중립', 2:'분노', 3:'우울' }
 
 config = {
     'host': 'localhost',
@@ -28,58 +32,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html', segment='index')
 
-
-
-@blueprint.route('/capture')
-def capture():
-    camera = cv2.VideoCapture(0)
-    while True:
-        success, frame = camera.read()
-        if not success:
-            break
-        else:
-
-            cv2.imwrite('temp/exmaple_raw.jpg', frame)
-            camera.release()
-
-            face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-            eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-            img = cv2.imread('temp/exmaple_raw.jpg')
-
-            # 이미지 로드 후 전처리
-            img = cv2.imread('temp/exmaple_raw.jpg')
-            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-            faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-
-            # 얼굴 감지해 잘라내어 저장
-            imgNum = 0
-
-            for (x, y, w, h) in faces:
-                cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
-                cropped = img[y - int(h / 4):y + h + int(h / 4), x - int(w / 4):x + w + int(w / 4)]
-                cv2.imwrite('temp/exmaple_raw.jpg', cropped)
-
-                imgNum += 1
-                roi_gray = gray[y:y + h, x:x + w]
-                roi_color = img[y:y + h, x:x + w]
-                eyes = eye_cascade.detectMultiScale(roi_gray)
-
-                for (ex, ey, ew, eh) in eyes:
-                    cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
-
-
-                gender = engine.gender_model(cropped)
-                age = engine.age_model(cropped)
-                emo = engine.emotion_model(cropped)
-
-                query = "INSERT INTO user(age_segment, emotion, sex) values (%s, %s, %s)"
-                values = [age, emo, gender]
-
-                db_engine.execute_dml(query, values)
-
-            return redirect('recommend.html')
-
 @blueprint.route('/user')
 def user():
     return render_template('page-user.html', segment='index')
@@ -92,16 +44,61 @@ def upload_image():
     decode_data = json_data.decode()
     image_data = re.sub('^data:image/.+;base64,', '', decode_data)
     imgdata = base64.b64decode(image_data)
-    filename = './temp/some_image.jpg'
+    filename = './temp/example.jpg'
 
     with open(filename, 'wb') as f:
         f.write(imgdata)
-    # s3 = connection.s3_connection()
 
-    # bucket_name = 'yangjae-team01-s3'
-    # s3.upload_file(filename, bucket_name, 'test_image.jpg')
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 
-    return jsonify(result="success")
+    # 이미지 로드 후 전처리
+    img = cv2.imread('./temp/example.jpg')
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+
+    # 얼굴 감지해 잘라내어 저장
+    imgNum = 0
+
+    data = None
+    for (x, y, w, h) in faces:
+        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        cropped = img[y - int(h / 4):y + h + int(h / 4), x - int(w / 4):x + w + int(w / 4)]
+
+        imgNum += 1
+        roi_gray = gray[y:y + h, x:x + w]
+        roi_color = img[y:y + h, x:x + w]
+        eyes = eye_cascade.detectMultiScale(roi_gray)
+
+        for (ex, ey, ew, eh) in eyes:
+            cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+
+        gender = engine.gender_model(cropped)
+        age = engine.age_model(cropped)
+        emo = engine.emotion_model(cropped)
+
+        query = "INSERT INTO user(age_segment, emotion, sex) values (%s, %s, %s)"
+        values = [age, emo, gender]
+
+        db_engine.execute_dml(query, values)
+
+        weather = engine.get_weather('https://www.ventusky.com/ko/37.571;126.977')
+
+        gender = gender_dic[gender]
+        age = age_dic[age]
+        emo = emo_dic[emo]
+
+        test_data = [gender, age] + weather + [emo]
+
+        result = engine.recomend_Top3(test_data)
+
+        data = {'one': result[0],
+                'two': result[1],
+                'three': result[2]
+                }
+
+    return jsonify(result='success', result2=data)
 
 
 
@@ -180,7 +177,7 @@ def direct_menu():
     return redirect('/menu')
 
 
-@blueprint.route('/menu')
+@blueprint.route('/menu', methods=['GET'])
 def menu():
     path = request.path
     query = "SELECT menu_name, menu_qty, menu_price FROM cart ORDER BY cart_id;"
@@ -209,7 +206,30 @@ def menu():
         }
         data_list.append(data_dic)
 
-    return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, path=path)
+    if request.full_path.find('=') != -1:
+        values = list(request.args.to_dict().values())
+        query = '''
+        SELECT menu_name, menu_price, menu_img FROM menu WHERE menu_name IN (%s, %s, %s)
+        '''
+
+        rows = db_engine.select(query, values)
+
+        recom_list = []
+        for row in rows:
+            data_dic = {
+                'menu_name': row[0],
+                'menu_price': row[1],
+                'menu_img': row[2],
+            }
+            recom_list.append(data_dic)
+
+        return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, recom_list=recom_list, path=path)
+
+    else:
+        return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, path=path)
+
+
+
 
 @blueprint.route('/add_cart', methods=['POST'])
 def add_cart():
@@ -232,7 +252,6 @@ def add_cart():
         menu_qty = int(request.form['menu_qty'])
         menu_price = request.form['menu_price']
         menu_price = int(re.sub(r'[^0-9]+', '', menu_price)) * menu_qty
-        # menu_price = int(request.form['menu_price'].replace(',', '')) * menu_qty
 
         query = "SELECT menu_id, menu_name, menu_qty, menu_price FROM cart"
         rows = db_engine.select(query).fetchall()
