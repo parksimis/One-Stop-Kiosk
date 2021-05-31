@@ -67,7 +67,8 @@
     var count = 4;
     var canv = document.getElementById('takePhotoCanvas');
     var ctx = canv.getContext('2d');
-    ctx.font = '100px Do Hyeon';
+    ctx.font = '60px Do Hyeon';
+    ctx.fillStyle ='white';
     ctx.textAlign = 'center';
 
     function timer(){
@@ -85,7 +86,7 @@
         if (count == 0){
             count = ''
         }
-        ctx.fillText(count, 140, 100);
+        ctx.fillText(count, 150, 100);
 
     }
 	function onGetUserMediaButtonClick() {
