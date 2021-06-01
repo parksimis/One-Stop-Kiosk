@@ -124,7 +124,7 @@ def get_rainfall_amount(soup):
     rain = soup.select('.mesto-predpoved')[0].select('td')[0].select('span')[1].text.split()[0]
 
     # 강수량 분류 기준
-    if int(rain) > 0:
+    if float(rain) > 0:
         return '비옴'
     else:
         return '비안옴'

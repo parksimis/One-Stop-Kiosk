@@ -92,11 +92,10 @@
                                                  <div class="col-md-10" style="margin: 0 auto;">
                                                     <div class="input-group content-center row" style="margin: 0 auto;">
                                                         <button type="button" class="btn btn-sm col-3 btn-outline-secondary text-center minus"><i class="fas fa-minus"></i></button>
-                                                        <input type="number" class="form-control-plaintext col bg-white text-center" value="0" name="menu_qty" readonly>
+                                                        <input type="number" class="form-control-plaintext col bg-white text-center" value="1" name="menu_qty" readonly>
                                                         <button class="btn btn-sm btn-outline-secondary col-3 plus text-center" type="button"><i class="fas fa-plus"></i></button>
                                                     </div>
                                                  </div>
-
                                               </div>
                                         </div>
                                         <input type="submit" value="담 기" class="btn user_bg user_font w-100 rounded cart">
@@ -129,11 +128,10 @@
                                                  <div class="col-md-10" style="margin: 0 auto;">
                                                     <div class="input-group content-center row" style="margin: 0 auto;">
                                                         <button type="button" class="btn btn-sm col-3 btn-outline-secondary text-center minus"><i class="fas fa-minus"></i></button>
-                                                        <input type="number" class="form-control-plaintext col bg-white text-center" value="0" name="menu_qty" readonly>
+                                                        <input type="number" class="form-control-plaintext col bg-white text-center" value="1" name="menu_qty" readonly>
                                                         <button class="btn btn-sm btn-outline-secondary col-3 plus text-center" type="button"><i class="fas fa-plus"></i></button>
                                                     </div>
                                                  </div>
-
                                               </div>
                                         </div>
                                         <input type="submit" value="담 기" class="btn user_bg user_font w-100 rounded cart">
@@ -166,11 +164,10 @@
                                                  <div class="col-md-10" style="margin: 0 auto;">
                                                     <div class="input-group content-center row" style="margin: 0 auto;">
                                                         <button type="button" class="btn btn-sm col-3 btn-outline-secondary text-center minus"><i class="fas fa-minus"></i></button>
-                                                        <input type="number" class="form-control-plaintext col bg-white text-center" value="0" name="menu_qty" readonly>
+                                                        <input type="number" class="form-control-plaintext col bg-white text-center" value="1" name="menu_qty" readonly>
                                                         <button class="btn btn-sm btn-outline-secondary col-3 plus text-center" type="button"><i class="fas fa-plus"></i></button>
                                                     </div>
                                                  </div>
-
                                               </div>
                                         </div>
                                         <input type="submit" value="담 기" class="btn user_bg user_font w-100 rounded cart">
@@ -203,11 +200,10 @@
                                                  <div class="col-md-10" style="margin: 0 auto;">
                                                     <div class="input-group content-center row" style="margin: 0 auto;">
                                                         <button type="button" class="btn btn-sm col-3 btn-outline-secondary text-center minus"><i class="fas fa-minus"></i></button>
-                                                        <input type="number" class="form-control-plaintext col bg-white text-center" value="0" name="menu_qty" readonly>
+                                                        <input type="number" class="form-control-plaintext col bg-white text-center" value="1" name="menu_qty" readonly>
                                                         <button class="btn btn-sm btn-outline-secondary col-3 plus text-center" type="button"><i class="fas fa-plus"></i></button>
                                                     </div>
                                                  </div>
-
                                               </div>
                                         </div>
                                         <input type="submit" value="담 기" class="btn user_bg user_font w-100 rounded cart">
@@ -240,11 +236,10 @@
                                                  <div class="col-md-10" style="margin: 0 auto;">
                                                     <div class="input-group content-center row" style="margin: 0 auto;">
                                                         <button type="button" class="btn btn-sm col-3 btn-outline-secondary text-center minus"><i class="fas fa-minus"></i></button>
-                                                        <input type="number" class="form-control-plaintext col bg-white text-center" value="0" name="menu_qty" readonly>
+                                                        <input type="number" class="form-control-plaintext col bg-white text-center" value="1" name="menu_qty" readonly>
                                                         <button class="btn btn-sm btn-outline-secondary col-3 plus text-center" type="button"><i class="fas fa-plus"></i></button>
                                                     </div>
                                                  </div>
-
                                               </div>
                                         </div>
                                         <input type="submit" value="담 기" class="btn user_bg user_font w-100 rounded cart">
@@ -316,7 +311,7 @@
                               <div class="card-body">
                                 <div class="card-text h-100 text-left pl-5">
                                     <p class="card-text user_font">{{obj.menu_name}} {{obj.menu_qty}}</p>
-                                    <p class="card-text user_font">{{'{:,}'.format(obj.menu_price)}} 원</p>
+                                    <p class="card-text user_font">{{'{:,}'.format(obj.menu_price | int)}} 원</p>
                                 </div>
                               </div>
                             </div>
