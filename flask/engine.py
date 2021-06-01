@@ -95,7 +95,11 @@ def get_cloud_amount(soup):
     return : cloud:구름량
     '''
 
-    cloud = int(soup.select('.info_table')[2].select('td')[5].text.strip().split()[0]) / 10
+    for row in soup.select('.info_table')[2].select('tr'):
+        if row.select('td')[0].text.strip() == '구름량':
+            cloud = row.select('td')[1].text.strip().split()[0]
+
+    cloud = int(cloud) / 10
 
     # 구름량 분류 기준
     if 0 <= cloud <= 5:
@@ -208,7 +212,7 @@ def recomend_Top3(total_data):
     cluster_value = str(cluster_value)
     with open("models/recommend_group.json", "r", encoding='utf-8') as json_file:
         json_data = json.load(json_file)
+
     # top3 음식 반환
-    return sorted(json_data['word'][cluster_value], key=lambda x: json_data['word'][cluster_value][x], reverse=True)[
-           0:3]
+    return sorted(json_data['word'][cluster_value], key=lambda x: json_data['word'][cluster_value][x], reverse=True)[0:3]
 

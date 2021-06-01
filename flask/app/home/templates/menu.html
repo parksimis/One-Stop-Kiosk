@@ -7,10 +7,10 @@
 <style type="text/css">
 
         .user_bg {
-        background: rgb(225, 47, 35);
+        background: rgb(234, 112, 45);
         }
         .nega_bg {
-            background: rgb(54, 54, 54);
+            background: rgb(76, 76, 76);
         }
         .user_font {
             font-family: 'Jua';
@@ -20,10 +20,6 @@
         .card img{
             height: 180px;
             width: 100%;
-        }
-        .card-horizontal {
-            display: flex;
-            flex: 1 1 auto;
         }
 
 </style>
@@ -239,8 +235,8 @@
           </div>
         </div>
         <div class="card col-md-10 pb-0 text-center" style="margin: 0 auto; background-color: lightgray;">
-            <div class="card-header text-black user_font text-left mt-3 pb-0">
-                장바구니 <span class="badge badge-danger h5" style="height: 30px; width: 40px">{{cart_list|sum(attribute='menu_qty')}}</span>
+            <div class="card-header user_font text-left mt-3 pb-0">
+                <span class="text-dark">장바구니</span> <span class="badge h5 text-white" style="height: 30px; width: 40px; background-color: rgb(234, 112, 45);">{{cart_list|sum(attribute='menu_qty')}}</span>
             </div>
             <div class="row">
                 {% for obj in cart_list %}
@@ -264,11 +260,13 @@
                     <a href="{{url_for('home_blueprint.order')}}" class="btn user_font user_bg w-100 h-100 h2" style="font-size: 30px;">주문완료</a>
                   </div>
             </div>
+            <input class="btn" id="temp_btn" data-toggle="modal" data-target="#recommend_menu" style="display: none;">
+            <input type="hidden" id="cap_chk" value="{{cap_chk}}">
         </div>
     </div>
 </div>
 
-<div class="" role="document">
+<div class="modal fade" id="recommend_menu" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-content">
         <div class="card">
             <div class="card-header text-center">
@@ -277,32 +275,39 @@
 
             <div class="card-body">
                 {% for obj in recom_list %}
-                <div class="row">
-                    <div class="col-9" style="margin: 0 auto; ">
-                        <div class="card" style="box-shadow: 10px 10px 20px darkgray;">
-                            <div class="card-horizontal no-gutters">
-                                <div class="col-md-3 form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                </div>
-                                <div class="img-square-wrapper col-md-4">
-                                    <img class="rounded" src="/static/menu/{{obj.menu_img}}" alt="Card image cap">
-                                </div>
-                                <div class="card-body align-self-center">
-                                    <div class="card-text text-left h-100 pl-5">
-                                        <p class="card-text user_font">{{obj.menu_name}}</p>
-                                        <p class="card-text user_font">{{obj.menu_price}}</p>
-                                    </div>
+                    <div class="row">
+                        <div class="col-md mb-3">
+                            <div class="row h-100">
+                                <div class="col-md rounded text-right align-self-center user_font recommend_menu">
+                                    <input class="form-check-input" type="checkbox" value="{{obj.menu_name}}" name="recomd_menu" style="width: 20px; height: 20px;">
                                 </div>
                             </div>
                         </div>
+                        <div class="card mb-3" style="max-width: 540px; margin: 0 auto;">
+                          <div class="row no-gutters">
+                            <div class="col-md-4">
+                              <img src="/static/menu/{{obj.menu_img}}" class="card-img">
+                            </div>
+                            <div class="col-md-8 align-self-center">
+                              <div class="card-body">
+                                <div class="card-text h-100 text-left pl-5">
+                                    <p class="card-text user_font">{{obj.menu_name}} {{obj.menu_qty}}</p>
+                                    <p class="card-text user_font">{{'{:,}'.format(obj.menu_price)}} 원</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md"></div>
                     </div>
-                </div>
                 {%endfor %}
             </div>
-
-        <div class="row text-center">
-            <a href="{{url_for('home_blueprint.direct_menu')}}" class="btn col-sm-6 text-white nega_bg user_font rounded" style="margin: 0 auto; font-size: 20px">완료하기</a>
-        </div>
+        <form action="/reco_add_cart" method="post" onsubmit="getCheckboxValue()">
+            <div class="row text-center">
+                <input type="submit" class="btn col-sm-6 text-white nega_bg user_font rounded" value="완료하기" style="margin: 0 auto; font-size: 20px">
+                <input type="hidden" value="" name="top_slt_menu" id="recommend_input">
+            </div>
+        </form>
     </div>
     </div>
   </div>
@@ -315,8 +320,24 @@
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
         md.initDashboardPageCharts();
-
+        var cap = $('#cap_chk').val();
+        if (cap == 'true'){
+            $('#temp_btn').click()
+        }
     });
+    let result = []
+
+    function getCheckboxValue(){
+        var obj_length = document.getElementsByName('recomd_menu').length;
+
+        for (var i=0; i<obj_length; i++){
+            if (document.getElementsByName('recomd_menu')[i].checked == true){
+                result.push(document.getElementsByName('recomd_menu')[i].value)
+            }
+        }
+        document.getElementById('recommend_input').value = result
+
+    }
   </script>
 
 {% endblock javascripts %}

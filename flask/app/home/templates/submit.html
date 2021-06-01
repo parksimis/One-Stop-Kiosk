@@ -7,18 +7,16 @@
 <style type="text/css">
 
         .user_bg {
-        background: rgb(225, 47, 35);
+        background: rgb(234, 112, 45);
         }
         .nega_bg {
-            background: rgb(54, 54, 54);
+            background: rgb(76, 76, 76);
         }
         .user_font {
             font-family: 'Jua';
-            font-size: 60px;
+            font-size: 40px;
         }
-        .user_btn:hover{
-            background-color: #CA2826 !important;
-        }
+
     </style>
 
 {% endblock stylesheets %}
@@ -37,9 +35,10 @@
                 주문번호
               </div>
           </div>
-          <div class="row">
+          <div class="row mb-4">
               <div class="col text-center">
                 <h2 class="user_font">{{order_list[0]['order_id']}}</h2>
+                  <i class="fas fa-receipt fa-7x" style="font-size: 300px;"></i>
               </div>
           </div>
           <div class="text-center align-self-center">
@@ -61,7 +60,7 @@
       md.initDashboardPageCharts();
 
     });
-    $(document).onload(setTimeout('go_home()', 10000));
+    // $(document).onload(setTimeout('go_home()', 10000));
 
     function go_home(){
         location.href = 'index.html'

@@ -78,7 +78,7 @@ def upload_image():
         age = engine.age_model(cropped)
         emo = engine.emotion_model(cropped)
 
-        query = "INSERT INTO user(age_segment, emotion, sex) values (%s, %s, %s)"
+        query = "INSERT INTO user(age_segment, emotion, sex, capture_chk) values (%s, %s, %s, 'Y')"
         values = [age, emo, gender]
 
         db_engine.execute_dml(query, values)
@@ -177,9 +177,10 @@ def direct_menu():
     return redirect('/menu')
 
 
-@blueprint.route('/menu', methods=['GET'])
+@blueprint.route('/menu', methods=['GET', 'POST'])
 def menu():
     path = request.path
+    cap_chk = 'false'
     query = "SELECT menu_name, menu_qty, menu_price FROM cart ORDER BY cart_id;"
     rows = db_engine.select(query)
 
@@ -207,6 +208,7 @@ def menu():
         data_list.append(data_dic)
 
     if request.full_path.find('=') != -1:
+        cap_chk = 'true'
         values = list(request.args.to_dict().values())
         query = '''
         SELECT menu_name, menu_price, menu_img FROM menu WHERE menu_name IN (%s, %s, %s)
@@ -223,13 +225,45 @@ def menu():
             }
             recom_list.append(data_dic)
 
-        return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, recom_list=recom_list, path=path)
+        return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, recom_list=recom_list, path=path, cap_chk=cap_chk)
 
     else:
-        return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, path=path)
+        return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, path=path, cap_chk=cap_chk)
+
+@blueprint.route('/reco_add_cart', methods=['POST'])
+def reco_add_cart():
+    if request.method == 'GET':
+        return render_template('menu.html')
+
+    elif request.method == 'POST':
+        query = '''SELECT user_id FROM user WHERE capture_chk ="Y" ORDER BY CREATED_AT DESC LIMIT 1'''
+        rows = db_engine.select(query)
+
+        user_id = ''
+        for row in rows:
+            user_id = row[0]
+
+        top_menu_list = request.form['top_slt_menu']
+
+        query = '''
+            SELECT store_id, menu_id, menu_name, menu_price 
+            FROM menu
+            WHERE menu_name = %s
+        '''
+        values = top_menu_list.split(',')
+
+        input_query = '''
+            INSERT INTO cart (store_id, menu_id, menu_name, menu_price, menu_qty, user_id)\
+            VALUES (%s, %s, %s, %s, %s, %s)
+        '''
+        for value in values:
+            rows = db_engine.select(query, value)
+            for row in rows:
+                input_values = list(row) + [1, user_id]
+                db_engine.execute_dml(input_query, input_values)
 
 
-
+        return redirect('/menu')
 
 @blueprint.route('/add_cart', methods=['POST'])
 def add_cart():

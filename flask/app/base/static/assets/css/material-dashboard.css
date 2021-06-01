@@ -4308,7 +4308,7 @@ tbody.collapse.show {
   color: #495057;
   background-color: #fafafa;
   border-bottom-width: thick;
-  border-bottom-color: red;
+  border-bottom-color: rgb(234, 112, 45);
 }
 
 .nav-tabs .dropdown-menu {
