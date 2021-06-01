@@ -134,14 +134,14 @@ def pay():
 
 @blueprint.route('/payment')
 def payment():
-    query = 'INSERT INTO orders(user_id, total_qty, total_price) SELECT user_id, SUM(menu_qty), SUM(menu_price) FROM cart;'
+    query = 'INSERT INTO orders(user_id, total_qty, total_price) SELECT user_id, SUM(menu_qty), SUM(menu_price) FROM cart'
     db_engine.execute_dml(query, values=None)
 
     query = '''
             INSERT INTO order_details(order_id, user_id, menu_id, store_id, food_qty, food_price)\
-            SELECT O.order_id, C.user_id, C.menu_id, C.store_id, C.menu_qty, C.menu_price\
-            FROM orders AS O, cart AS C\
-            WHERE O.user_id = C.user_id;
+            SELECT orders.order_id, cart.user_id, cart.menu_id, cart.store_id, cart.menu_qty, cart.menu_price\
+            FROM orders, cart\
+            WHERE orders.user_id = cart.user_id
         '''
     db_engine.execute_dml(query, values=None)
 
@@ -149,10 +149,10 @@ def payment():
     db_engine.execute_dml(query=query, values=None)
 
     query = '''
-        SELECT O.order_id, O.food_qty, O.food_price, M.menu_name
-        FROM order_details AS O, menu AS M
-        WHERE O.menu_id = M.menu_id 
-        AND O.user_id = (SELECT MAX(user_id) FROM order_details)
+        SELECT order_details.order_id, order_details.food_qty, order_details.food_price, menu.menu_name
+        FROM order_details, menu
+        WHERE order_details.menu_id = menu.menu_id 
+        AND order_details.user_id = (SELECT MAX(user_id) FROM order_details)
     '''
     rows = db_engine.select(query)
 
