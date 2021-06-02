@@ -6,6 +6,8 @@ from flask import Flask, render_template, Response
 import engine, db_engine
 import re
 import base64
+import pandas as pd
+
 import boto3
 
 gender_dic = {0: '남자', 1: '여자'}
@@ -74,9 +76,18 @@ def upload_image():
         for (ex, ey, ew, eh) in eyes:
             cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 
-        gender = engine.gender_model(cropped)
-        age = engine.age_model(cropped)
-        emo = engine.emotion_model(cropped)
+        #
+        # gender = engine.gender_model(cropped, 'gender_R50V2.h5')
+        # gender = engine.gender_model(cropped, 'gender_V16.h5')
+        gender = engine.gender_model(cropped, 'gender_V19.h5')
+
+        # age = engine.age_model(cropped, 'age_R.h5')
+        # age = engine.age_model(cropped, 'age_R50V2.h5')
+        age = engine.age_model(cropped, 'age_R101V2.h5')
+
+        # emo = engine.emotion_model(cropped, 'emotion_D169.h5')
+        # emo = engine.emotion_model(cropped, 'emotion_V16.h5')
+        emo = engine.emotion_model(cropped, 'emotion_V19.h5')
 
         query = "INSERT INTO user(age_segment, emotion, sex, capture_chk) values (%s, %s, %s, 'Y')"
         values = [age, emo, gender]
@@ -89,13 +100,15 @@ def upload_image():
         age = age_dic[age]
         emo = emo_dic[emo]
 
-        test_data = [gender, age] + weather + [emo]
+        recommend_data = [gender, age] + weather + [emo]
 
-        result = engine.recomend_Top3(test_data)
+        result, cluster = engine.recomend_Top3(recommend_data)
+
 
         data = {'one': result[0],
                 'two': result[1],
-                'three': result[2]
+                'three': result[2],
+                'cluster': cluster
                 }
 
     return jsonify(result='success', result2=data)
@@ -134,7 +147,7 @@ def pay():
 
 @blueprint.route('/payment')
 def payment():
-    query = 'INSERT INTO orders(user_id, total_qty, total_price) SELECT user_id, SUM(menu_qty), SUM(menu_price) FROM cart'
+    query = 'INSERT INTO orders(user_id, total_qty, total_price) SELECT user_id, SUM(menu_qty), SUM(menu_price) FROM cart GROUP BY user_id'
     db_engine.execute_dml(query, values=None)
 
     query = '''
@@ -209,7 +222,8 @@ def menu():
 
     if request.full_path.find('=') != -1:
         cap_chk = 'true'
-        values = list(request.args.to_dict().values())
+        all_values = list(request.args.to_dict().values())
+        values = all_values[:-1]
         query = '''
         SELECT menu_name, menu_price, menu_img FROM menu WHERE menu_name IN (%s, %s, %s)
         '''
@@ -224,8 +238,8 @@ def menu():
                 'menu_img': row[2],
             }
             recom_list.append(data_dic)
-
-        return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, recom_list=recom_list, path=path, cap_chk=cap_chk)
+        cluster = all_values[-1]
+        return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, recom_list=recom_list, path=path, cap_chk=cap_chk, cluster=cluster)
 
     else:
         return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, path=path, cap_chk=cap_chk)

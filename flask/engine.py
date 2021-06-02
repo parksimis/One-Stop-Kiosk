@@ -7,46 +7,57 @@ import pandas as pd
 import json
 from datetime import datetime
 from tensorflow import keras
+import warnings
+warnings.filterwarnings('ignore')
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 
+gender_dic = {0: '남자', 1: '여자'}
 
-def gender_model(img):
+age_dic = {0: '청소년', 1:'청년', 2:'중장년', 3:'노년'}
+
+emo_dic = {0: '행복', 1: '중립', 2:'분노', 3:'우울' }
+
+def gender_model(img, model_name=None):
     # 전처리
     img = cv2.resize(img, dsize=(200, 200))
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     img = img / 255.
     img = np.expand_dims(img, axis=0)
-
-    model = keras.models.load_model('models/gender_V19.h5')
+    model_path = 'models/' + model_name
+    model = keras.models.load_model(model_path)
+    # model = keras.models.load_model('models/gender_V19.h5')
 
     # 예측값 산출
     result = model.predict_classes(img)[0].tolist()[0]
-
+    print(f'{model_name}의 예측 결과 : {gender_dic[result]}')
     return result
 
 
-def age_model(img):
+def age_model(img, model_name=None):
     # 전처리
-    img = cv2.resize(img, dsize=(150, 150))
+    img = cv2.resize(img, dsize=(200, 200))
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     img = img / 255.
     img = np.expand_dims(img, axis=0)
+    model_path = 'models/' + model_name
+    model = keras.models.load_model(model_path)
 
-    model = keras.models.load_model('models/age_R101V2.h5')
 
     # 예측값 산출
     label_text = [2, 3, 0, 1]
     # label_text = ['adult', 'senior', 'teen', 'young']
-    prediction = model.predict_classes(img)
 
     result = label_text[model.predict_classes(img)[0]]
+
+    print(f'{model_name}의 예측 결과 : {age_dic[result]}')
+
     return result
 
 
 # 감정 모델
-def emotion_model(img):
+def emotion_model(img, model_name=None):
     # 전처리
     img = cv2.resize(img, dsize=(48, 48))
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -54,14 +65,14 @@ def emotion_model(img):
     img = np.expand_dims(img, axis=0)
 
     # 모델 불러오기
-
-    model = keras.models.load_model('models/emotion_V16.h5')
+    model_path = 'models/' + model_name
+    model = keras.models.load_model(model_path)
 
     # 예측값 산출
     label_text = [2, 0, 1, 3]  # label_text = ['angry', 'happy', 'neutral', 'sad']
     predictions = model.predict(img)
     result = label_text[np.argmax(predictions[0])]
-
+    print(f'{model_name}의 예측 결과 : {emo_dic[result]}')
     return result
 
 
@@ -197,7 +208,7 @@ def cluster_result(customer_data):
     # 군집모델로 가까운 군집 색출
     cluster_value = model.predict(customer_data.values.reshape(1, -1))[0]
 
-    return cluster_value
+    return str(cluster_value)
 
 
 def recomend_Top3(total_data):
@@ -209,10 +220,9 @@ def recomend_Top3(total_data):
     cluster_value = cluster_result(customer_data)
 
     # 군집 label과 음식데이터 확률이 들어있는 dict 불러오기
-    cluster_value = str(cluster_value)
     with open("models/recommend_group.json", "r", encoding='utf-8') as json_file:
         json_data = json.load(json_file)
 
     # top3 음식 반환
-    return sorted(json_data['word'][cluster_value], key=lambda x: json_data['word'][cluster_value][x], reverse=True)[0:3]
+    return sorted(json_data['word'][cluster_value], key=lambda x: json_data['word'][cluster_value][x], reverse=True)[0:3], cluster_value
 
