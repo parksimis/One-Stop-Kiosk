@@ -76,17 +76,10 @@ def upload_image():
         for (ex, ey, ew, eh) in eyes:
             cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 
-        #
-        # gender = engine.gender_model(cropped, 'gender_R50V2.h5')
-        # gender = engine.gender_model(cropped, 'gender_V16.h5')
         gender = engine.gender_model(cropped, 'gender_V19.h5')
 
-        # age = engine.age_model(cropped, 'age_R.h5')
-        # age = engine.age_model(cropped, 'age_R50V2.h5')
         age = engine.age_model(cropped, 'age_R101V2.h5')
 
-        # emo = engine.emotion_model(cropped, 'emotion_D169.h5')
-        # emo = engine.emotion_model(cropped, 'emotion_V16.h5')
         emo = engine.emotion_model(cropped, 'emotion_V19.h5')
 
         query = "INSERT INTO user(age_segment, emotion, sex, capture_chk) values (%s, %s, %s, 'Y')"
@@ -139,6 +132,7 @@ def order():
             'menu_price': row[4]
         }
         cart_list.append(data_dic)
+
     return render_template('order.html', segment='index', cart_list=cart_list, path=path)
 
 @blueprint.route('/pay')

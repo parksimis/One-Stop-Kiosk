@@ -14,9 +14,13 @@
         }
         .user_font {
             font-family: 'Jua';
-            font-size: 20px !important;
+            font-size: 20px;
         }
 
+        .recom_font {
+            font-family: 'Jua';
+            font-size: 40px !important;
+        }
         .card img{
             height: 180px;
             width: 100%;
@@ -290,17 +294,16 @@
         <div class="card">
             <div class="card-header text-center border-bottom">
                 {% if cluster == '0' %}
-                    <h3 class="user_font">클러스터 0</h3>
+                    <h3 class="recom_font">철이 없었죠, 혼자서 음식을 고른다는 자체가</h3>
                 {% elif cluster == '1' %}
-                    <h3 class="user_font">클러스터 1</h3>
+                    <h3 class="recom_font">수다 떠느라 24시간 모자랄 땐,</h3>
                 {% elif cluster == '2' %}
-                    <h3 class="user_font">클러스터 2</h3>
+                    <h3 class="recom_font">저기압일땐 고기 앞으로!</h3>
                 {% elif cluster == '3' %}
-                    <h3 class="user_font">클러스터 3</h3>
+                    <h3 class="recom_font">청춘은 바로 지금부터!</h3>
                 {% elif cluster == '4' %}
-                    <h3 class="user_font">클러스터 4</h3>
+                    <h3 class="recom_font">부장님보다 점심 고르는게 더 어려워</h3>
                 {% endif %}
-                <h3 class="user_font">이 메뉴 어떠세요?</h3>
             </div>
 
             <div class="card-body">
