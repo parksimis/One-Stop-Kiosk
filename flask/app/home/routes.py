@@ -82,11 +82,16 @@ def upload_image():
         gender = engine.gender_model(cropped, 'gender_V19.h5')
         age = engine.age_model(cropped, 'age_V.h5')
         emo = engine.emotion_model(cropped, 'emotion_V19.h5')
+        engine.get_html()
+        weather = engine.get_weather('https://www.ventusky.com/ko/37.571;126.977')
+
         print('-------------------------------------------------------')
         print('---------------------이미지 예측결과---------------------')
         print(f'성별 : {gender_dic[gender]}')
         print(f'연령대 : {age_dic[age]}')
         print(f'기분 : {emo_dic[emo]}')
+        print(f'비 유무 : {weather[0]}')
+        print(f'전운량 : {weather[1]}')
 
 
 
@@ -95,7 +100,7 @@ def upload_image():
 
         db_engine.execute_dml(query, values)
 
-        weather = engine.get_weather('https://www.ventusky.com/ko/37.571;126.977')
+
 
         gender = gender_dic[gender]
         age = age_dic[age]

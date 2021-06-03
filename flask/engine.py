@@ -7,8 +7,6 @@ import pandas as pd
 import json
 from datetime import datetime
 from tensorflow import keras
-import warnings
-warnings.filterwarnings('ignore')
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
@@ -76,7 +74,7 @@ def emotion_model(img, model_name=None):
     return result
 
 
-def get_html(url):
+def get_html(url='https://www.ventusky.com/ko/37.571;126.977'):
     '''
     url 주소를 입력 받아, html 페이지를 scrapping 하는 함수
 
@@ -149,7 +147,7 @@ def get_weather(url):
     cloudy = get_cloud_amount(soup)
     rain = get_rainfall_amount(soup)
 
-    return [rain, cloudy]
+    return [cloudy, rain]
 
 
 def fill_value(total_data):
