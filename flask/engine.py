@@ -31,7 +31,7 @@ def gender_model(img, model_name=None):
 
     # 예측값 산출
     result = model.predict_classes(img)[0].tolist()[0]
-    print(f'{model_name}의 예측 결과 : {gender_dic[result]}')
+    # print(f'{model_name}의 예측 결과 : {gender_dic[result]}')
     return result
 
 
@@ -51,7 +51,7 @@ def age_model(img, model_name=None):
 
     result = label_text[model.predict_classes(img)[0]]
 
-    print(f'{model_name}의 예측 결과 : {age_dic[result]}')
+    # print(f'{model_name}의 예측 결과 : {age_dic[result]}')
 
     return result
 
@@ -72,7 +72,7 @@ def emotion_model(img, model_name=None):
     label_text = [2, 0, 1, 3]  # label_text = ['angry', 'happy', 'neutral', 'sad']
     predictions = model.predict(img)
     result = label_text[np.argmax(predictions[0])]
-    print(f'{model_name}의 예측 결과 : {emo_dic[result]}')
+    # print(f'{model_name}의 예측 결과 : {emo_dic[result]}')
     return result
 
 

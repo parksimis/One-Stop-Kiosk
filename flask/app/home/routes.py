@@ -6,9 +6,7 @@ from flask import Flask, render_template, Response
 import engine, db_engine
 import re
 import base64
-import pandas as pd
-
-import boto3
+import time
 
 gender_dic = {0: '남자', 1: '여자'}
 
@@ -16,6 +14,8 @@ age_dic = {0: '청소년', 1:'청년', 2:'중장년', 3:'노년'}
 
 emo_dic = {0: '행복', 1: '중립', 2:'분노', 3:'우울' }
 
+cluster_dic = {'0': '월요일을 앞둔 우울한 청년', '1': '사는 얘기하느라 바쁜 여성', '2': '한창 먹을 나이인 청소년',
+               '3': '여유만만한 노년 여성', '4': '이리저리 치이는 김대리'}
 config = {
     'host': 'localhost',
     'port': 3306,
@@ -41,6 +41,7 @@ def user():
 
 @blueprint.route('/upload_image', methods=['POST'])
 def upload_image():
+    start = time.time()
 
     json_data = request.get_data()
     decode_data = json_data.decode()
@@ -76,11 +77,18 @@ def upload_image():
         for (ex, ey, ew, eh) in eyes:
             cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 
+
+
         gender = engine.gender_model(cropped, 'gender_V19.h5')
-
-        age = engine.age_model(cropped, 'age_R101V2.h5')
-
+        age = engine.age_model(cropped, 'age_V.h5')
         emo = engine.emotion_model(cropped, 'emotion_V19.h5')
+        print('-------------------------------------------------------')
+        print('---------------------이미지 예측결과---------------------')
+        print(f'성별 : {gender_dic[gender]}')
+        print(f'연령대 : {age_dic[age]}')
+        print(f'기분 : {emo_dic[emo]}')
+
+
 
         query = "INSERT INTO user(age_segment, emotion, sex, capture_chk) values (%s, %s, %s, 'Y')"
         values = [age, emo, gender]
@@ -96,7 +104,10 @@ def upload_image():
         recommend_data = [gender, age] + weather + [emo]
 
         result, cluster = engine.recomend_Top3(recommend_data)
-
+        print('---------------------군집 예측 결과---------------------')
+        print(f'유사한 군집 : {cluster}, {cluster_dic[cluster]}')
+        print('-------------------------------------------------------')
+        print(f'총 실행 시간 : {time.time() - start :.3f} 초')
 
         data = {'one': result[0],
                 'two': result[1],
