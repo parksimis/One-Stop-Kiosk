@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Dashboard {% endblock %} 
+{% block title %} KIO-ZERO {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
@@ -53,7 +53,7 @@
                                     </form>
                                 </div>
                                 <div class="card-text h-100 text-left pl-5">
-                                    <p class="card-text user_font">{{obj.menu_name}} {{obj.menu_qty}}</p>
+                                    <p class="card-text user_font">{{obj.menu_name}} <span class="badge h5 text-white" style="height: 30px; width: 40px; background-color: rgb(234, 112, 45);">{{obj.menu_qty}}</span></p>
                                     <p class="card-text user_font">{{'{:,}'.format(obj.menu_price)}} 원</p>
                                 </div>
                             </div>

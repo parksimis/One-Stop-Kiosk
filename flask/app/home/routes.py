@@ -6,7 +6,7 @@ from flask import Flask, render_template, Response
 import engine, db_engine
 import re
 import base64
-import boto3
+import time
 
 gender_dic = {0: '남자', 1: '여자'}
 
@@ -14,6 +14,8 @@ age_dic = {0: '청소년', 1:'청년', 2:'중장년', 3:'노년'}
 
 emo_dic = {0: '행복', 1: '중립', 2:'분노', 3:'우울' }
 
+cluster_dic = {'0': '월요일을 앞둔 우울한 청년', '1': '사는 얘기하느라 바쁜 여성', '2': '한창 먹을 나이인 청소년',
+               '3': '여유만만한 노년 여성', '4': '이리저리 치이는 김대리'}
 config = {
     'host': 'localhost',
     'port': 3306,
@@ -39,6 +41,7 @@ def user():
 
 @blueprint.route('/upload_image', methods=['POST'])
 def upload_image():
+    start = time.time()
 
     json_data = request.get_data()
     decode_data = json_data.decode()
@@ -74,28 +77,47 @@ def upload_image():
         for (ex, ey, ew, eh) in eyes:
             cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 
-        gender = engine.gender_model(cropped)
-        age = engine.age_model(cropped)
-        emo = engine.emotion_model(cropped)
+
+
+        gender = engine.gender_model(cropped, 'gender_V19.h5')
+        age = engine.age_model(cropped, 'age_V.h5')
+        emo = engine.emotion_model(cropped, 'emotion_V19.h5')
+        engine.get_html()
+        weather = engine.get_weather('https://www.ventusky.com/ko/37.571;126.977')
+
+        print('-------------------------------------------------------')
+        print('---------------------이미지 예측결과---------------------')
+        print(f'성별 : {gender_dic[gender]}')
+        print(f'연령대 : {age_dic[age]}')
+        print(f'기분 : {emo_dic[emo]}')
+        print(f'비 유무 : {weather[0]}')
+        print(f'전운량 : {weather[1]}')
+
+
 
         query = "INSERT INTO user(age_segment, emotion, sex, capture_chk) values (%s, %s, %s, 'Y')"
         values = [age, emo, gender]
 
         db_engine.execute_dml(query, values)
 
-        weather = engine.get_weather('https://www.ventusky.com/ko/37.571;126.977')
+
 
         gender = gender_dic[gender]
         age = age_dic[age]
         emo = emo_dic[emo]
 
-        test_data = [gender, age] + weather + [emo]
+        recommend_data = [gender, age] + weather + [emo]
 
-        result = engine.recomend_Top3(test_data)
+        result, cluster = engine.recomend_Top3(recommend_data)
+        print('---------------------군집 예측 결과---------------------')
+        print(f'유사한 군집 : {cluster}, {cluster_dic[cluster]}')
+        print('-------------------------------------------------------')
+        print(f'총 실행 시간 : {time.time() - start :.3f} 초')
 
         data = {'one': result[0],
                 'two': result[1],
-                'three': result[2]
+                'three': result[2],
+                'cluster': cluster
                 }
 
     return jsonify(result='success', result2=data)
@@ -126,6 +148,7 @@ def order():
             'menu_price': row[4]
         }
         cart_list.append(data_dic)
+
     return render_template('order.html', segment='index', cart_list=cart_list, path=path)
 
 @blueprint.route('/pay')
@@ -134,7 +157,7 @@ def pay():
 
 @blueprint.route('/payment')
 def payment():
-    query = 'INSERT INTO orders(user_id, total_qty, total_price) SELECT user_id, SUM(menu_qty), SUM(menu_price) FROM cart'
+    query = 'INSERT INTO orders(user_id, total_qty, total_price) SELECT user_id, SUM(menu_qty), SUM(menu_price) FROM cart GROUP BY user_id'
     db_engine.execute_dml(query, values=None)
 
     query = '''
@@ -209,7 +232,8 @@ def menu():
 
     if request.full_path.find('=') != -1:
         cap_chk = 'true'
-        values = list(request.args.to_dict().values())
+        all_values = list(request.args.to_dict().values())
+        values = all_values[:-1]
         query = '''
         SELECT menu_name, menu_price, menu_img FROM menu WHERE menu_name IN (%s, %s, %s)
         '''
@@ -224,8 +248,8 @@ def menu():
                 'menu_img': row[2],
             }
             recom_list.append(data_dic)
-
-        return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, recom_list=recom_list, path=path, cap_chk=cap_chk)
+        cluster = all_values[-1]
+        return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, recom_list=recom_list, path=path, cap_chk=cap_chk, cluster=cluster)
 
     else:
         return render_template('menu.html', segment='index', cart_list=cart_list, data_list=data_list, path=path, cap_chk=cap_chk)

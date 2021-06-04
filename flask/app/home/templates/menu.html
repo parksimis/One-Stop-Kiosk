@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} 고민고민하지말조 {% endblock %}
+{% block title %} KIO-ZERO {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
@@ -14,9 +14,13 @@
         }
         .user_font {
             font-family: 'Jua';
-            font-size: 20px !important;
+            font-size: 20px;
         }
 
+        .recom_font {
+            font-family: 'Jua';
+            font-size: 40px !important;
+        }
         .card img{
             height: 180px;
             width: 100%;
@@ -288,8 +292,18 @@
 <div class="modal fade" id="recommend_menu" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-content">
         <div class="card">
-            <div class="card-header text-center">
-                <h3 class="user_font border-bottom">이 메뉴를 추천해드립니다.</h3>
+            <div class="card-header text-center border-bottom">
+                {% if cluster == '0' %}
+                    <h3 class="recom_font">철이 없었죠, 혼자서 음식을 고른다는 자체가</h3>
+                {% elif cluster == '1' %}
+                    <h3 class="recom_font">수다 떠느라 24시간 모자랄 땐,</h3>
+                {% elif cluster == '2' %}
+                    <h3 class="recom_font">저기압일땐 고기 앞으로!</h3>
+                {% elif cluster == '3' %}
+                    <h3 class="recom_font">청춘은 바로 지금부터!</h3>
+                {% elif cluster == '4' %}
+                    <h3 class="recom_font">부장님보다 점심 고르는게 더 어려워</h3>
+                {% endif %}
             </div>
 
             <div class="card-body">

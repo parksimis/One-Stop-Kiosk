@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} 고민고민하지말조 {% endblock %}
+{% block title %} KIO-ZERO {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
@@ -25,13 +25,12 @@
 <div>
     <div class="row mt-4">
         <div class="card col-md-10" style="margin: 0 auto;">
-          <div class="card-header text-center" >
-            <h3 class="user_font border-bottom">고민고민하지말조</h3>
+          <div class="card-header w-50 h-50 text-center" style="margin: 0 auto;">
+            <img class='p-4 w-100 h-100' src="/static/assets/img/logo.png">
           </div>
-    <!--     <img class="card-img-top" src="/static/assets/img/city-profile.jpg" alt="Card image top" style="height: 20%">-->
           <div class="row text-center mb-4" style="margin: 0 auto;">
               <div class="col">
-                <button type="button" class="btn btn-white p-0 rounded" onclick="location.href = '/menu'">
+                <button type="button" class="btn btn-white p-0 rounded" onclick="location.href = '/direct_menu'">
                   <img class="img-fluid" src="/static/assets/img/direct_btn.png">
                 </button>
               </div>
@@ -40,9 +39,6 @@
                     <img class="img-fluid" src="/static/assets/img/onestop_btn.png">
                   </button>
               </div>
-
-<!--                <a href="{{url_for('home_blueprint.direct_menu')}}" class="btn col-sm-6 text-white nega_bg user_font rounded" style="font-size: 20px">추천 없이 메뉴 선택</a>-->
-<!--                <a class="btn col-sm-6 text-white user_bg user_font user_btn rounded"  style="font-size: 20px">AI 추천 시작하기</a>-->
         </div>
     </div>
 </div>

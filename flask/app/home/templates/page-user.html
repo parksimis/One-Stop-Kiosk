@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} 고민고민하지말조 {% endblock %}
+{% block title %} KIO-ZERO {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
@@ -138,7 +138,7 @@
         dataType: 'json',
         success: function (data) {
 
-             location.href = '/menu?top1='+data.result2['one']+'&top2='+data.result2['two']+'&top3='+ data.result2['three'];
+             location.href = '/menu?top1='+data.result2['one']+'&top2='+data.result2['two']+'&top3='+ data.result2['three'] + '&cluster=' + data.result2['cluster'];
 
             },
         error: function (e) {
