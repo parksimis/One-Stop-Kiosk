@@ -2,7 +2,9 @@
 
 ![header](https://capsule-render.vercel.app/api?type=waving&color=FFD159&height=250&text=[KIO-ZERO]%20Project&&fontAlignY=45&desc=Multi%20Campus&Desc&descAlignY=25&descAlign=22)
 
-![kio-zero_logo](https://user-images.githubusercontent.com/76501345/120985259-68bb1b00-c7b6-11eb-857c-f506df30dfb6.png)
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/76501345/120985259-68bb1b00-c7b6-11eb-857c-f506df30dfb6.png">
+</div>
 
 <br>
 
@@ -25,6 +27,10 @@
 <br>
 
 ## :date: Plan
+
+
+
+
 
 #### 1주차 : 주제 선정 및 기획
 
@@ -64,7 +70,7 @@
 
 #### :bar_chart:  ​Big Data
 
-|       팀장 [박선익](https://github.com/parksimis)        |            [이다운](https://github.com/leedawoon)            |          [정민규](https://github.com/topdury)           |
+|      [박선익](https://github.com/parksimis) (팀장)       |            [이다운](https://github.com/leedawoon)            |          [정민규](https://github.com/topdury)           |
 | :------------------------------------------------------: | :----------------------------------------------------------: | :-----------------------------------------------------: |
 | - 프로젝트 총괄<br>- 웹 서비스 구축<br>- DB 구축 및 설계 | - 전처리 및 EDA<br>- 데이터 크롤링<br>- 추천시스템 모델링<br>- 시연 영상 제작 | - 데이터 수집<br>- 데이터 전처리<br>- 추천시스템 모델링 |
 
@@ -80,7 +86,7 @@
 
 #### :cloud: Cloud & IoT :nut_and_bolt:
 
-|           [강연옥](https://github.com/janine-kang)           |                            최현호                            |
+|           [강연옥](https://github.com/janine-kang)           |             [최현호](https://github.com/choihhh)             |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | - 프로젝트 아키텍처 설계<br>- ACM으로 HTTPS 적용<br>- AWS 운영 환경 구축 및 서비스 배포 | - Picamera를 이용한 이미지 송신<br>- Raspberry Pi와 AWS 서버 연결<br>- 키오스크 제작 |
 
@@ -90,7 +96,7 @@
 
 ## :books:  ​Tech Stack
 
-![GITHUB](https://img.shields.io/badge/GitHub-gray?style=plastic&logo=github) ![GDRIVE](https://img.shields.io/badge/Google_Drive-gray?style=plastic&logo=google-drive)
+![GIT](https://img.shields.io/badge/Git-gray?style=plastic&logo=git) ![GITHUB](https://img.shields.io/badge/GitHub-gray?style=plastic&logo=github) ![GDRIVE](https://img.shields.io/badge/Google_Drive-gray?style=plastic&logo=google-drive)
 
 ![JUPYTER](https://img.shields.io/badge/Jupyter-v1.0.0-orange?style=plastic&logo=jupyter) ![VSCODE](https://img.shields.io/badge/VSCode-v1.56.2-blue?style=plastic&logo=visual-studio-code) ![COLAB](https://img.shields.io/badge/Google_Colab-gray?style=plastic&logo=google-colab)
 
@@ -112,10 +118,40 @@
 
 ## :traffic_light:  Commit Convention
 
-| Analysis Commit Convention                                   |
-| ------------------------------------------------------------ |
-| Data : 데이터 관련 사항 (데이터 수집 · 전처리 · 수정 · Cleansing)<br>EDA : 탐색적 데이터 분석 관련 사항<br>Model : 모델 생성 관련 사항<br>Valid : 모델 검증 관련 사항 |
-| <b>Usual Commit Convention</b>                               |
-| Feat : 새로운 기능 추가<br>Perf : 성능 개선<br>Fix : 버그 수정 · 보완<br>Refactor : 코드 리팩토링<br>Style : 코드 포맷팅, 코드 변경이 없는 경우 (스페이스, 세미콜론 누락 등)<br>Docs : 문서 추가 · 수정 · 삭제<br>Build : 빌드 시스템 · 외부 종속 라이브러리 수정<br>Test : 기존 테스트 코드 수정 및 새로운 테스트 코드 추가<br>Chore : 소스 코드, 테스트 파일을 제외한 수정 |
-| <b>Example</b><br>데이터 전처리 파일 Commit 시,<br>$ git commit -m 'Data : Data Preprocessing<br>> 데이터 전처리 파일' |
+#### - Analysis Commit Convention
+
+```bash
+Data : 데이터 관련 사항 (데이터 수집 · 전처리 · 수정 · Cleansing)
+EDA : 탐색적 데이터 분석 관련 사항
+Model : 모델 생성 관련 사항
+Valid : 모델 검증 관련 사항
+```
+
+
+
+#### - Usual Commit Convention
+
+```bash
+Feat : 새로운 기능 추가
+Perf : 성능 개선
+Fix : 버그 수정 · 보완
+Refactor : 코드 리팩토링
+Style : 코드 포맷팅, 코드 변경이 없는 경우 (스페이스, 세미콜론 누락 등)
+Docs : 문서 추가 · 수정 · 삭제
+Build : 빌드 시스템 · 외부 종속 라이브러리 수정
+Test : 기존 테스트 코드 수정 및 새로운 테스트 코드 추가
+Chore : 소스 코드, 테스트 파일을 제외한 수정
+```
+
+
+
+#### - Example
+
+```bash
+# 데이터 전처리 파일 Commit할 경우,
+$ git commit -m 'Data : Add data preprocessing file
+> 데이터 전처리 파일 추가'
+```
+
+
 
