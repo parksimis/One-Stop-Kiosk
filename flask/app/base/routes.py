@@ -3,13 +3,11 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-from flask import jsonify, render_template, redirect, request, url_for
-
-from app import db, login_manager
+from flask import render_template, redirect, url_for
 from app.base import blueprint
+from app import db, login_manager
 from app.base.forms import LoginForm, CreateAccountForm
 from app.base.models import User
-
 from app.base.util import verify_pass
 
 

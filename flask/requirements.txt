@@ -3,8 +3,12 @@ flask_login
 flask_migrate
 flask_wtf
 flask_sqlalchemy==2.*
-email_validator
 python-decouple
+pymysql
 gunicorn
 tensorflow
 opencv-python
+bs4
+joblib
+pandas
+cryptography

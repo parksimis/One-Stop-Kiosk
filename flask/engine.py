@@ -25,11 +25,9 @@ def gender_model(img, model_name=None):
     img = np.expand_dims(img, axis=0)
     model_path = 'models/' + model_name
     model = keras.models.load_model(model_path)
-    # model = keras.models.load_model('models/gender_V19.h5')
 
     # 예측값 산출
     result = model.predict_classes(img)[0].tolist()[0]
-    # print(f'{model_name}의 예측 결과 : {gender_dic[result]}')
     return result
 
 
@@ -42,14 +40,9 @@ def age_model(img, model_name=None):
     model_path = 'models/' + model_name
     model = keras.models.load_model(model_path)
 
-
-    # 예측값 산출
+    # 예측값 산출(label_text = ['adult', 'senior', 'teen', 'young'])
     label_text = [2, 3, 0, 1]
-    # label_text = ['adult', 'senior', 'teen', 'young']
-
     result = label_text[model.predict_classes(img)[0]]
-
-    # print(f'{model_name}의 예측 결과 : {age_dic[result]}')
 
     return result
 
@@ -66,11 +59,11 @@ def emotion_model(img, model_name=None):
     model_path = 'models/' + model_name
     model = keras.models.load_model(model_path)
 
-    # 예측값 산출
-    label_text = [2, 0, 1, 3]  # label_text = ['angry', 'happy', 'neutral', 'sad']
+    # 예측값 산출(label_text = ['angry', 'happy', 'neutral', 'sad'])
+    label_text = [2, 0, 1, 3]
     predictions = model.predict(img)
     result = label_text[np.argmax(predictions[0])]
-    # print(f'{model_name}의 예측 결과 : {emo_dic[result]}')
+
     return result
 
 
@@ -84,7 +77,6 @@ def get_html(url='https://www.ventusky.com/ko/37.571;126.977'):
     * Output
     return html : 해당 주소의 html 페이지
     '''
-
     response = requests.get(url)
     res = requests.get(url)
     html = res.text
@@ -139,33 +131,24 @@ def get_rainfall_amount(soup):
         return '비안옴'
 
 
+# 함수 병
 def get_weather(url):
-    '''
-        함수 병합
-    '''
     soup = get_html(url)
     cloudy = get_cloud_amount(soup)
-    rain = get_rainfall_amount(soup)
+    rain합 = get_rainfall_amount(soup)
 
     return [cloudy, rain]
 
 
 def fill_value(total_data):
-    '''
-    새로운 고객 데이터를 더미화 및 표준화
-    '''
-
     data_d = pd.DataFrame(columns=['남자', '여자', '노년', '중장년', '청년', '청소년', '분노', '우울', '중립', '행복',
                                    '구름많음', '맑음', '흐림', '주말', '평일', '아침', '저녁', '점심', '비안옴', '비옴'],
                           index=['0']).fillna(0)
-
-    # AI모델 결과값과 날씨 API 데이터 추가
 
     for i in total_data:
         data_d[total_data] = 1
 
     # 시간
-
     now = datetime.now()
 
     if now.hour >= 16 and now.hour <= 23:
@@ -183,7 +166,7 @@ def fill_value(total_data):
         data_d["주말"] = 1
     else:
         data_d["평일"] = 1
-    #     return data_d
+
     # 표준화 모델 불러오기
     sd = joblib.load('models/scalemodel.pkl')
 
@@ -197,23 +180,15 @@ def fill_value(total_data):
     return data_sd.iloc[0]
 
 
+# 군집모델 불러오기 및 가까운 군집 색출
 def cluster_result(customer_data):
-    '''
-    우리가 만든 kmean 모델 불러와서 가장 가까운 군집 판별
-    '''
-    # 군집모델 불러오기
     model = joblib.load('models/model.pkl')
-    # 군집모델로 가까운 군집 색출
     cluster_value = model.predict(customer_data.values.reshape(1, -1))[0]
 
     return str(cluster_value)
 
 
 def recomend_Top3(total_data):
-    '''
-    판별된 군집의 음식 top3 추천
-    '''
-    # 정의된 함수 불러오기
     customer_data = fill_value(total_data)
     cluster_value = cluster_result(customer_data)
 
