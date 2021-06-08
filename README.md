@@ -28,37 +28,64 @@
 
 ## :date: Plan
 
-
-
-
-
-#### 1주차 : 주제 선정 및 기획
-
-- 프로젝트 타이틀 선정
-
-- 팀원 간 역할 분담 및 일정 수립
-
-- 프로젝트 수행 방향 논의
-
-#### 2주차 : 분제 분석 및 프로젝트 설계
-
-- `빅`  필요 데이터 정의 및 수집 · 전처리
-- `AI`  인물 이미지 데이터 수집 및 라벨링
-- `클`  EC2 생성 및 환경 설정
-- `IoT`  Picamera로 이미지 촬영
-
-#### 3주차 : 기능 구현 및 Proto Type 도출
-
-- `빅`  변수 간 상관관계 분석 및 모델링
-- `AI`  이미지 분류 모델링 (성별 · 연령대 · 감정)
-- `클`  HTTPS 보안 구축
-- `IoT`  원격 카메라 제어 및 스트리밍 출력
-
-#### 4주차 : 기능 병합 및 서비스 배포
-
-- `빅 · AI`  모델링 검증 및 테스트 후, 병합
-- `클`  AJAX 통신 이용하여 IoT와 연계 및 서비스 배포 · 통합
-- `IoT`  AWS와 연계를 위한 서비스 구축
+<table>
+  <tr align="center">
+    <th colspan="4"; style="font-size:20px";>1주차 : 주제 선정 및 기획</th>
+  </tr>
+  <tr>
+    <td colspan="4">
+    	<ul>
+        <li>프로젝트 타이틀 선정</li>
+        <li>팀원 간 역할 분담 및 일정 수립</li>
+        <li>프로젝트 수행 방향 논의</li>
+      </ul>
+    </td>
+  </tr>
+  <tr align="center"; style="font-size:20px";>
+    <th colspan="4">2주차 : 문제 분석 및 프로젝트 설계</th>
+  </tr>
+   <tr align="center"; style="font-weight:bold";>
+    <td>Big Data</td>
+    <td>AI</td>
+    <td>Cloud</td>
+    <td>IoT</td>
+  </tr>
+  <tr align="center">
+    <td>필요 데이터 정의<br>및 수집 · 전처리</td>
+    <td>인물 이미지 데이터<br>수집 및 라벨링</td>
+    <td>EC2 생성 및 환경 설정</td>
+    <td>Picamera로 이미지 촬영</td>
+  </tr>
+  <tr align="center"; style="font-size:20px";>
+    <th colspan="4">3주차 : 기능 구현 및 Proto Type 도출</th>
+  </tr>
+   <tr align="center"; style="font-weight:bold";>
+    <td>Big Data</td>
+    <td>AI</td>
+    <td>Cloud</td>
+    <td>IoT</td>
+  </tr>
+  <tr align="center">
+    <td>변수 간 상관관계<br>분석 및 모델링</td>
+    <td>이미지 분류 모델링<br>(성별 · 연령대 · 감정)</td>
+    <td>HTTPS 보안 구축</td>
+    <td>원격 카메라 제어 및 스트리밍 출력</td>
+  </tr>
+  <tr align="center"; style="font-size:20px";>
+    <th colspan="4">4주차 : 기능 병합 및 서비스 배포</th>
+  </tr>
+  <tr align="center"; style="font-weight:bold"; >
+    <td>Big Data</td>
+    <td>AI</td>
+    <td>Cloud</td>
+    <td>IoT</td>
+  </tr>
+  <tr align="center">
+    <td colspan="2">모델링 검증 및 테스트 후, 병합</td>
+    <td>AJAX 통신 이용하여 IoT와 연계<br>서비스 배포 · 통합</td>
+    <td>AWS와 연계를 위한 서비스 구축</td>
+  </tr>
+</table>
 
 <br>
 
@@ -108,7 +135,7 @@
 
 |                           Big Data                           |                              AI                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![PYTHON](https://img.shields.io/badge/Python-v3.9-blue?style=plastic&logo=python)![R](https://img.shields.io/badge/R-v4.0.4-lightgray?style=plastic&logo=r)<br>![PANDAS](https://img.shields.io/badge/Pandas-v1.2.3-blue?style=plastic&logo=pandas)<br>![KERAS](https://img.shields.io/badge/Keras-v2.4.3-red?style=plastic&logo=keras)<br>![SKLEARN](https://img.shields.io/badge/Scikit_Learn-v0.24.1-orange?style=plastic&logo=scikit-learn)<br>![NUMPY](https://img.shields.io/badge/NumPy-v1.19.5-yellow?style=plastic&logo=numpy)<br>![MATPLOTLIB](https://img.shields.io/badge/Matplotlib-v3.3.4-lightgray?style=plastic&logo=matplotlib)<br>![SELENIUM](https://img.shields.io/badge/Selenium-v3.141.0-green?style=plastic&logo=selenium)<br>![BS4](https://img.shields.io/badge/BeautifulSoup4-v4.6.0-green?style=plastic&logo=beautifulsoup) | ![PYTHON](https://img.shields.io/badge/Python-v3.9-blue?style=plastic&logo=python)<br>![PANDAS](https://img.shields.io/badge/Pandas-v1.2.3-blue?style=plastic&logo=pandas)<br>![KERAS](https://img.shields.io/badge/Keras-v2.4.3-red?style=plastic&logo=keras)<br>![TENSORFLOW](https://img.shields.io/badge/Tensorflow-v2.5.0rc1-orange?style=plastic&logo=tensorflow)<br>![NUMPY](https://img.shields.io/badge/NumPy-v1.19.5-yellow?style=plastic&logo=numpy)<br>![PILLOW](https://img.shields.io/badge/Pillow-v8.1.2-yellow?style=plastic)<br>![OPENCV](https://img.shields.io/badge/OpenCV-v4.5.2.52-green?style=plastic&logo=opencv) |
+| ![PYTHON](https://img.shields.io/badge/Python-v3.9-blue?style=plastic&logo=python)![R](https://img.shields.io/badge/R-v4.0.4-lightgray?style=plastic&logo=r)<br>![PANDAS](https://img.shields.io/badge/Pandas-v1.2.3-blue?style=plastic&logo=pandas)<br>![SKLEARN](https://img.shields.io/badge/Scikit_Learn-v0.24.1-orange?style=plastic&logo=scikit-learn)<br>![NUMPY](https://img.shields.io/badge/NumPy-v1.19.5-yellow?style=plastic&logo=numpy)<br>![MATPLOTLIB](https://img.shields.io/badge/Matplotlib-v3.3.4-lightgray?style=plastic&logo=matplotlib)<br>![SELENIUM](https://img.shields.io/badge/Selenium-v3.141.0-green?style=plastic&logo=selenium)<br>![BS4](https://img.shields.io/badge/BeautifulSoup4-v4.6.0-green?style=plastic&logo=beautifulsoup) | ![PYTHON](https://img.shields.io/badge/Python-v3.9-blue?style=plastic&logo=python)<br>![PANDAS](https://img.shields.io/badge/Pandas-v1.2.3-blue?style=plastic&logo=pandas)<br>![KERAS](https://img.shields.io/badge/Keras-v2.4.3-red?style=plastic&logo=keras)<br>![TENSORFLOW](https://img.shields.io/badge/Tensorflow-v2.5.0rc1-orange?style=plastic&logo=tensorflow)<br>![NUMPY](https://img.shields.io/badge/NumPy-v1.19.5-yellow?style=plastic&logo=numpy)<br>![PILLOW](https://img.shields.io/badge/Pillow-v8.1.2-yellow?style=plastic)<br>![OPENCV](https://img.shields.io/badge/OpenCV-v4.5.2.52-green?style=plastic&logo=opencv) |
 |                         <b>Cloud</b>                         |                          <b>IoT</b>                          |
 | ![AWS](https://img.shields.io/badge/AWS-gray?style=plastic&logo=amazon-aws)<br>![DOCKER](https://img.shields.io/badge/Docker-v19.03.11-blue?style=plastic&logo=docker) | ![RASPBERRYPI](https://img.shields.io/badge/Raspberry_Pi-red?style=plastic&logo=raspberry-pi)<br>![UBUNTU](https://img.shields.io/badge/Ubuntu-v20.10-orange?style=plastic&logo=ubuntu) |
 
@@ -127,8 +154,6 @@ Model : 모델 생성 관련 사항
 Valid : 모델 검증 관련 사항
 ```
 
-
-
 #### - Usual Commit Convention
 
 ```bash
@@ -143,8 +168,6 @@ Test : 기존 테스트 코드 수정 및 새로운 테스트 코드 추가
 Chore : 소스 코드, 테스트 파일을 제외한 수정
 ```
 
-
-
 #### - Example
 
 ```bash
@@ -152,6 +175,5 @@ Chore : 소스 코드, 테스트 파일을 제외한 수정
 $ git commit -m 'Data : Add data preprocessing file
 > 데이터 전처리 파일 추가'
 ```
-
 
 
