@@ -123,15 +123,9 @@
 
 ## :books:  ​Tech Stack
 
-![GIT](https://img.shields.io/badge/Git-gray?style=plastic&logo=git) ![GITHUB](https://img.shields.io/badge/GitHub-gray?style=plastic&logo=github) ![GDRIVE](https://img.shields.io/badge/Google_Drive-gray?style=plastic&logo=google-drive)
-
-![JUPYTER](https://img.shields.io/badge/Jupyter-v1.0.0-orange?style=plastic&logo=jupyter) ![VSCODE](https://img.shields.io/badge/VSCode-v1.56.2-blue?style=plastic&logo=visual-studio-code) ![COLAB](https://img.shields.io/badge/Google_Colab-gray?style=plastic&logo=google-colab)
-
-![FLASK](https://img.shields.io/badge/Flask-v2.0.1-lightgray?style=plastic&logo=flask) ![JAVASCRIPT](https://img.shields.io/badge/Javascript-ES6+-yellow?style=plastic&logo=javascript) ![MYSQL](https://img.shields.io/badge/MySQL-v15.1-blue?style=plastic&logo=mysql) ![MARIADB](https://img.shields.io/badge/MariaDB-v10.5.10-navy?style=plastic&logo=mariadb)
-
-<br>
-
-<br>
+|                             ALL                              |
+| :----------------------------------------------------------: |
+| ![GIT](https://img.shields.io/badge/Git-gray?style=plastic&logo=git) ![GITHUB](https://img.shields.io/badge/GitHub-gray?style=plastic&logo=github)  ![GDRIVE](https://img.shields.io/badge/Google_Drive-gray?style=plastic&logo=google-drive) <br>![JUPYTER](https://img.shields.io/badge/Jupyter-v1.0.0-orange?style=plastic&logo=jupyter) ![VSCODE](https://img.shields.io/badge/VSCode-v1.56.2-blue?style=plastic&logo=visual-studio-code)   ![COLAB](https://img.shields.io/badge/Google_Colab-gray?style=plastic&logo=google-colab) <br>![FLASK](https://img.shields.io/badge/Flask-v2.0.1-lightgray?style=plastic&logo=flask)  ![JAVASCRIPT](https://img.shields.io/badge/Javascript-ES6+-yellow?style=plastic&logo=javascript) ![MYSQL](https://img.shields.io/badge/MySQL-v15.1-blue?style=plastic&logo=mysql)   ![MARIADB](https://img.shields.io/badge/MariaDB-v10.5.10-navy?style=plastic&logo=mariadb) |
 
 |                           Big Data                           |                              AI                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
@@ -175,5 +169,4 @@ Chore : 소스 코드, 테스트 파일을 제외한 수정
 $ git commit -m 'Data : Add data preprocessing file
 > 데이터 전처리 파일 추가'
 ```
-
 
