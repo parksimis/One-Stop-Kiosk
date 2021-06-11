@@ -52,8 +52,8 @@
   </tr>
   <tr align="center">
     <td>필요 데이터 정의<br>및 수집 · 전처리</td>
-    <td>인물 이미지 데이터<br>수집 및 라벨링</td>
-    <td>EC2 생성 및 환경 설정</td>
+    <td>인물 이미지<br>수집 및 라벨링</td>
+    <td>EC2 생성 <br>및 환경 설정</td>
     <td>Picamera로 이미지 촬영</td>
   </tr>
   <tr align="center"; style="font-size:20px";>
@@ -82,7 +82,7 @@
   </tr>
   <tr align="center">
     <td colspan="2">모델링 검증 및 테스트 후, 병합</td>
-    <td>AJAX 통신 이용하여 IoT와 연계<br>서비스 배포 · 통합</td>
+    <td>Ajax 이용해 IoT와 연계<br>서비스 배포 · 통합</td>
     <td>AWS와 연계를 위한 서비스 구축</td>
   </tr>
 </table>
@@ -126,6 +126,8 @@
 |                             ALL                              |
 | :----------------------------------------------------------: |
 | ![GIT](https://img.shields.io/badge/Git-gray?style=plastic&logo=git) ![GITHUB](https://img.shields.io/badge/GitHub-gray?style=plastic&logo=github)  ![GDRIVE](https://img.shields.io/badge/Google_Drive-gray?style=plastic&logo=google-drive) <br>![JUPYTER](https://img.shields.io/badge/Jupyter-v1.0.0-orange?style=plastic&logo=jupyter) ![VSCODE](https://img.shields.io/badge/VSCode-v1.56.2-blue?style=plastic&logo=visual-studio-code)   ![COLAB](https://img.shields.io/badge/Google_Colab-gray?style=plastic&logo=google-colab) <br>![FLASK](https://img.shields.io/badge/Flask-v2.0.1-lightgray?style=plastic&logo=flask)  ![JAVASCRIPT](https://img.shields.io/badge/Javascript-ES6+-yellow?style=plastic&logo=javascript) ![MYSQL](https://img.shields.io/badge/MySQL-v15.1-blue?style=plastic&logo=mysql)   ![MARIADB](https://img.shields.io/badge/MariaDB-v10.5.10-navy?style=plastic&logo=mariadb) |
+
+
 
 |                           Big Data                           |                              AI                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
