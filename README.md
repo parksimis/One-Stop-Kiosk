@@ -172,3 +172,9 @@ $ git commit -m 'Data : Add data preprocessing file
 > 데이터 전처리 파일 추가'
 ```
 
+
+
+## ⁉️ Details
+
+* 자세한 사항은 [위키](https://github.com/parksimis/One-Stop-Kiosk/wiki)를 참고해주세요.
+
