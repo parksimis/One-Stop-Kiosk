@@ -2,8 +2,9 @@
   <div id=header align="center">
     <h1 style="text-align:left;">⚠️ 메뉴 선택? 고민 ZERO! [KIO-ZERO]</h1>
     <img src=https://capsule-render.vercel.app/api?type=waving&color=FFD159&height=250&text=[KIO-ZERO]%20Project&&fontAlignY=45&desc=%20Multicampus&Desc&descAlignY=25&descAlign=21>
-    <img src="https://user-images.githubusercontent.com/76501345/120985259-68bb1b00-c7b6-11eb-857c-f506df30dfb6.png">
+    <a href="https://youtu.be/3aQ5gYiTbI0"><img src="https://user-images.githubusercontent.com/76501345/120985259-68bb1b00-c7b6-11eb-857c-f506df30dfb6.png"></a>
   </div>
+  - 위의 로고를 클릭하면 KIO-ZERO 홍보 영상을 볼 수 있습니다.
   <br>
   <div id=container>
     <div id=intro>
@@ -231,6 +232,7 @@
     <br>
   </div>
 </div>
+
 
 ## 🚥 Commit Convention
 
