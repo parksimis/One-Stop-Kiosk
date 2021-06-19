@@ -16,7 +16,16 @@
       <p>- 기간 : 2021.04.27 ~ 2021.06.04</p>
     </div>
     <br>
-    <br>
+    <div id=address>
+        <h2>
+            배포 주소
+        </h2>
+        <ul>
+            <li>비용 문제로 서비스 중단</li>
+            <li><a href="https://nonstop-kiosk.site/">https://nonstop-kiosk.site/</a></li>
+        </ul>
+        <br>
+    </div>
     <div id=plan>
       <h2>📅 Plan</h2>
       <table  style="text-align:center;">
@@ -232,6 +241,7 @@
     <br>
   </div>
 </div>
+
 
 
 ## 🚥 Commit Convention
