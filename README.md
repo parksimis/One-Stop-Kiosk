@@ -15,6 +15,12 @@
       <br>
       <p>- 기간 : 2021.04.27 ~ 2021.06.04</p>
     </div>
+    <div>
+    	<h2>
+            🎞 시연 영상
+        </h2>    
+        <img src="https://user-images.githubusercontent.com/51108153/122676752-557a6780-d21a-11eb-9be7-59ec678473e3.gif">
+    </div>
     <br>
     <div id=address>
         <h2>
@@ -22,7 +28,7 @@
         </h2>
         <ul>
             <li>비용 문제로 서비스 중단</li>
-            <li><a href="https://nonstop-kiosk.site/">https://nonstop-kiosk.site/</a></li>
+            <li><a href="https://nonstop-kiosk.site/">https://nonstop-kiosk.site/</a</li>
         </ul>
         <br>
     </div>
@@ -241,6 +247,7 @@
     <br>
   </div>
 </div>
+
 
 
 
