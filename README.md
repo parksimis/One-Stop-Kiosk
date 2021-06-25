@@ -1,40 +1,44 @@
-<div id=readme>
-  <div id=header align="center">
-    <h1 style="text-align:left;">⚠️ 메뉴 선택? 고민 ZERO! [KIO-ZERO]</h1>
+## ⚠️ 메뉴 선택? 고민 ZERO, KIO-ZERO!
+
+<div id=header align="center">
     <img src=https://capsule-render.vercel.app/api?type=waving&color=FFD159&height=250&text=[KIO-ZERO]%20Project&&fontAlignY=45&desc=%20Multicampus&Desc&descAlignY=25&descAlign=21>
     <a href="https://youtu.be/3aQ5gYiTbI0"><img src="https://user-images.githubusercontent.com/76501345/120985259-68bb1b00-c7b6-11eb-857c-f506df30dfb6.png"></a>
-  </div>
-  - 위의 로고를 클릭하면 KIO-ZERO 홍보 영상을 볼 수 있습니다.
-  <br>
-  <div id=container>
-    <div id=intro>
-      <h2>📌 프로젝트 소개</h2>
-      <p>키오스크를 이용하는 모든 고객들을 위해 만든 빠른 주문 & 간편한 조작의 키오스크 !</p>
-      <p>바쁜 현대 사회에서 메뉴로 고민하는 모든 연령층과 키오스크 사용이 어려운 연령층까지 !</p>
-      <p>얼굴 인식으로 메뉴를 추천받는 One-Stop Kiosk Service 입니다.</p>
-      <br>
-      <p>- 기간 : 2021.04.27 ~ 2021.06.04</p>
-    </div>
-    <div>
-    	<h2>
-            🎞 시연 영상
-        </h2>    
-        <img src="https://user-images.githubusercontent.com/51108153/122676752-557a6780-d21a-11eb-9be7-59ec678473e3.gif">
-    </div>
-    <br>
-    <div id=address>
-        <h2>
-            배포 주소
-        </h2>
-        <ul>
-            <li>비용 문제로 서비스 중단</li>
-            <li><a href="https://nonstop-kiosk.site/">https://nonstop-kiosk.site/</a</li>
-        </ul>
-        <br>
-    </div>
-    <div id=plan>
-      <h2>📅 Plan</h2>
-      <table  style="text-align:center;">
+</div>
+
+* 위의 **로고를 [클릭](https://www.youtube.com/watch?v=3aQ5gYiTbI0&feature=youtu.be)**하면 KIO-ZERO 홍보 영상을 볼 수 있습니다.
+
+
+
+## 📌프로젝트 소개
+
+키오스크를 이용하는 모든 고객들을 위해 만든 빠른 주문 & 간편한 조작의 키오스크!
+
+바쁜 현대 사회에서 메뉴로 고민하는 모든 연령층과 키오스크 사용이 미숙한 어르신들까지!
+
+얼굴 인식으로 메뉴를 추천받는 One-Stop 키오스크 서비스!
+
+
+
+## 🎞 시연 영상
+
+![시연 영상](https://user-images.githubusercontent.com/51108153/122676752-557a6780-d21a-11eb-9be7-59ec678473e3.gif)
+
+
+
+## 🚩 배포 주소
+
+* 현재 비용 문제로 서비스 중단
+* https://nonstop-kiosk.site/
+
+
+
+## 📅 Plan
+
+* 프로젝트 수행 기간
+
+  2021.04.27 ~ 2021.06.04
+
+<table  style="text-align:center;">
         <tr>
           <th colspan="4" style="font-size:20px">1주차 : Ice Breaking 및 주제 선정</th>
         </tr>
@@ -103,12 +107,12 @@
           <td>AWS와 연계를 위한 서비스 구축</td>
         </tr>
       </table>
-    </div>
-    <br>
-    <br>
-    <div id=teammate>
-      <h2>👨‍👩‍👧 Teammate</h2>
-      <br>
+
+
+
+## 👨‍👩‍👧 Teammate
+
+<div id=teammate>
       <h4>📊 Big data</h4>
       <table style="text-align:center;">
       	<tr>
@@ -177,77 +181,73 @@
         </tr>       
       </table>
     </div>
-    <br>
-    <br>
-    <div id=tech_stack>
-      <h2>📚 Tech Stack</h2>
-      <table style="text-align:center;">
-        <tr>
-          <th>ALL</th>
-        </tr>
-        <tr>
-          <td>
-            <img src="https://img.shields.io/badge/Git-gray?style=plastic&logo=git">
-            <img src="https://img.shields.io/badge/GitHub-gray?style=plastic&logo=github">
-            <img src="https://img.shields.io/badge/Google_Drive-gray?style=plastic&logo=google-drive"><br>
-            <img src="https://img.shields.io/badge/Jupyter-v1.0.0-orange?style=plastic&logo=jupyter">
-            <img src="https://img.shields.io/badge/VSCode-v1.56.2-blue?style=plastic&logo=visual-studio-code">
-            <img src="https://img.shields.io/badge/Google_Colab-gray?style=plastic&logo=google-colab"><br>
-            <img src="https://img.shields.io/badge/Flask-v2.0.1-lightgray?style=plastic&logo=flask">
-            <img src="https://img.shields.io/badge/Javascript-ES6+-yellow?style=plastic&logo=javascript">
-            <img src="https://img.shields.io/badge/MySQL-v15.1-blue?style=plastic&logo=mysql">
-            <img src="https://img.shields.io/badge/MariaDB-v10.5.10-navy?style=plastic&logo=mariadb">
-          </td>
-        </tr>
-      </table>
-      <br>
-      <table style="text-align:center;">
-        <tr>
-          <th>Big Data</th>
-          <th>AI</th>
-        </tr>
-        <tr>
-          <td>
-            <img src="https://img.shields.io/badge/Python-v3.9-blue?style=plastic&logo=python">
-            <img src="https://img.shields.io/badge/R-v4.0.4-lightgray?style=plastic&logo=r"><br>
-            <img src="https://img.shields.io/badge/Pandas-v1.2.3-blue?style=plastic&logo=pandas"><br>
-            <img src="https://img.shields.io/badge/NumPy-v1.19.5-yellow?style=plastic&logo=numpy"><br>
-            <img src="https://img.shields.io/badge/Scikit_Learn-v0.24.1-orange?style=plastic&logo=scikit-learn"><br>
-            <img src="https://img.shields.io/badge/Matplotlib-v3.3.4-lightgray?style=plastic&logo=matplotlib"><br>
-            <img src="https://img.shields.io/badge/Seaborn-v3.3.4-lightgray?style=plastic&logo=seaborn"><br>
-            <img src="https://img.shields.io/badge/BeautifulSoup4-v4.6.0-green?style=plastic&logo=beautifulsoup">
-          </td>
-          <td>
-            <img src="https://img.shields.io/badge/Python-v3.9-blue?style=plastic&logo=python"><br>
-            <img src="https://img.shields.io/badge/Pandas-v1.2.3-blue?style=plastic&logo=pandas"><br>
-            <img src="https://img.shields.io/badge/Keras-v2.4.3-red?style=plastic&logo=keras"><br>
-            <img src="https://img.shields.io/badge/Tensorflow-v2.5.0rc1-orange?style=plastic&logo=tensorflow"><br>
-            <img src="https://img.shields.io/badge/NumPy-v1.19.5-yellow?style=plastic&logo=numpy"><br>
-            <img src="https://img.shields.io/badge/Pillow-v8.1.2-yellow?style=plastic"><br>
-            <img src="https://img.shields.io/badge/OpenCV-v4.5.2.52-green?style=plastic&logo=opencv">
-          </td>
-        </tr>
-        <tr>
-          <th>Cloud</th>
-          <th>IoT</th>
-        </tr>
-        <tr>
-          <td>
-            <img src="https://img.shields.io/badge/AWS-gray?style=plastic&logo=amazon-aws"><br>
-            <img src="https://img.shields.io/badge/Docker-v19.03.11-blue?style=plastic&logo=docker">
-          </td>
-          <td>
-            <img src="https://img.shields.io/badge/Raspberry_Pi-red?style=plastic&logo=raspberry-pi"><br>
-            <img src="https://img.shields.io/badge/Ubuntu-v20.10-orange?style=plastic&logo=ubuntu">
-          </td>
-        </tr>
-      </table>
-    </div>
-    <br>
-    <br>
-  </div>
-</div>
 
+
+
+## 📚 Tech Stack
+
+<div id=tech_stack>
+  <table style="text-align:center;">
+    <tr>
+      <th>ALL</th>
+    </tr>
+    <tr>
+      <td>
+        <img src="https://img.shields.io/badge/Git-gray?style=plastic&logo=git">
+        <img src="https://img.shields.io/badge/GitHub-gray?style=plastic&logo=github">
+        <img src="https://img.shields.io/badge/Google_Drive-gray?style=plastic&logo=google-drive"><br>
+        <img src="https://img.shields.io/badge/Jupyter-v1.0.0-orange?style=plastic&logo=jupyter">
+        <img src="https://img.shields.io/badge/VSCode-v1.56.2-blue?style=plastic&logo=visual-studio-code">
+        <img src="https://img.shields.io/badge/Google_Colab-gray?style=plastic&logo=google-colab"><br>
+        <img src="https://img.shields.io/badge/Flask-v2.0.1-lightgray?style=plastic&logo=flask">
+        <img src="https://img.shields.io/badge/Javascript-ES6+-yellow?style=plastic&logo=javascript">
+        <img src="https://img.shields.io/badge/MySQL-v15.1-blue?style=plastic&logo=mysql">
+        <img src="https://img.shields.io/badge/MariaDB-v10.5.10-navy?style=plastic&logo=mariadb">
+      </td>
+    </tr>
+  </table>
+  <table style="text-align:center;">
+    <tr>
+      <th>Big Data</th>
+      <th>AI</th>
+    </tr>
+    <tr>
+      <td>
+        <img src="https://img.shields.io/badge/Python-v3.9-blue?style=plastic&logo=python">
+        <img src="https://img.shields.io/badge/R-v4.0.4-lightgray?style=plastic&logo=r"><br>
+        <img src="https://img.shields.io/badge/Pandas-v1.2.3-blue?style=plastic&logo=pandas"><br>
+        <img src="https://img.shields.io/badge/NumPy-v1.19.5-yellow?style=plastic&logo=numpy"><br>
+        <img src="https://img.shields.io/badge/Scikit_Learn-v0.24.1-orange?style=plastic&logo=scikit-learn"><br>
+        <img src="https://img.shields.io/badge/Matplotlib-v3.3.4-lightgray?style=plastic&logo=matplotlib"><br>
+        <img src="https://img.shields.io/badge/Seaborn-v3.3.4-lightgray?style=plastic&logo=seaborn"><br>
+        <img src="https://img.shields.io/badge/BeautifulSoup4-v4.6.0-green?style=plastic&logo=beautifulsoup">
+      </td>
+      <td>
+        <img src="https://img.shields.io/badge/Python-v3.9-blue?style=plastic&logo=python"><br>
+        <img src="https://img.shields.io/badge/Pandas-v1.2.3-blue?style=plastic&logo=pandas"><br>
+        <img src="https://img.shields.io/badge/Keras-v2.4.3-red?style=plastic&logo=keras"><br>
+        <img src="https://img.shields.io/badge/Tensorflow-v2.5.0rc1-orange?style=plastic&logo=tensorflow"><br>
+        <img src="https://img.shields.io/badge/NumPy-v1.19.5-yellow?style=plastic&logo=numpy"><br>
+        <img src="https://img.shields.io/badge/Pillow-v8.1.2-yellow?style=plastic"><br>
+        <img src="https://img.shields.io/badge/OpenCV-v4.5.2.52-green?style=plastic&logo=opencv">
+      </td>
+    </tr>
+    <tr>
+      <th>Cloud</th>
+      <th>IoT</th>
+    </tr>
+    <tr>
+      <td>
+        <img src="https://img.shields.io/badge/AWS-gray?style=plastic&logo=amazon-aws"><br>
+        <img src="https://img.shields.io/badge/Docker-v19.03.11-blue?style=plastic&logo=docker">
+      </td>
+      <td>
+        <img src="https://img.shields.io/badge/Rasperry_Pi-red?style=plastic&logo=raspberry-pi"><br>
+        <img src="https://img.shields.io/badge/Ubuntu-v20.10-orange?style=plastic&logo=ubuntu">
+      </td>
+    </tr>
+  </table>
+</div>
 
 
 
@@ -284,9 +284,9 @@ $ git commit -m 'Data : Add data preprocessing file
 > 데이터 전처리 파일 추가'
 ```
 
-<br>
+
 
 ## ⁉️ Details
 
-- 자세한 사항은 [Wiki](https://github.com/parksimis/One-Stop-Kiosk/wiki)를 참고해주세요.
+- 자세한 사항은 [Wiki](https://github.com/parksimis/One-Stop-Kiosk/wiki)를 참고바랍니다. 😃
 
