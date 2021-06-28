@@ -10,7 +10,7 @@
 <br>
 
 
-* 위의 **[로고를 클릭](https://www.youtube.com/watch?v=3aQ5gYiTbI0&feature=youtu.be)**하면 KIO-ZERO 홍보 영상을 볼 수 있습니다.
+* 위의 [로고를 클릭](https://www.youtube.com/watch?v=3aQ5gYiTbI0&feature=youtu.be)하면 KIO-ZERO 홍보 영상을 볼 수 있습니다.
 
 <br>
 
