@@ -94,7 +94,7 @@
   <tr>
     <td>변수 간 상관관계<br>분석 및 모델링</td>
     <td>이미지 분류 모델링<br>(성별 · 연령대 · 감정)</td>
-    <td>HTTPS 보안 구축</td>
+    <td>HTTPS 보안 구축<br>원격 스트리밍 연결</td>
     <td>원격 카메라 제어 및 스트리밍 출력</td>
   </tr>
   <tr style="font-size:20px">
